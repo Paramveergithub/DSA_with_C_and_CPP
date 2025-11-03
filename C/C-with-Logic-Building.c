@@ -124,3 +124,87 @@ int main()
   return 0;
 }
 */
+
+// Question 11 ***************Assignment-2_Question-1 ***************
+// WAP to find the average of three numbers. Three numbers are entered by the user
+/*
+#include <stdio.h>
+int main()
+{
+  int a, b, c, d;
+  printf("Enter three integers: ");
+  scanf("%d %d %d", &a, &b, &c);
+  d = (a + b + c) / 3;
+  printf("Average of the three integers: %d", d);
+  return 0;
+}
+*/
+
+// Question 12 ***************Assignment-2_Question-2 ***************
+// WAP to find the circumference of a circle. Diameter is entered by the user
+/*
+#include <stdio.h>
+int main()
+{
+  int diameter;
+  float pi = 3.14;
+  printf("Enter diameter of a circle: ");
+  scanf("%d", &diameter);
+  printf("Circumference of the circle: %.2f", pi * diameter);
+  return 0;
+}
+*/
+
+// Question 13 ***************Assignment-2_Question-3 ***************
+// WAP to find the simple interest. Principal, Rate and Time are entered by the user
+/*
+#include <stdio.h>
+int main()
+{
+  int Principal, Rate, Time;
+  float SI;
+  printf("Enter Principal, Rate and Time: ");
+  scanf("%d %d %d", &Principal, &Rate, &Time);
+  SI = (Principal * Rate * Time) / 100;
+  printf("Simple Interest: %.2f", SI);
+  return 0;
+}
+*/
+
+// Question 14 ***************Assignment-2_Question-4 ***************
+// WAP to find the volume of a cuboid. Length, breadth and height are entered by the user.
+/*
+#include <stdio.h>
+int main()
+{
+  int length, breadth, height;
+  printf("Enter length, breadth and height of a cuboid: ");
+  scanf("%d %d %d", &length, &breadth, &height);
+  printf("Volume of the cuboid: %d", length * breadth * height);
+  return 0;
+}
+*/
+
+// Question 15 ********Assignment-2_Question-5*********
+// write a program to ask user about the cost price and selling price banana per dozen. Calculate the profit or loss earned upon selling 25 bananas.
+/*
+#include <stdio.h>
+int main()
+{
+  int costPricePerDozen, sellingPricePerDozen;
+  float costPriceFor25, sellingPriceFor25;
+  printf("Enter Cost Price and Selling Price per dozen: ");
+  scanf("%d %d", &costPricePerDozen, &sellingPricePerDozen);
+  costPriceFor25 = (costPricePerDozen/ 12.0) * 25;
+  sellingPriceFor25 = (sellingPricePerDozen / 12.0) * 25;
+  float profitOrLoss = sellingPriceFor25 - costPriceFor25;
+  if (profitOrLoss > 0) {
+    printf("Profit earned: %.2f\n", profitOrLoss);
+  } else if (profitOrLoss < 0) {
+    printf("Loss incurred: %.2f\n", -profitOrLoss);
+  } else {
+    printf("No profit, no loss.\n");
+  }
+  return 0;
+}
+*/
