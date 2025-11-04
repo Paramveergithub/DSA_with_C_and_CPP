@@ -208,3 +208,74 @@ int main()
   return 0;
 }
 */
+
+
+// Question 16 *****Assignment-3_Question-1********
+// Write a program to input a character from the user and print its ASCII code.
+/*
+#include <stdio.h>
+int main()
+{
+  char a;
+  printf("Enter a character: ");
+  scanf(" %c", &a);
+  printf("The ASCII value of %c is %d", a, a);
+  return 0;
+}
+*/
+
+// Question 17 *************Assignment-3_Question-2********
+// Write a program to input an ASCII code from the user and print its corresponding character.
+/*
+#include <stdio.h>
+int main()
+{
+  int a;
+  printf("Enter an ASCII value: ");
+  scanf(" %d", &a);
+  printf("The character of %d is %c", a, a);
+  return 0;
+}
+*/
+
+// Question 18 *************Assignment-3_Question-3********
+// Write a program to input three characters from the user and display characters with their ASCII values.
+/*
+#include <stdio.h>
+int main()
+{
+  char a, b, c;
+  printf("Enter three integers: ");
+  scanf(" %c %c %c", &a, &b, &c);
+  printf("The ASCII values of \"%c\", \"%c\" and \"%c\" are  %d, %d and %d respectively.", a, b, c, a, b, c);
+  return 0;
+}
+*/
+
+// Question 19 *************Assignment-3_Question-4********
+// Write a program to print last digit of a given number.
+/*
+#include <stdio.h>
+int main()
+{
+  int a;
+  printf("Enter an integer: ");
+  scanf("%d", &a);
+  printf("Last digit of %d is %d", a, a % 10);
+  return 0;
+}
+*/
+
+// Question 20 *************Assignment-3_Question-5********
+// Write a program to print a given number without its last digit.
+/*
+#include <stdio.h>
+int main()
+{
+  int a;
+  printf("Enter an integer: ");
+  scanf("%d", &a);
+  printf("The integer without its last digit is %d", a / 10);
+  return 0;
+}
+*/
