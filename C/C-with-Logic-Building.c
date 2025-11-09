@@ -525,3 +525,73 @@ int main()
 }
 */
 
+// Question 36 ********Assignment-6_Question-4 ***************
+// What will be the value stored in the variable x after executing following statement: x=!2>-2;
+/*
+#include <stdio.h>
+int main()
+{
+  int x = !2>-2; //1
+  printf("The value of x is %d\n", x);
+}
+*/
+
+// Question 37 ********Assignment-6_Question-5 ***************
+//  What will be the value stored in the variable x after executing following statement: x=3<0&&5>0;
+/*
+#include <stdio.h>
+int main()
+{
+  int x = 3 < 0 && 5 > 0; // 0
+  printf("The value of x is %d\n", x);
+}
+*/
+
+// Question 38 ********Assignment-7_Question-1 ***************
+// Write a program to check whether a given number is positive or non positive.
+/*
+#include <stdio.h>
+int main(){
+  int a;
+  printf("Enter an integer: ");
+  scanf("%d", &a);
+  if(a > 0){
+    printf("The number %d is positive.\n", a);
+  } else{
+    printf("The number is non-positive.\n");
+  }
+}
+*/
+
+// Question 39 ********Assignment-7_Question-2 ***************
+//  Write a program to check whether a given number is divisible by 5 or not.
+/*
+#include <stdio.h>
+int main(){
+  int a;
+  printf("Enter an integer: ");
+  scanf("%d", &a);
+  if(a % 5 == 0){
+    printf("The number %d is divisible by 5.\n", a);
+  } else{
+    printf("The number %d is not divisible by 5.\n", a);
+  }
+}
+*/
+
+// Question 40 ********Assignment-7_Question-3 ***************
+//  Write a program to check whether a given number is an even number or an odd number.
+/*
+#include <stdio.h>
+int main(){
+  int a;
+  printf("Enter an integer: ");
+  scanf("%d", &a);
+  if(a % 2 == 0){
+    printf("The number %d is even.\n", a);
+  } else{
+    printf("The number %d is odd.\n", a);
+  }
+  return 0;
+}
+*/
