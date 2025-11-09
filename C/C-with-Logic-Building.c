@@ -209,7 +209,6 @@ int main()
 }
 */
 
-
 // Question 16 *****Assignment-3_Question-1********
 // Write a program to input a character from the user and print its ASCII code.
 /*
@@ -390,7 +389,7 @@ int main()
   printf("Swap values are %d and %d\n", a, b);
   return 0;
 }
-*/ 
+*/
 
 // Question 28 ***************Assignment-5_Question-1********
 //  Write a program to input a three digit number and display the sum of the digits. 2. Write a program to find ASCII code of the character '+'.
@@ -410,7 +409,6 @@ int main()
   return 0;
 }
 */
-
 
 // Question 29 ***************Assignment-5_Question-2********
 //  Write a program to print size of an int, a float, a char and a double type variable 4. Write a program to make the last digit of a number stored in a variable as zero. (Example - if x=2345 then make it x=2340)
@@ -686,5 +684,105 @@ int main(){
   } else {
     printf("The roots are complex.\n");
   }
+}
+*/
+
+// Question 46 ********Assignment-8_Question-4 ***************
+
+// Write a program to check whether a given year is a leap year or not.
+// it should be divided by 4, if it is century year then it should be divisible by 100 and 400 to be a leap year
+/*
+#include <stdio.h>
+int main(){
+  int Year;
+  printf("Enter a year: ");
+  scanf("%d", &Year);
+  if (Year % 4 == 0) {
+    if (Year % 100 == 0) {// it is century year
+      if (Year % 400 == 0) {
+        printf("%d is a leap year.\n", Year);
+      } else {
+        printf("%d is not a leap year.\n", Year);
+      }
+    } else {
+      printf("%d is a leap year.\n", Year);
+    }
+  } else {
+    printf("%d is not a leap year.\n", Year);
+  }
+}
+*/
+
+// Question 47 ********Assignment-8_Question-5 ***************
+// Write a program to find the greatest among three given numbers. Print number once if the greatest number appears two or three times.
+/*
+#include <stdio.h>
+int main(){
+  int a, b, c;
+  printf("Enter three integers: ");
+  scanf("%d %d %d", &a, &b, &c);
+  if (a > b && a > c) {
+    printf("The largest number is %d\n", a);
+  } else if (b > a && b > c) {
+    printf("The largest number is %d\n", b);
+  } else if (c > a && c > b) {
+    printf("The largest number is %d\n", c);
+  } else {
+    printf("There is no unique largest number.\n");
+  }
+}
+*/
+
+// Question 48 ********Assignment-9_Question-1 ***************
+//  Write a program which takes the cost price and selling price of a product from the user. Now calculate and print profit or loss percentage.
+/*
+#include <stdio.h>
+int main(){
+  int costPrice, sellingPrice;
+  printf("Enter Cost Price and Selling Price: ");
+  scanf("%d %d", &costPrice, &sellingPrice);
+  float profitOrLoss = ((float)(sellingPrice - costPrice) / costPrice) * 100;
+
+  if (profitOrLoss > 0) {
+    printf("Profit of %2.f %%\n", profitOrLoss);
+  } else if (profitOrLoss < 0) {
+    printf("Loss of %2.f %%\n", -profitOrLoss);
+  } else {
+    printf("No profit, no loss.\n");
+  }
+}
+*/
+
+// Question 49 ********Assignment-9_Question-2 ***************
+// Write a program to take marks of 5 subjects from the user. Assume marks are given out of 100 and passing marks is 33. Now display whether the candidate passed the examination or failed.
+/*
+#include <stdio.h>
+int main(){
+  int a, b, c, d, e;
+  printf("Enter five subject's marks: ");
+  scanf("%d %d %d %d %d", &a, &b, &c, &d, &e);
+  if(a >= 33 && b >= 33 && c >= 33 && d >= 33 && e >= 33){
+    printf("You have passed the exam.\n");
+  } else {
+    printf("You have failed the exam.\n");
+  }
+}
+*/
+
+// Question 50 ********Assignment-9_Question-3 ***************
+// Write a program to check whether a given alphabet is in uppercase or lowercase. 4. Write a program to check whether a given number is divisible by 3 and divisible by 2.
+/*
+#include <stdio.h>
+int main(){
+  char alphabet;
+  printf("Enter an alphabet: ");
+  scanf(" %c", &alphabet);
+  if(alphabet >= 'A' && alphabet <= 'Z') {
+    printf("The alphabet %c is uppercase.\n", alphabet);
+    } else if(alphabet >= 'a' && alphabet <= 'z') {
+      printf("The alphabet %c is lowercase.\n", alphabet);
+      } else {
+        printf("The character %c is not an alphabet.\n", alphabet);
+        }
 }
 */
