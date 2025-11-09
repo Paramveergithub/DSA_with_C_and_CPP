@@ -279,3 +279,83 @@ int main()
   return 0;
 }
 */
+
+// Question 21 *************Assignment-4_Question-1********
+// Write a program to calculate size of a character constant.
+/*
+#include <stdio.h>
+int main()
+{
+  char a;
+  int size;
+  printf("Enter a character: ");
+  scanf(" %c", &a);
+  size = sizeof(a);
+  printf("Size of character %c is %d bytes \n", a, size);
+}
+*/
+
+// gcc -std=c11 -o a.out firstProgram.c && a.out
+
+// Question 22 *************Assignment-4_Question-2********
+// Write a program to calculate size of a real constant.
+/*
+#include <stdio.h>
+int main()
+{
+  float a;
+  int size;
+  printf("Enter a float number: ");
+  scanf("%f", &a);
+  size = sizeof(a);
+  printf("Size of float number %f is %d bytes \n", a, size);
+  return 0;
+}
+*/
+
+// Question 23 *************Assignment-4_Question-3********
+// Write a program with one char type variable. Assign 'A' in the variable. Now change the value of the variable from 'A' to 'B' using increment operator.
+/*
+#include <stdio.h>
+int main()
+{
+  char a = 'A';
+  a++;
+  printf("The next character after 'A' is '%c'\n", a);
+  return 0;
+}
+*/
+
+// Question 24 *************Assignment-4_Question-4********
+// Write a program to swap values of two int variables.
+/*
+#include <stdio.h>
+int main()
+{
+  int a, b;
+  printf("Enter two integers: ");
+  scanf("%d %d", &a, &b);
+  int temp = a;
+  a = b;
+  b = temp;
+  printf("Swap values are %d and %d\n", a, b);
+  return 0;
+}
+*/
+// Question 25 *********Assignment-4_Question-5********
+// Write a program to swap values of two int variables without using third variable.
+/*
+#include <stdio.h>
+int main()
+{
+  int a, b;
+  printf("Enter two integers: ");
+  scanf("%d %d", &a, &b);
+  a = a + b;
+  b = a - b;
+  a = a - b;
+  printf("Swap values are %d and %d\n", a, b);
+  return 0;
+}
+*/
+
