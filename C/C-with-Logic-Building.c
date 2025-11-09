@@ -442,3 +442,86 @@ int main()
 }
 */
 
+// Question 31 ***************Assignment-5_Question-4********
+// Write a program to make the last digit of a number stored in a variable as zero. (Example - if x=2345 then make it x=2340)
+/*
+#include <stdio.h>
+int main()
+{
+  int a;
+  printf("Enter an integer: ");
+  scanf("%d", &a);
+  a = a/10;
+  a = a*10;
+  printf("The integer without its last digit, but with last digit 0 is %d\n", a);
+}
+*/
+
+// Question 32 ***************Assignment-5_Question-5********
+// Write a program to input a number from the user and also input a digit. Append a digit in the number and print the resulting number. (Example - number=234 and digit=9 then the resulting number is 2349)
+/*
+#include <stdio.h>
+int main()
+{
+  int num, digit;
+  printf("Enter a number and a digit : ");
+  scanf("%d %d", &num, &digit);
+  num = num * 10 + digit;
+  printf("The new number is %d\n", num);
+  return 0;
+}
+*/
+
+// Question 33 ********Assignment-6_Question-1 ***************
+// Assume price of 1 USD is INR 84.23. Write a program to take the amount in INR and convert it into USD.
+/*
+#include <stdio.h>
+int main()
+{
+  float INR;
+  printf("Enter amount in INR: ");
+  scanf("%f", &INR);
+  float USD = INR / 84.23;
+  printf("Amount in USD: %.2f\n", USD);
+  return 0;
+}
+*/
+
+// Question 34 ********Assignment-6_Question-2 ***************
+// Write a program to take a three digit number from the user and rotate its digits by one position towards the right.
+/*
+#include <stdio.h>
+int power(int x){
+  int result = 1;
+  while (x > 0) {
+    result *= 10;
+    x--;
+  }
+  return result;
+}
+int main()
+{
+  int a, n, k;
+  printf("Enter a number, its digit and rotation count: ");
+  scanf("%d %d %d", &a , &n, &k);
+  int powNk = power(n - k);
+  int powK = power(k);
+  int lastPart = a % powK;
+  int firstPart = a / powK;
+  int newNumber = lastPart * powNk + firstPart;
+  printf("The new number is %d\n", newNumber);
+  return 0;
+}
+*/
+
+// Question 35 ********Assignment-6_Question-3 ***************
+// What will be the value stored in the variable x after executing following statement: x=10>8>4;
+/*
+#include <stdio.h>
+int main()
+{
+  int x = 10>8>4; //0
+  printf("The value of x is %d\n", x);
+}
+*/
+
