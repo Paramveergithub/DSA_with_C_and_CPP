@@ -875,3 +875,76 @@ int main() {
   }
 }
 */
+
+// Question 56 ********Assignment-10_Question-4 ***************
+// Write a program which takes the month number as an input and display number of days in that month.
+/*
+#include <stdio.h>
+int main() {
+  int month;
+  printf("Enter a month number (1-12): ");
+  scanf("%d", &month);
+  if(month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
+    printf("The month %d has 31 days.\n", month);
+  } else if(month == 4 || month == 6 || month == 9 || month == 11) {
+    printf("The month %d has 30 days.\n", month);
+  } else if(month == 2) {
+    printf("February has either 28 or 29 days depending on whether it's a leap year.\n");
+  } else {
+    printf("Invalid month number.\n");
+  }
+}
+*/
+
+// Question 57 ********Assignment-11_Question-1 ***************
+// Write a program to print MySirG 5 times on the screen
+/*
+#include <stdio.h>
+int main() {
+  int i = 5;
+  while(i){
+    printf("MySirG\n");
+    i--;
+  }
+}
+*/
+
+// Question 58 ********Assignment-11_Question-2 ***************
+// Write a program to print the first 10 natural numbers.
+/*
+#include <stdio.h>
+int main() {
+  int i = 1;
+  while(i <= 10) {
+    printf("%d\n", i);
+    i++;
+  }
+}
+*/
+
+// Question 59 ********Assignment-11_Question-3 ***************
+// Write a program to print the first 10 natural numbers in reverse order
+/*
+#include <stdio.h>
+int main() {
+  int i = 10;
+  while(i >= 1) {
+    printf("%d\n", i);
+    i--;
+  }
+}
+*/
+
+// Question 60 ********Assignment-11_Question-4 ***************
+// Write a program to print the first 10 odd natural numbers.
+/*
+#include <stdio.h>
+int main(){
+  int i = 1, n = 10;
+  while(n > 0){
+    printf("%d ", i);
+    i += 2;
+    n--;
+  }
+}
+*/
