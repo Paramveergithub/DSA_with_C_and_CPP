@@ -1098,3 +1098,89 @@ int main(){
   }
 }
 */
+
+// Question 71 ********Assignment-12_Question-5 ***************
+// Write a program to print the first N odd natural numbers in reverse order.
+/*
+#include <stdio.h>
+int main(){
+  int n;
+  printf("Enter a number: ");
+  scanf("%d", &n);
+  int odd = 2*n - 1;
+  while(n){
+    printf("%d ", odd);
+    odd -= 2;
+    n--;
+    }
+}
+*/
+
+// Question 72 ********Assignment-12_Question-6 ***************
+// Write a program to print the first N even natural numbers
+/*
+#include <stdio.h>
+int main(){
+  int n;
+  printf("Enter a number: ");
+  scanf("%d", &n);
+  int even = 2;
+  while(n){
+    printf("%d ", even);
+    even += 2;
+    n--;
+  }
+}
+*/
+
+// Question 73 ********Assignment-12_Question-7 ***************
+// Write a program to print the first N even natural numbers in reverse order
+/*
+#include <stdio.h>
+int main(){
+  int n;
+  printf("Enter a number: ");
+  scanf("%d", &n);
+  int even = 2*n;
+  while(n){
+    printf("%d ", even);
+    even -= 2;
+    n--;
+  }
+}
+*/
+
+// Question 74 ********Assignment-12_Question-8 ***************
+// Write a program to print squares of the first N natural numbers
+/*
+#include <stdio.h>
+int main(){
+  int n;
+  printf("Enter a number: ");
+  scanf("%d", &n);
+  int i = 1;
+  while(n){
+    printf("%d ", i * i);
+    i++;
+    n--;
+  }
+}
+*/
+
+// Question 75 ********Assignment-12_Question-9 ***************
+// Write a program to print cubes of the first N natural numbers
+/*
+#include <stdio.h>
+int main(){
+  int n;
+  printf("Enter a number: ");
+  scanf("%d", &n);
+  int i = 1;
+  while(n){
+    printf("%d ", i * i * i);
+    i++;
+    n--;
+  }
+}
+ */
+ 
