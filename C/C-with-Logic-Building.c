@@ -1184,3 +1184,77 @@ int main(){
 }
  */
  
+// Question 76 ********Assignment-12_Question-10 ***************
+// Write a program to print a table of N.
+ /*
+#include <stdio.h>
+int main(){
+  int n;
+  printf("Enter a number: ");
+  scanf("%d", &n);
+  int i = 1, t = 10;
+  while(t){
+    printf("%d * %d = %d\n", n , i, n * i);
+    i++;
+    t--;
+  }
+}
+*/
+
+// Question 77 ********Assignment-13_Question-1 ***************
+// Write a program to calculate sum of first N natural numbers
+/*
+#include <stdio.h>
+int main(){
+  int n;
+  printf("Enter a number: ");
+  scanf("%d", &n);
+  int i = 1;
+  int sumOfNaturalNumbers = 0;
+  while(i <= n){
+    sumOfNaturalNumbers += i;
+    i++;
+  }
+  printf("The sum of first %d natural numbers is %d\n", n, sumOfNaturalNumbers);
+}
+*/
+
+// Question 78 ********Assignment-13_Question-2 ***************
+// Write a program to calculate sum of first N even natural numbers
+/*
+#include <stdio.h>
+int main(){
+  int n;
+  printf("Enter a number: ");
+  scanf("%d", &n);
+  int sumOfEvenNaturalNumbers = n*(n + 1);
+  printf("The sum of first %d even natural numbers is %d\n", n, sumOfEvenNaturalNumbers);
+}
+*/
+
+// Question 79 ********Assignment-13_Question-3 ***************
+// Write a program to calculate sum of first N odd natural numbers 
+/*
+#include <stdio.h>
+int main(){
+  int n;
+  printf("Enter a number: ");
+  scanf("%d", &n);
+  int sumOfOddNaturalNumbers = n * n;
+  printf("The sum of first %d odd natural numbers is %d\n", n, sumOfOddNaturalNumbers);
+}
+*/
+
+// Question 80 ********Assignment-13_Question-4 ***************
+// Write a program to calculate sum of squares of first N natural numbers.
+/*
+#include <stdio.h>
+int main(){
+  int n;
+  printf("Enter a number: ");
+  scanf("%d", &n);
+  int sumOfSquaresNaturalNumbers = (n * (n + 1) * (2 * n + 1)) / 6;
+  printf("The sum of squares of first %d natural numbers is %d\n", n, sumOfSquaresNaturalNumbers);
+}
+*/
+
