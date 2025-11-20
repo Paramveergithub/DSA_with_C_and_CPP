@@ -2951,3 +2951,145 @@ int main(){
 }
 */
 
+// Question 136**********Assignment-22_Question-5 ***************
+// Write a function to print all prime factors of a given number. For example, if the number is 36 then your result should be 2, 2, 3, 3. (TSRN)
+/*
+#include <stdio.h>
+int isPrime(int n){
+  if(n < 2) return 0;
+  int i = 2;
+  while(i < n){
+    if(n % i == 0){
+      return 0;
+    }
+    i++;
+  }
+  if(i == n) return 1;
+}
+void allPrimeFactors(int n){
+  if(n<2){
+    printf("No prime factors.\n");
+    return;
+  }
+  int i = 2;
+  while(i <= n){
+    if(isPrime(i)){
+       while(n % i == 0){
+         printf("%d, ", i);
+         n /= i;
+       }
+    }
+      i++;
+  }
+}
+int main(){
+  int n;
+  printf("Enter a number: ");
+  scanf("%d" , &n);
+  allPrimeFactors(n);
+  return 0;
+}
+*/
+
+
+// Question 137**********Assignment-23_Question-1 ***************
+// Write a function to calculate LCM of two numbers. (TSRS)
+/*
+#include <stdio.h>
+int LCM(int a, int b){
+  int i = 1, j = 1, lcm = 0;
+  while(1){
+    if(a * i == b * j){
+      return lcm = a * i;
+    }else if(a * i < b * j){
+      i++;
+    }else{
+      j++;
+    }
+  }
+}
+int main(){
+  int a, b;
+  printf("Enter two numbers: ");
+  scanf("%d %d", &a, &b);
+  printf("LCM of %d and %d is %d\n", a, b, LCM(a, b));
+}
+*/
+
+
+// Question 138**********Assignment-23_Question-2 ***************
+// Write a function to calculate HCF of two numbers. (TSRS)
+/*
+#include <stdio.h>
+int HCF(int a, int b){
+  int min = (a < b) ? a : b;
+  while(min>0){
+    if(a % min == 0 && b % min == 0){
+      return min;
+    }
+    min--;
+  }
+}
+int main(){
+  int a, b;
+  printf("Enter two numbers: ");
+  scanf("%d %d", &a, &b);
+  printf("The HCF of %d and %d is %d", a, b, HCF(a, b));
+}
+*/
+
+
+// Question 139**********Assignment-23_Question-3 ***************
+// Write a function to check whether a given number is Prime or not. (TSRS) 
+/*
+#include <stdio.h>
+char* isPrime(int n){
+  if(n < 2 ) return "No";
+  int i = 2;
+  while(i < n){
+    if(n % i == 0){
+      return "not a prime";
+    }
+    i++;
+  }
+  if(i == n) return "a prime";
+}
+int main(){
+ int n;
+  printf("Enter a number: ");
+  scanf("%d", &n);
+  printf("the number %d is %s .\n", n, isPrime(n));
+}
+*/
+
+
+// Question 140**********Assignment-23_Question-4 ***************
+//Write a function to find the next prime number of a given number. (TSRS)
+/*
+#include <stdio.h>
+int isPrime(int n){
+  if(n < 2 ) return 0;
+  int i = 2;
+  while(i < n){
+    if(n % i == 0){
+      return 0;
+    }
+    i++;
+  }
+  if(i == n) return 1;
+}
+int main(){
+  int n;
+  printf("Enter a number: ");
+  scanf("%d", &n);
+  n = n+1;
+  while(n){
+    if(isPrime(n)){
+      printf("The next prime number is %d\n", n);
+      return 0;
+    }
+    n++;
+  }
+}
+*/
+
