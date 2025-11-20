@@ -2200,3 +2200,263 @@ int main(){
   }
 }
 */
+
+// Question 116**********Assignment-18_Question-10 ***************
+//  A B C D C B A
+//  A B C   C B A
+//  A B       B A
+//  A           A
+/*
+#include <stdio.h>
+int main(){
+  int n, i =1;
+  printf("Enter a number: ");
+  scanf("%d", &n);
+  while(i <= n){
+    int j =0;
+    while(j < n - i + 1){
+      printf("%c ", 'A' + j);
+      j++;
+    }
+    j = 0;
+    while(j < i*2-3){
+      printf("  ");
+      j++;
+    }
+    if(i == 1){
+      j = n - 2;
+      while(j >= 0){
+        printf("%c ", 'A' + j);
+        j--;
+      }
+    }else{
+      j = n - i;
+      while(j >= 0){
+        printf("%c ", 'A' + j);
+        j--;
+      }
+    }
+    i++;
+    printf("\n");
+  }
+}
+*/
+
+// Question 117**********Assignment-19_Question-1 ***************
+// Write a program which takes the month number as an input and display number of days in that month.
+/*
+#include <stdio.h>
+int main() {
+  int month;
+  printf("Enter a month number (1-12): ");
+  scanf("%d", &month);
+  switch(month) {
+    case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+      printf("The month %d has 31 days.\n", month);
+      break;
+    case 4: case 6: case 9: case 11:
+      printf("The month %d has 30 days.\n", month);
+      break;
+    case 2:
+      printf("The month %d has 28 or 29 days.\n", month);
+      break;
+    default:
+      printf("Invalid month number.\n");
+  }
+  return 0;
+}
+*/
+
+// Question 118**********Assignment-19_Question-2 ***************
+// Write a menu driven program with the following options:
+// 1. Addition
+// 2. Subtraction
+// 3. Multiplication
+// 4. Division
+// 5. Exit
+/*
+#include <stdio.h>
+int main(){
+  printf("1. Addition\n");
+  printf("2. Subtraction\n");
+  printf("3. Multiplication\n");
+  printf("4. Division\n");
+  printf("5. Exit\n");
+  int choice;
+  printf("Enter your choice (1-5): ");
+  scanf("%d", &choice);
+  switch (choice){
+    case 1:
+    {
+      int a, b;
+      printf("Enter two numbers: ");
+      scanf("%d %d", &a, &b);
+      printf("Result: %d\n", a + b);
+      break;
+    }
+    case 2:
+    {
+      int a, b;
+      printf("Enter two numbers: ");
+      scanf("%d %d", &a, &b);
+      printf("Result: %d\n", a - b);
+      break;
+    }
+    case 3:
+    {
+      int a, b;
+      printf("Enter two numbers: ");
+      scanf("%d %d", &a, &b);
+      printf("Result: %d\n", a * b);
+      break;
+    }
+    case 4:
+    {
+      int a, b;
+      printf("Enter two numbers: ");
+      scanf("%d %d", &a, &b);
+      if (b != 0)
+      {
+        printf("Result: %.2f\n", (float)a / b);
+      }
+      else
+      {
+        printf("Error: Division by zero.\n");
+      }
+      break;
+    }
+    case 5:
+      printf("Exiting the program.\n");
+      break;
+    default:
+      printf("Invalid choice.\n");
+  }
+}
+*/
+
+
+// Question 119**********Assignment-19_Question-3 ***************
+// Write a program which takes the day number of a week and displays a unique greeting message for the day.
+/*
+#include <stdio.h>
+int main() {
+  int day;
+  printf("Enter a day number : ");
+
+  if(scanf("%d", &day) != 1 || day < 0) {
+    printf("Invalid input.\n");
+    return 1;
+  }
+
+  switch(day%7) {
+    case 0:
+    printf("Enjoy your Sunday!\n");
+    break;
+    case 1:
+    printf("Hustling hard because it's Monday!\n");
+    break;
+    case 2:
+    printf("Working hard because it's Tuesday!\n");
+    break;
+    case 3:
+    printf("Studying hard because it's Wednesday!\n");
+    break;
+    case 4:
+    printf("Relaxing because it's Thursday!\n");
+    break;
+    case 5:
+    printf("Having fun because it's Friday!\n");
+    break;
+    case 6:
+    printf("Recharging because it's Saturday!\n");
+    break;
+  }
+}
+*/
+
+// Question 120**********Assignment-19_Question-4 ***************
+// Write a menu driven program with the following options:
+// 1. Check whether a given set of three numbers are lengths of an isosceles triangle or not
+// 2. Check whether a given set of three numbers are lengths of sides of a right angled triangle or not
+// 3. Check whether a given set of three numbers are equilateral triangle or not
+// 4. Exit
+/*
+#include <stdio.h>
+#include <stdlib.h>
+void clearScreen() {
+    printf("\033[2J\033[H");
+    fflush(stdout);
+}
+int main() {
+  while(1) {
+    // clearScreen();
+    printf("1. Isosceles Triangle or not?\n");
+    printf("2. Right Angled Triangle or not?\n");
+    printf("3. Equilateral Triangle or not?\n");
+    printf("4. Exit\n");
+    int choice;
+    printf("Enter your choice (1-4): ");
+    scanf("%d", &choice);
+    switch (choice){
+      case 1:{
+        int a, b, c;
+        printf("Enter the lengths of the three sides of the triangle: ");
+        scanf("%d %d %d", &a, &b, &c);
+        if (a + b > c && a + c > b && b + c > a){
+          if (a == b || b == c || c == a){
+            printf("The triangle is an isosceles triangle.\n");
+          }
+          else{
+            printf("The triangle is not an isosceles triangle.\n");
+          }
+        }else{
+          printf("The lengths do not form a triangle.\n");
+        }
+        break;
+      }
+      case 2: {
+          int a, b, c;
+          printf("Enter the lengths of the three sides of the triangle: ");
+          scanf("%d %d %d", &a, &b, &c);
+          if (a + b > c && a + c > b && b + c > a){
+            if (a * a + b * b == c * c || a * a + c * c == b * b || b * b + c * c == a * a){
+              printf("The triangle is a right-angled triangle.\n");
+            }else{
+              printf("The triangle is not a right-angled triangle.\n");
+            }
+            break;
+          }else{
+            printf("The lengths do not form a triangle.\n");
+          }
+          break;
+        }
+      case 3: {
+        int a, b, c;
+        printf("Enter the lengths of the three sides of the triangle: ");
+        scanf("%d %d %d", &a, &b, &c);
+        if (a + b > c && a + c > b && b + c > a){
+          if (a == b && b == c){
+            printf("The triangle is an equilateral triangle.\n");
+          }
+          else{
+            printf("The triangle is not an equilateral triangle.\n");
+          }
+          break;
+        }else{
+          printf("The lengths do not form a triangle.\n");
+        }
+        break;
+      }
+      case 4:
+        printf("Exiting the program.\n");
+        return 0;
+      default:
+        printf("Invalid choice.\n");
+      }
+  }
+}
+// system("clear");
+// system("cls");
+*/
+
+
