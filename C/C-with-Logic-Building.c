@@ -1460,3 +1460,131 @@ int main(){
   }
 }
 */
+
+// Question 91**********Assignment-15_Question-5 ***************
+// Write a program to check whether two given numbers are co-prime numbers or not
+/*
+#include <stdio.h>
+#define min(a, b) ((a) < (b) ? (a) : (b))
+int main(){
+  int a, b;
+  printf("Enter two numbers: ");
+  scanf("%d %d", &a, &b);
+  int minValue = min(a, b), count = 0;
+  while(minValue){
+    if(a % minValue == 0 && b % minValue == 0){
+      count++;
+    }
+    minValue--;
+  }
+  if(count == 1){
+    printf("The numbers %d and %d are co-prime.\n", a, b);
+  }else{
+    printf("The numbers %d and %d are not co-prime.\n", a, b);
+  }
+}
+*/
+
+// Question 92**********Assignment-16_Question-1 ***************
+// Write a program to find the Nth term of the Fibonacci series.
+/*
+#include <stdio.h>
+int main(){
+  int n;
+  printf("Enter a number: ");
+  scanf("%d", &n);
+  int i = 3, prev = 0, curr = 1, fibbonacci = 0;
+  while(i <= n){
+    fibbonacci = prev + curr;
+    prev = curr;
+    curr = fibbonacci;
+    i++;
+  }
+  printf("The %dth fibbonacci number is %d\n", n, fibbonacci);
+}
+*/
+
+// Question 93**********Assignment-16_Question-2 ***************
+// Write a program to print first N terms of Fibonacci series.
+/*
+#include <stdio.h>
+int main(){
+  int n;
+  printf("Enter a number: ");
+  scanf("%d", &n);
+  int i = 3, prev = 0, curr = 1, fibbonacci = 0;
+  printf("%d %d ", prev, curr);
+  while(i <= n){
+    fibbonacci = prev + curr;
+    prev = curr;
+    curr = fibbonacci;
+    printf("%d ", fibbonacci);
+    i++;
+  }
+}
+*/
+
+// Question 94**********Assignment-16_Question-3 ***************
+// Write a program to check whether a given number is there in the Fibonacci series or not.
+/*
+#include <stdio.h>
+int main()
+{
+  int n;
+  printf("Enter a number: ");
+  scanf("%d", &n);
+  int prev = 0, curr = 1, fibbonacci = 0;
+  while (n >= fibbonacci){
+    if (n == 0 || n == 1){
+      printf("Yes");
+      break;
+    }else if (n > fibbonacci){
+      fibbonacci = prev + curr;
+      prev = curr;
+      curr = fibbonacci;
+      if (n == fibbonacci){
+        printf("Yes");
+        break;
+      }
+    }
+    if (n < fibbonacci){
+      printf("No");
+      break;
+    }
+  }
+}
+*/
+
+// Question 95**********Assignment-16_Question-4 ***************
+// Write a program to check whether a given number is an Armstrong number or not.
+/*
+#include <stdio.h>
+int main(){
+  int n;
+  printf("Enter a number: ");
+  scanf("%d", &n);
+  int NN = n, p = 0, Armstrong = 0;
+  while(NN){
+    NN /= 10;
+    p++;
+  }
+  NN = n;
+  while(NN){
+    int i = 1;
+    int rem = NN % 10;
+    int R = rem;
+    while(i < p){
+      R = R * rem;
+      i++;
+    }
+    Armstrong = Armstrong + R;
+    NN = NN / 10;
+  }
+  if(Armstrong == n){
+    printf("The number %d is an Armstrong number.\n", n);
+  }else{
+    printf("The number %d is not an Armstrong number.\n", n);
+  }
+}
+*/
+
