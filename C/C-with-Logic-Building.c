@@ -2829,3 +2829,125 @@ int main(){
 */
 
 
+// Question 131**********Assignment-21_Question-5 ***************
+// Write a function to print first N odd natural numbers. (TSRN)
+/*
+#include <stdio.h>
+void nOddNaturalNumbers(int n){
+  int j = 1, i = 1;
+  while(i <= n){
+    printf("%d ", j);
+    j += 2;
+    i++;
+  }
+}
+int main(){
+  int n;
+  printf("Enter a number: ");
+  scanf("%d", &n);
+  nOddNaturalNumbers(n);
+}
+*/
+
+
+// Question 132**********Assignment-22_Question-1 ***************
+// Write a function to calculate the factorial of a number.(TSRS)
+/*
+#include <stdio.h>
+int factorial(int n){
+  int fact = 1;
+  for(int i = 1; i <= n; i++){
+    fact *= i;
+  }
+  return fact;
+}
+int main(){
+  int n;
+  printf("Enter a number: ");
+  scanf("%d", &n);
+  printf("Factorial of %d is %d ", n, factorial(n));
+}
+*/
+
+
+// Question 133**********Assignment-22_Question-2 ***************
+// Write a function to calculate the number of combinations one can make from n items and r selected at a time. (TSRS)
+/*
+#include <stdio.h>
+int factorial(int num){
+  int fact = 1;
+  for(int i = 1; i <= num; i++){
+    fact *= i;
+  }
+  return fact;
+}
+int combination(int n, int r){
+  if(r > n){
+    printf("Invalid input.\n");
+    return 0;
+  }
+  int num = factorial(n);
+  int den = factorial(r) * factorial(n - r);
+  return num / den;
+}
+
+int main(){
+  int n, r;
+  printf("Enter n items: ");
+  scanf("%d", &n);
+  printf("Enter r selected items: ");
+  scanf("%d", &r);
+  printf("The number of combinations of %d items taken %d at a time is %d\n", n, r, combination(n, r));
+  return 0;
+}
+*/
+
+
+// Question 134**********Assignment-22_Question-3 ***************
+// Write a function to calculate the number of arrangements one can make from n items and r selected at a time. (TSRS)
+/*
+#include <stdio.h>
+int factorial(int n){
+  int fact = 1;
+  for(int i = 1; i <= n; i++){
+    fact *= i;
+  }
+  return fact;
+}
+int main(){
+  int n, r;
+  printf("Enter n items: ");
+  scanf("%d", &n);
+  printf("Enter r selected items: ");
+  scanf("%d", &r);
+  if(r > n){
+    printf("Invalid input.\n");
+    return 0;
+  }
+  int permutation = factorial(n) / factorial(n - r); // arrangement
+  printf("The number of permutations of %d items taken %d at a time is %d\n", n, r, permutation);
+}
+// */
+
+
+// Question 135**********Assignment-22_Question-4 ***************
+// Write a function to check whether a given number contains a given digit or not. (TSRS)
+/*
+#include<stdio.h>
+char* containsDigit(int n, int digit){
+  while(n){
+    if(n % 10 == digit){
+      return "Yes";
+    }
+    n /= 10;
+  }
+  return "No";
+}
+int main(){
+  int n, digit;
+  printf("Enter a number and digit to check: ");
+  scanf("%d %d", &n, &digit);
+  printf("%s ", containsDigit(n, digit));
+}
+*/
+
