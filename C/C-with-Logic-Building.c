@@ -3380,3 +3380,107 @@ int main(){
 }
 */
 
+// Question 151**********Assignment-25_Question-5 ***************
+// Write a recursive function to print first N even natural numbers
+/*
+#include <stdio.h>
+void pNevenN(int n, int even){
+  printf("%d ", even);
+  if(n == 1){
+    return;
+  }
+  even += 2;
+  pNevenN(n-1, even);
+  return;
+}
+int main(){
+ int n;
+  printf("Enter a number: ");
+  scanf("%d", &n);
+  pNevenN(n, 2);
+  return 0;
+}
+*/
+
+// Question 152**********Assignment-26_Question-1 ***************
+// Write a recursive function to print first N even natural numbers in reverse order 
+/*
+#include <stdio.h>
+void pNevenR(int n){
+  printf("%d ", n*2);
+  if(n == 1){
+    return;
+  }
+  pNevenR(n - 1);
+  return;
+}
+int main(){
+  int n;
+  printf("Enter a number: ");
+  scanf("%d", &n);
+  pNevenR(n);
+  return 0;
+}
+*/
+
+// Question 153**********Assignment-26_Question-2 ***************
+// Write a recursive function to print squares of first N natural numbers
+/*
+#include <stdio.h>
+void pNsquare(int n){
+  if(n == 0){
+    return;
+  }
+  pNsquare(n - 1);
+  printf("%d ", n * n);
+  return;
+}
+int main(){
+  int n;
+  printf("Enter a number: ");
+  scanf("%d", &n);
+  pNsquare(n);
+  return 0;
+}
+*/
+
+// Question 154**********Assignment-26_Question-3 ***************
+// Write a recursive function to print binary of a given decimal number 
+/*
+#include <stdio.h>
+int pBinary(int n){
+  if(n == 0){
+    return 0;
+  }
+  int b = pBinary(n / 2);
+  int rem = n % 2;
+  return b = b * 10 + rem;
+}
+int main(){
+  int n;
+  printf("Enter a number: ");
+  scanf("%d", &n);
+  printf("Binary of %d is %d\n", n, pBinary(n));
+  return 0;
+}
+*/
+
+// Question 155**********Assignment-26_Question-4 ***************
+// Write a recursive function to print octal of a given decimal number
+/*
+#include <stdio.h>
+int nOctal(int n){
+  if(n == 0){
+    return 0;
+  }
+  int b = nOctal(n / 8);
+  int rem = n % 8;
+  return b * 10 + rem;
+}
+int main(){
+  int n;
+  printf("Enter a number: ");
+  scanf("%d", &n);
+  printf("Octal of %d is %d", n, nOctal(n));
+}
+*/
