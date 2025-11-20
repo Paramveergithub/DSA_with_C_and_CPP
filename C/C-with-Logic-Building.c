@@ -2670,3 +2670,162 @@ int main(){
 */
 
 
+// Question 126**********Assignment-20_Question-5 ***************
+// Write a menu driven program with the following options:
+// 1. Calculate LCM of two numbers
+// 2. Calculate sum of the digits of a number
+// 3. Volume of a cuboid
+// 4. Check whether a given number is Prime or not
+// 5. Exit
+/*
+#include <stdio.h>
+int main(){
+  while(1){
+    printf("1. Calculate LCM of two numbers\n");
+    printf("2. Calculate sum of the digits of a number\n");
+    printf("3. Volume of a cuboid\n");
+    printf("4. Check whether a given number is a prime number or not\n");
+    printf("5. Exit\n");
+    int choice;
+    printf("Enter your choice (1-5): ");
+    scanf("%d", &choice);
+    switch(choice){
+      case 1: {
+        int a, b, lcm = 0;
+        printf("Enter two numbers: ");
+        scanf("%d %d", &a, &b);
+        int i = 1, j = 1;
+        while(1){
+          if(a * i == b * j){
+            lcm = a * i;
+            break;
+          }else if(a * i < b * j){
+            i++;
+          }else{
+            j++;
+          }
+        }
+        printf("The LCM of %d and %d is %d\n", a, b, lcm);
+        break;
+      }
+      case 2: {
+        int n, sum = 0;
+        printf("Enter a number: ");
+        scanf("%d", &n);
+        while(n){
+          sum += n % 10;
+          n /= 10;
+        }
+        printf("The sum of the digits is %d\n", sum);
+        break;
+      }
+      case 3: {
+        float length, width, height, volume;
+        printf("Enter the length, width and height of the cuboid: ");
+        scanf("%f %f %f", &length, &width, &height);
+        volume = length * width * height;
+        printf("The volume of the cuboid is %.2f\n", volume);
+        break;
+      }
+      case 4: {
+        int n;
+        printf("Enter a number: ");
+        scanf("%d", &n);
+        int i = 2;
+        while(i < n){
+          if(n % i == 0){
+            printf("The number %d is not a prime number.\n", n);
+            break;
+          }
+          i++;
+        }
+        if(i == n){
+          printf("The number %d is a prime number.\n", n);
+        }
+        break;
+      }
+      case 5:
+        printf("Exiting the program.\n");
+        return 0;
+      default:
+        printf("Invalid choice.\n");
+    }
+  }
+}
+*/
+
+
+// Question 127**********Assignment-21_Question-1 ***************
+//  Write a function to calculate the area of a circle. (TSRS)
+/*
+#include <stdio.h>
+int areaCircle(int radius){
+  int area = 3.14 * radius * radius;
+  return area;
+}
+int main() {
+  int radius;
+  printf("Enter the radius of the circle: ");
+  scanf("%d", &radius);
+  if(radius < 0){
+    printf("Invalid radius.\n");
+    return 0;
+  }
+  printf("%d", areaCircle(radius));
+}
+*/
+
+// Question 128**********Assignment-21_Question-2 ***************
+// Write a function to calculate simple interest. (TSRS)
+/*
+#include <stdio.h>
+int SI(int p, int r, int t) {
+  return (p * r * t) / 100;
+}
+int main(){
+  int p, r, t;
+  printf("Enter the principal amount, rate and time: ");
+  scanf("%d %d %d", &p, &r, &t);
+  printf("%d", SI(p, r, t));
+}
+*/
+
+
+// Question 129**********Assignment-21_Question-3 ***************
+// Write a function to check whether a given number is even or odd. Return 1 if the number is even, otherwise return 0. (TSRS)
+/*
+#include <stdio.h>
+char* evenOrOdd(int n) {
+  if (n % 2 == 0) {
+    return "Even";
+  } else {
+    return "Odd";
+  }
+}
+int main() {
+  int n;
+  printf("Enter a number: ");
+  scanf("%d", &n);
+  printf("%s", evenOrOdd(n));
+}
+*/
+
+
+// Question 130**********Assignment-21_Question-4 ***************
+// Write a function to print first N natural numbers (TSRN).
+/*
+#include <stdio.h>
+void nNaturalNumbers(int n) {
+  for (int i = 1; i <= n; i++) {
+    printf("%d ", i);
+  }
+}
+int main(){
+  int n;
+  printf("Enter a number: ");
+  scanf("%d", &n);
+  nNaturalNumbers(n);
+}
+*/
+
+
