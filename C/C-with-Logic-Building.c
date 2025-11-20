@@ -1858,3 +1858,154 @@ int main() {
 }
 */
 
+// Question 106**********Assignment-17_Question-10 ***************
+// * * * * *
+// *       *
+// *       *
+// *       *
+// * * * * *
+/*
+#include <stdio.h>
+int main() {
+  int n, i = 1;
+  printf("Enter a number: ");
+  scanf("%d", &n);
+  while(i <= n){
+    int j = 1;
+    if(i == 1 || i == n){
+      while(j <= n){
+        printf("* ");
+        j++;
+      }
+      printf("\n");
+      i++;
+    }else{
+      printf("* ");
+      j = 1;
+      while(j <= n - 2){
+        printf("  ");
+        j++;
+      }
+      printf("*\n");
+      i++;
+    }
+  }
+}
+*/
+
+// Question 107**********Assignment-18_Question-1 ***************
+//         *
+//       * * *
+//     * * * * *
+//   * * * * * * *
+/*
+#include <stdio.h>
+int main(){
+  int n, i = 1;
+  printf("Enter a number: ");
+  scanf("%d", &n);
+  while(i <= n){
+    int j = 1;
+    while(j <= n-i){
+      printf("  ");
+      j++;
+    }
+    j = 1;
+    while(j <= 2*i - 1){
+      printf("* ");
+      j++;
+    }
+    printf("\n");
+    i++;
+  }
+}
+*/
+
+// Question 108**********Assignment-18_Question-2 ***************
+// * * * * * * *
+//   * * * * *
+//     * * *
+//       *
+/*
+#include <stdio.h>
+int main(){
+  int n, i = 1;
+  printf("Enter a number: ");
+  scanf("%d", &n);
+  while(i <= n){
+    int j = 0;
+    while(j <= i - 1){
+      printf("  ");
+      j++;
+    }
+    j = i;
+    while(j <= 2*n-i){
+      printf("* ");
+      j++;
+    }
+    printf("\n");
+    i++;
+  }
+}
+*/
+
+// Question 109**********Assignment-18_Question-3 ***************
+//         *
+//        * *
+//       * * *
+//      * * * *
+/*
+#include <stdio.h>
+int main(){
+  int n, i = 1;
+  printf("Enter a number: ");
+  scanf("%d", &n);
+  while(i <= n){
+    int j = 0;
+    while(j < n - i){
+      printf(" ");
+      j++;
+    }
+    j = 0;
+    while(j < i){
+      printf("* ");
+      j++;
+    }
+    printf("\n");
+    i++;
+  }
+}
+*/
+
+// Question 110**********Assignment-18_Question-4 ***************
+//       1
+//     1 2 1
+//   1 2 3 2 1
+// 1 2 3 4 3 2 1
+/*
+#include <stdio.h>
+int main(){
+  int n, i = 1;
+  printf("Enter a number: ");
+  scanf("%d", &n);
+  while(i <= n){
+    int j = 1;
+    while(j <= n - i){
+      printf("  ");
+      j++;
+    }
+    j = 1;
+    while(j <= i){
+      printf("%d ", j);
+      j++;
+    }
+    j = i - 1;
+    while(j >= 1){
+      printf("%d ", j);
+      j--;
+    }
+    printf("\n");
+    i++;
+  }
+}
+*/
