@@ -1038,3 +1038,155 @@ int main(){
 }
 */
 
+// Question 191 ********Assignment-34_Question-1 ***************
+// Write a program to calculate the length of the string. (without using builtin method)
+/*
+#include <stdio.h>
+#include <stdlib.h>
+int main(){
+  char *str = NULL;
+  char ch;
+  int length = 0;
+  printf("Enter a string: ");
+  str = (char *)malloc(1*sizeof(char));
+  if(str == NULL){
+    printf("Memory allocation failed\n");
+    return 1;
+  }
+  while((ch = getchar()) != '\n'){
+    str[length] = ch;
+    length++;
+    str = (char *)realloc(str, (length+1)*sizeof(char));
+    if(str == NULL){
+      printf("Memory allocation failed\n");
+      return 1;
+    }
+  }
+  str[length] = '\0';
+  printf("The string is: %s\n", str);
+  printf("The length of the string is: %d\n", length);
+  free(str);
+  return 0;
+}
+*/
+
+// Question 192 ********Assignment-34_Question-2 ***************
+// Write a program to count the occurrence of a given character in a given string.
+/*
+#include <stdio.h>
+#include <stdlib.h>
+int main(){
+  char ch;
+  char *str = NULL;
+  int length = 0;
+  printf("Enter a string: ");
+  str = (char *)malloc(1*sizeof(char));
+  if(str == NULL){
+    printf("Memory allocation failed\n");
+    return 1;
+  }
+  while((ch = getchar()) != '\n'){
+    str[length] = ch;
+    length++;
+    str = (char *)realloc(str, (length+1)*sizeof(char));
+    if(str == NULL){
+      printf("Memory allocation failed\n");
+      return 1;
+    }
+  }
+  str[length] = '\0';
+  printf("Enter a character: ");
+  char c;
+  scanf(" %c", &c);
+  int count = 0;
+  for(int i = 0; i < length; i++){
+    if(str[i] == c){
+      count++;
+    }
+  }
+  printf("The character %c appears %d times in the string.\n", c, count);
+  free(str);
+  return 0;
+}
+*/
+
+// Question 193 ********Assignment-34_Question-3 ***************
+// Write a program to count vowels in a given string
+/*
+#include <stdio.h>
+#include <stdlib.h>
+int main(){
+  char *str = NULL;
+  char ch;
+  int length = 0;
+  printf("Enter a string: ");
+  str = (char *)malloc(1*sizeof(char));
+  if(str == NULL){
+    printf("Memory allocation failed\n");
+    return 1;
+  }
+  while((ch = getchar()) != '\n'){
+    str[length] = ch;
+    length++;
+    str = (char *)realloc(str, (length+1)*sizeof(char));
+    if(str == NULL){
+      printf("Memory allocation failed\n");
+      return 1;
+    }
+  }
+  str[length] = '\0';
+  int i = 0, count = 0;
+  while(str[i] != '\0'){
+    if(str[i] == 'a' || str[i] == 'e' || str[i] == 'i' || str[i] == 'o' || str[i] == 'u' || str[i] == 'A' || str[i] == 'E' || str[i] == 'I' || str[i] == 'O' || str[i] == 'U'){
+      count++;
+    }
+    i++;
+  }
+  printf("The number of vowels in the string is: %d\n", count);
+  free(str);
+  return 0;
+}
+*/
+
+// Question 194 ********Assignment-34_Question-4 ***************
+// Write a program to count spaces in a given string.
+/*
+#include <stdio.h>
+#include <string.h>
+int main(){
+  char str[100];
+  printf("Enter a string: ");
+  fgets(str, 100, stdin);
+  str[strcspn(str, "\n")] = '\0';
+  int count = 0;
+  for(int i = 0; i < strlen(str); i++){
+    if(str[i] == ' '){
+      count++;
+    }
+  }
+  printf("The number of spaces in the string is: %d\n", count);
+  return 0;
+}
+*/
+
+// Question 195 ********Assignment-34_Question-5 ***************
+// Write a program to convert a given string into uppercase
+/*
+#include <stdio.h>
+#include <string.h>
+int main(){
+  char str[100];
+  printf("Enter a string: ");
+  fgets(str, 100, stdin);
+  str[strcspn(str, "\n")] = '\0';
+  for(int i = 0; i < strlen(str); i++){
+    if(str[i] >= 'a' && str[i] <= 'z'){
+      str[i] -= 32;
+    }
+  }
+  printf("The string in uppercase is: %s\n", str);
+  return 0;
+}
+*/
+
+
