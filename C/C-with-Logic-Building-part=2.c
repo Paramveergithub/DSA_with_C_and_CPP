@@ -615,3 +615,181 @@ int main(){
 }
 */
 
+// Question 181**********Assignment-31_Question-5 ***************
+// Write a function to find the first occurrence of adjacent duplicate values in the array. Function has to return the value of the element.
+/*
+#include <stdio.h>
+int firstDuplicate(int arr[], int n){
+  for(int i = 0; i < n-1; i++){
+    if(arr[i] == arr[i + 1]){
+      return arr[i];
+    }
+  }
+  return 0;
+}
+int main(){
+  int n;
+  printf("Enter the size of the array: ");
+  scanf("%d", &n);
+  int arr[n];
+  printf("Enter %d elements: ", n);
+  for(int i = 0; i < n; i++){
+    scanf("%d", &arr[i]);
+  }
+  printf("first occurrence of adjacent duplicate elements  %d", firstDuplicate(arr, n));
+  return 0;
+}
+*/
+
+// Question 182**********Assignment-32_Question-1 ***************
+// Write a function to swap two elements of given array with specified indices.
+/*
+#include <stdio.h>
+void swapE(int arr[], int n, int a, int b){
+  int temp = arr[a];
+  arr[a] = arr[b];
+  arr[b] = temp;
+  for(int i = 0; i < n; i++){
+    printf("%d ", arr[i]);
+  }
+}
+int main(){
+  int n;
+  printf("Enter the size of the array: ");
+  scanf("%d", &n);
+  int arr[n];
+  printf("Enter %d elements: ", n);
+  for(int i = 0; i < n; i++){
+    scanf("%d", &arr[i]);
+  }
+  int a, b;
+  printf("Enter the two indices to swap: ");
+  scanf("%d %d", &a, &b);
+  swapE(arr, n, a, b);
+  return 0;
+}
+*/
+
+// Question 183**********Assignment-32_Question-2 ***************
+// Write a function to count a total number of duplicate elements in an array. (Means elements that occurs 2 times in an array)
+/*
+#include <stdio.h>
+void dupliCount(int arr[], int n){
+  int count = 0, countArr[1000] = {0};
+  for(int i = 0; i < n; i++){
+    countArr[arr[i]]++;
+  }
+  for(int i = 0; i < 1000; i++){
+    if(countArr[i] > 1){
+      count++;
+    }
+  }
+  printf("Number of duplicate elements in the array is: %d\n", count);
+}
+int main(){
+  int n;
+  printf("Enter the size of the array: ");
+  scanf("%d", &n);
+  int arr[n];
+  printf("Enter %d elements: ", n);
+  for(int i = 0; i < n; i++){
+    scanf("%d", &arr[i]);
+  }
+  dupliCount(arr, n);
+  return 0;
+}
+*/
+
+// Question 184**********Assignment-32_Question-3 ***************
+// Write a function to print all unique elements in an array.
+/*
+#include <stdio.h>
+void uniqueE(int arr[], int n){
+  int countArr[1000] = {0};
+  for(int i = 0; i < n; i++){
+    countArr[arr[i]]++;
+  }
+  for(int i = 0; i < 1000; i++){
+    if(countArr[i] == 1){
+      printf("%d ", i);
+    }
+  }
+}
+int main(){
+  int n;
+  printf("Enter the size of the array: ");
+  scanf("%d", &n);
+  int arr[n];
+  printf("Enter %d elements: ", n);
+  for(int i = 0; i < n; i++){
+    scanf("%d", &arr[i]);
+  }
+  uniqueE(arr, n);
+  return 0;
+}
+*/
+
+// Question 185**********Assignment-32_Question-4 ***************
+// Write a function to merge two arrays of the same size sorted in descending order.
+/*
+#include <stdio.h>
+void mergeArray(int arr1[], int arr2[], int n){
+  int arr3[n * 2];
+  // for(int i = 0; i < n*2; i++){
+  //   if(i < n){
+  //     arr3[i] = arr1[i];
+  //   }else{
+  //     arr3[i] = arr2[i - n];
+  //   }
+  // }
+  // for(int i = 0; i < n*2-1; i++){
+  //   for(int j = 0; j < n*2-i - 1; j++){
+  //     if(arr3[j] < arr3[j + 1]){
+  //       int temp = arr3[j];
+  //       arr3[j] = arr3[j + 1];
+  //       arr3[j + 1] = temp;
+  //     }
+  //   }
+  // }
+  int i = 0, j = 0, k = 0;
+  while(k < n * 2){
+    if(i < n && j < n){
+      if(arr1[i] < arr2[j]){
+        arr3[k] = arr2[j];
+        j++;
+      }else{
+        arr3[k] = arr1[i];
+        i++;
+      }
+    }else if(i < n){
+      arr3[k] = arr1[i];
+      i++;
+    }else if(j < n){
+      arr3[k] = arr2[j];
+      j++;
+    }
+    k++;
+  }
+  for(int i = 0; i < n*2; i++){
+    printf("%d ", arr3[i]);
+  }
+}
+int main(){
+  int n;
+  printf("Enter the size of the array: ");
+  scanf("%d", &n);
+  int arr1[n], arr2[n];
+  printf("Enter %d elements of the first array: ", n);
+  for(int i = 0; i < n; i++){
+    scanf("%d", &arr1[i]);
+  }
+  printf("Enter %d elements of the second array: ", n);
+  for(int i = 0; i < n; i++){
+    scanf("%d", &arr2[i]);
+  }
+  mergeArray(arr1, arr2, n);
+  return 0;
+}
+*/
+
+
