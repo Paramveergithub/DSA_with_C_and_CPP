@@ -1573,3 +1573,259 @@ int main(){
 }
 */
 
+// Question 211 ********Assignment-38_Question-1 ***************
+// Write a function to check whether a given string is palindrome or not.
+/*
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+void isPallindrome(char *str, int len){
+  int i = 0, j = len - 1;
+  while(i < j){
+    if(tolower(str[i]) != tolower(str[j])){
+      printf("The string is not a pallindrome\n");
+      return;
+    }
+    i++;
+    j--;
+  }
+  printf("The string is a pallindrome\n");
+}
+int main(){
+  char str[100];
+  printf("Enter a string: ");
+  fgets(str, 100, stdin);
+  str[strcspn(str, "\n")] = '\0';
+  int len = strlen(str);
+  isPallindrome(str, len);
+  return 0;
+}
+*/
+
+// Question 212 ********Assignment-38_Question-2 ***************
+// Write a function to trim a string (removing leading spaces from both the ends).
+/*
+#include <stdio.h>
+#include <string.h>
+void removeExtraSpacesBothEnds(char str[], int len){
+                  // best way to save space
+
+  // int start = 0, end = len - 1;
+  // if(str[start] == ' '){
+  //   while(str[start] == ' '){
+  //     start++;
+  //   }
+  // }else if(str[end] == ' '){
+  //   while(str[end] == ' '){
+  //     end--;
+  //   }
+  // }
+  // int i = 0, j = end - start;
+  // for(i = 0; i <= j; i++){
+  //   str[i] = str[start];
+  //   start++;
+  // }
+  // str[i] = '\0';
+
+                  // best way to save time
+  char str1[len];
+  int j = 0, i = 0;
+  for(i = 0; i < len; i++){
+    if(str[i] != ' '){
+      str1[j++] = str[i];
+      if(str[i + 1] == ' ' && str[i + 2] != '\0'){
+        str1[j++] = ' ';
+      }
+    }
+  }
+  str1[j] = '\0';
+  strcpy(str, str1);
+  printf("The string after removing extra spaces from both ends is: %s\n", str);
+}
+int main(){
+  char str[100];
+  printf("Enter a string: ");
+  fgets(str, 100, stdin);
+  str[strcspn(str, "\n")] = '\0';
+  int len = strlen(str);
+  removeExtraSpacesBothEnds(str, len);
+  return 0;
+}
+*/
+
+// Question 213 ********Assignment-38_Question-3 ***************
+// Write a function to count words in a given string
+/*
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+void countWords(char *str, int len){
+  int i = 1, count = 0;
+  if(len == 1){
+    if(str[0] != ' '){
+      count++;
+    }
+  }
+  while(str[i] != '\0'){
+    if(str[i] == ' ' && str[i - 1] != ' '){
+      count++;
+    }else if(str[i+1] == '\0' && str[i] != ' '){
+      count++;
+    }
+    i++;
+  }
+  printf("The number of words in the string are: %d\n", count);
+  free(str);
+}
+int main(){
+  char *str = NULL;
+  char ch;
+  int length = 0;
+  printf("Enter a string: ");
+  str = (char *)malloc(1 * sizeof(char));
+  while((ch = getchar()) != '\n'){
+    str[length++] = ch;
+    str = (char *)realloc(str, (length + 1) * sizeof(char));
+  }
+  str[length] = '\0';
+  countWords(str, length);
+  return 0;
+}
+*/
+
+// Question 214 ********Assignment-38_Question-4 ***************
+// Write a function to reverse a string word wise. (For example if the given string is "Mysirg Education Services" then the resulting string should be "Services Education Mysirg")
+/*
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+void reverseSWordsWise(char **str, int len){
+  char rStr[len + 1];
+  int i = 0, j = len -1;
+  if((*str)[j] == ' ' && (*str)[i] == ' '){
+    printf("Don't enter unnecessary spaces in the string\n");
+    return;
+  }
+  while(j != -1){
+    if((*str)[j] == ' '){
+      int k = j + 1;
+      while((*str)[k] != '\0' && (*str)[k] != ' '){
+        rStr[i++] = (*str)[k++];
+      }
+      rStr[i++] = ' ';
+    }
+    j--;
+    if(j == -1){
+      int k = j;
+      k++;
+      while((*str)[k] != '\0' && (*str)[k] != ' '){
+        rStr[i++] = (*str)[k++];
+      }
+      rStr[i] = '\0';
+    }
+  }
+  strcpy(*str, rStr);
+  printf("The string after reversing wordwise is: -> %s\n", rStr);
+}
+int main(){
+  char *str = NULL;
+  char ch;
+  int length = 0;
+  printf("Enter a string: ");
+  str = (char *)malloc(1 * sizeof(char));
+  if(str == NULL){
+    printf("Memory allocation failed\n");
+    return 1;
+  }
+  while((ch = getchar()) != '\n'){
+    str[length++] = ch;
+    str = (char *)realloc(str, (length + 1) * sizeof(char));
+    if(str == NULL){
+      printf("Memory allocation failed\n");
+      return 1;
+    }
+  }
+  str[length] = '\0';
+  reverseSWordsWise(&str, length);
+  printf("The original string is: -> %s\n", str);
+  free(str);
+  return 0;
+}
+*/
+
+// Question 214 ********Assignment-38_Question-4 *************** Alternative
+/*
+#include <stdio.h>
+#include <string.h>
+int main(){
+  char str[1000];
+  char *words[100];
+  printf("Enter a string: ");
+  int count = 0;
+  fgets(str, sizeof(str), stdin);
+  str[strcspn(str, "\n")] = '\0';
+  int len = strlen(str);
+  char *token = strtok(str, " ");
+  while(token != NULL){
+    words[count++] = token;
+    token = strtok(NULL, " ");
+  }
+  char Nstr[len + 1];
+  for(int i = count - 1; i >= 0; i--){
+    strcat(Nstr, words[i]);
+    if(i != 0){
+      strcat(Nstr, " ");
+    }
+  }
+  printf("The string after reversing wordwise is: %s\n", Nstr);
+  return 0;
+}
+*/
+
+// Question 215 ********Assignment-38_Question-5 ***************
+// Write a function to do case insensitive comparison of two strings.
+/*
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+int caseInSensitiveCompare(char *str1, char *str2, int len){
+  for(int i = 0; i < len; i++){
+    // if(tolower(str1[i]) != tolower(str2[i])){
+    //   return 0;
+    // }
+    if(str1[i] == str2[i]){
+      continue;
+    }else if(str1[i] >= 'A' && str1[i] <= 'Z'){
+      if(str1[i] + 32 != str2[i]){
+        return 0;
+      }
+    }else if(str1[i] >= 'a' && str1[i] <= 'z'){
+      if(str1[i] - 32 != str2[i]){
+        return 0;
+      }
+    }
+  }
+  return 1;
+}
+int main(){
+  char str1[100], str2[100];
+  printf("Enter a string: ");
+  fgets(str1, sizeof(str1), stdin);
+  str1[strcspn(str1, "\n")] = '\0';
+  printf("Enter another string: ");
+  fgets(str2, sizeof(str2), stdin);
+  str2[strcspn(str2, "\n")] = '\0';
+  if(strlen(str1) != strlen(str2)){
+    printf("The strings are not case insensitive\n");
+    return 0;
+  }
+  int len = strlen(str1);
+  if(caseInSensitiveCompare(str1, str2, len)){
+    printf("The string is case insensitive\n");
+  }else{
+    printf("The string is not case insensitive\n");
+  }
+  return 0;
+}
+*/
+
