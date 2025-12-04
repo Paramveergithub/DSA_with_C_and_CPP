@@ -451,3 +451,167 @@ int main(){
 }
 */
 
+// Question 176**********Assignment-30_Question-5 ***************
+// Write a program in C to copy the elements of one array into another array.Take array values from the user.
+/*
+#include <stdio.h>
+int main(){
+  int n;
+  printf("Enter the size of the array: ");
+  scanf("%d", &n);
+  int arr[n];
+  printf("Enter %d elements: ", n);
+  for(int i = 0; i < n; i++){
+    scanf("%d", &arr[i]);
+  }
+  int arr2[n];
+  for(int i = 0; i < n; i++){
+    arr2[i] = arr[i];
+  }
+  for(int i = 0; i < n; i++){
+    printf("%d ", arr2[i]);
+  }
+}
+*/
+
+// Question 177**********Assignment-31_Question-1 ***************
+// Write a function to find the greatest number from the given array of any size. (TSRS)
+/*
+#include <stdio.h>
+int greatest(int arr[], int n){
+  if(n == 1){
+    return arr[0];
+  }
+  int max = 0;
+  for(int i = 1; i < n; i++){
+    if(arr[i] > arr[max]){
+      max = i;
+    }
+  }
+  return arr[max];
+}
+int main(){
+  int n;
+  printf("Enter the size of the array: ");
+  scanf("%d", &n);
+  int arr[n];
+  printf("Enter %d elements: ", n);
+  for(int i = 0; i < n; i++){
+    scanf("%d", &arr[i]);
+  }
+  printf("The greatest number in the array is: %d", greatest(arr, n));
+  return 0;
+}
+*/
+
+// Question 178**********Assignment-31_Question-2 ***************
+// Write a function to find the smallest number from the given array of any size. (TSRS)
+/*
+#include <stdio.h>
+int smallest(int arr[], int n){
+  if(n == 1){
+    return arr[0];
+  }
+  int mini = 0;
+  for(int i = 1; i < n; i++){
+    if(arr[i] < arr[mini]){
+      mini = i;
+    }
+  }
+  return arr[mini];
+}
+int main(){
+  int n;
+  printf("Enter the size of the array: ");
+  scanf("%d", &n);
+  int arr[n];
+  printf("Enter %d elements: ", n);
+  for(int i = 0; i < n; i++){
+    scanf("%d", &arr[i]);
+  }
+  printf("The smallest number in the array is: %d", smallest(arr, n));
+  return 0;
+}
+*/
+
+// Question 179**********Assignment-31_Question-3 ***************
+// Write a function to sort an array of any size. (TSRN)
+/*
+#include <stdio.h>
+void sorted(int arr[], int n){
+  for(int i = 1; i < n; i++){
+    int curr = i;
+    for(int j = i - 1; j >= 0; j--){
+      if(arr[j] > arr[curr]){
+        int temp = arr[j];
+        arr[j] = arr[curr];
+        arr[curr] = temp;
+        curr--;
+      }
+    }
+  }
+  for(int i = 0; i < n; i++){
+    printf("%d ", arr[i]);
+  }
+}
+int main(){
+  int n;
+  printf("Enter the size of the array: ");
+  scanf("%d", &n);
+  int arr[n];
+  printf("Enter %d elements: ", n);
+  for(int i = 0; i < n; i++){
+    scanf("%d", &arr[i]);
+  }
+  sorted(arr, n);
+  return 0;
+}
+*/
+
+// Question 180**********Assignment-31_Question-4 ***************
+// Write a function to rotate an array by n position in d direction. The d is an indicative value for left or right. (For example, if array of size 5 is [32, 29, 40, 12, 70]; n is 2 and d is left, then the resulting array after left rotation 2 times is [40, 12, 70, 32, 29])
+/*
+#include<stdio.h>
+#include<string.h>
+void rotateArr(int arr[], int n, int position, char direction[]){
+  int i = 1;
+  while(i <= position){
+    if(strcmp(direction, "left") == 0){
+      int temp = arr[0];
+      for(int j = 0; j < n - 1; j++){
+        arr[j] = arr[j + 1];
+      }
+      arr[n - 1] = temp;
+    }else if(strcmp(direction, "right") == 0){
+      int temp = arr[n - 1];
+      for(int j = n - 1; j > 0; j--){
+        arr[j] = arr[j - 1];
+      }
+      arr[0] = temp;
+    }
+    i++;
+  }
+  for(int i = 0; i < n; i++){
+    printf("%d ", arr[i]);
+  }
+}
+int main(){
+  int n;
+  printf("Enter the size of the array: ");
+  scanf("%d", &n);
+  int arr[n];
+  printf("Enter %d elements: ", n);
+  for(int i = 0; i < n; i++){
+    scanf("%d", &arr[i]);
+  }
+  int position;
+  printf("Enter the number of position :");
+  scanf("%d", &position);
+  char direction[10];
+  printf("Enter the direction (left/right): ");
+  scanf("%s", direction);
+  rotateArr(arr, n, position, direction);
+  return 0;
+}
+*/
+
