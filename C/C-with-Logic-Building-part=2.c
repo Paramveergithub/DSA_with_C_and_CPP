@@ -1303,3 +1303,131 @@ int main(){
   return 0;
 }
 */
+
+
+// Question 201 ********Assignment-36_Question-1 ***************
+// Write a function to calculate length of the string.
+/*
+#include <stdio.h>
+#include <string.h>
+void calLStr(char *str){
+  int len = 0;
+  while(str[len] != '\0'){
+    len++;
+  }
+  printf("The length of the string is: %d\n", len);
+}
+int main(){
+  char str[100];
+  printf("Enter a string: ");
+  fgets(str, 100, stdin);
+  str[strcspn(str, "\n")] = '\0';
+  calLStr(str);
+  return 0;
+}
+*/
+
+// Question 202 ********Assignment-36_Question-2 ***************
+// Write a function to reverse a string.
+/*
+#include <stdio.h>
+#include <string.h>
+void revStr(char *str){
+  int i = 0, j = strlen(str) - 1;
+  while(i < j){
+    char temp = str[i];
+    str[i] = str[j];
+    str[j] = temp;
+    i++;
+    j--;
+  }
+  printf("The reversed string is: %s\n", str);
+}
+int main(){
+  char str[100];
+  printf("Enter a string: ");
+  fgets(str, 100, stdin);
+  str[strcspn(str, "\n")] = '\0';
+  revStr(str);
+  return 0;
+}
+*/
+
+// Question 203 ********Assignment-36_Question-3 ***************
+// Write a function to compare two strings.
+/*
+#include <stdio.h>
+#include <string.h>
+int comTwoStr(char *str, char *strC){
+  int i = 0;
+  while(str[i] || strC[i]){
+    if(str[i] == strC[i]){
+      i++;
+    }else{
+      printf("The strings are not common\n");
+      return 0;
+    }
+  }
+  printf("The strings are common\n");
+  return 0;
+}
+int main(){
+  char str[100], strC[100];
+  printf("Enter a string: ");
+  fgets(str, 100, stdin);
+  str[strcspn(str, "\n")] = '\0';
+  printf("Enter another string: ");
+  fgets(strC, 100, stdin);
+  strC[strcspn(strC, "\n")] = '\0';
+  comTwoStr(str, strC);
+  return 0;
+}
+*/
+
+// Question 204 ********Assignment-36_Question-4 ***************
+// // Write a function to transform string into uppercase
+/*
+#include <stdio.h>
+#include <string.h>
+void upStr(char *str){
+  for(int i = 0; i < strlen(str); i++){
+    if(str[i] >= 'a' && str[i] <= 'z'){
+      str[i] -= 32;
+    }
+  }
+  printf("The string in uppercase is: %s\n", str);
+}
+int main(){
+  char str[100];
+  printf("Enter a string: ");
+  fgets(str, 100, stdin);
+  str[strcspn(str, "\n")] = '\0';
+  upStr(str);
+  return 0;
+}
+*/
+
+// Question 205 ********Assignment-36_Question-5 ***************
+// Write a function to transform a string into lowercase
+/*
+#include <stdio.h>
+#include <string.h>
+void lowStr(char *str){
+  for(int i = 0; i < strlen(str); i++){
+    if(str[i] >= 'A' && str[i] <= 'Z'){
+      str[i] += 32;
+    }
+  }
+  printf("The string in lowercase is: %s\n", str);
+}
+int main(){
+  char str[100];
+  printf("Enter a string: ");
+  fgets(str, 100, stdin);
+  str[strcspn(str, "\n")] = '\0';
+  lowStr(str);
+  return 0;
+}
+// */
+
+
