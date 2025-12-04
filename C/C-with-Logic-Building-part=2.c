@@ -1190,3 +1190,116 @@ int main(){
 */
 
 
+// Question 196 ********Assignment-35_Question-1 ***************
+// Write a program to convert a given string into lowercase.
+/*
+#include <stdio.h>
+#include <string.h>
+int main(){
+  char str[100];
+  printf("Enter a string: ");
+  fgets(str, 100, stdin);
+  str[strcspn(str, "\n")] = '\0';
+  for(int i = 0; i < strlen(str); i++){
+    if(str[i] >= 'A' && str[i] <= 'Z'){
+      str[i] += 32;
+    }
+  }
+  printf("The string in lowercase is: %s\n", str);
+  return 0;
+}
+*/
+
+// Question 197 ********Assignment-35_Question-2 ***************
+// Write a program to reverse a string.
+/*
+#include <stdio.h>
+#include <string.h>
+int main(){
+  char str[100];
+  printf("Enter a string: ");
+  fgets(str, 100, stdin);
+  str[strcspn(str, "\n")] = '\0';
+  int n = strlen(str), i = 0, j = n - 1;
+  while(i < j){
+    char temp = str[i];
+    str[i] = str[j];
+    str[j] = temp;
+    i++;
+    j--;
+  }
+  printf("The reversed string is: %s\n", str);
+  return 0;
+}
+*/
+
+// Question 198 ********Assignment-35_Question-3 ***************
+// Write a program in C to count the total number of alphabets, digits and special characters in a string.
+/*
+#include <stdio.h>
+#include <string.h>
+int main(){
+  char str[100];
+  printf("Enter a string: ");
+  fgets(str, 100, stdin);
+  str[strcspn(str, "\n")] = '\0';
+  int alpha = 0, digit = 0, spacial = 0, i = 0;
+  while(str[i] != '\0'){
+    if(str[i] >= 'a' && str[i] <= 'z' || str[i] >= 'A' && str[i] <= 'Z'){
+      alpha++;
+    }else if(str[i] >= '0' && str[i] <= '9'){
+      digit++;
+    }else{
+      spacial++;
+    }
+    i++;
+  }
+  printf("The number of alphabets in the string is: %d\n", alpha);
+  printf("The number of digits in the string is: %d\n", digit);
+  printf("The number of spacial characters in the string is: %d\n", spacial);
+  return 0;
+}
+*/
+
+// Question 199 ********Assignment-35_Question-4 ***************
+// Write a program in C to copy one string to another char array.
+/*
+#include <stdio.h>
+#include <string.h>
+int main(){
+  char str[100];
+  printf("Enter a string: ");
+  fgets(str, 100, stdin);
+  str[strcspn(str, "\n")] = '\0';
+  char strCpy[100];
+  for(int i = 0; i < strlen(str); i++){
+    strCpy[i] = str[i];
+  }
+  printf("The copied string is: %s\n", strCpy);
+  return 0;
+}
+*/
+
+// Question 200 ********Assignment-35_Question-5 ***************
+// Write a program to find first occurrence of a given character in a given string.
+/*
+#include <stdio.h>
+#include <string.h>
+int main(){
+  char str[100];
+  printf("Enter a string: ");
+  fgets(str, 100, stdin);
+  str[strcspn(str, "\n")] = '\0';
+  char ch;
+  printf("Enter a character: ");
+  scanf(" %c", &ch);
+  for(int i = 0; i < strlen(str); i++){
+    if(str[i] == ch){
+      printf("The character %c is found at index %d\n", ch, i);
+      return 0;
+    }
+  }
+  printf("The character %c is not found in the string\n", ch);
+  return 0;
+}
+*/
