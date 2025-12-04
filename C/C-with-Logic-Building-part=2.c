@@ -793,3 +793,248 @@ int main(){
 */
 
 
+// Question 186**********Assignment-32_Question-5 ***************
+// Write a function to count the frequency of each element of an array.
+/*
+#include <stdio.h>
+void freqCount(int arr[], int n){
+  int countArr[1000] = {0};
+  for(int i = 0; i < n; i++){
+    countArr[arr[i]]++;
+  }
+  for(int i = 0; i < 1000; i++){
+    if(countArr[i] > 0){
+      printf("%d occurs %d times\n", i, countArr[i]);
+    }
+  }
+}
+int main(){
+  int n;
+  printf("Enter the size of the array: ");
+  scanf("%d", &n);
+  int arr[n];
+  printf("Enter %d elements: ", n);
+  for(int i = 0; i < n; i++){
+    scanf("%d", &arr[i]);
+  }
+  freqCount(arr, n);
+  return 0;
+}
+// */
+
+// Question 187**********Assignment-33_Question-1 ***************
+// Write a program to calculate the sum of two matrices each of order 3x3.
+/*
+#include <stdio.h>
+int main(){
+  int matrix1[3][3], matrix2[3][3], matrixSum[3][3];
+  printf("Enter the values for the first 3x3 matrix:\n");
+  for(int i = 0; i < 3; i++){
+    for(int j = 0; j < 3; j++){
+      scanf("%d",  &matrix1[i][j]);
+    }
+  }
+  printf("Enter the values for the second 3x3 matrix:\n");
+  for(int i = 0; i < 3; i++){
+    for(int j = 0; j < 3; j++){
+      scanf("%d", &matrix2[i][j]);
+      matrixSum[i][j] = matrix1[i][j] + matrix2[i][j];
+    }
+  }
+  printf("This is the sum of two matrices:\n");
+  for(int i = 0; i < 3; i++){
+    for(int j = 0; j < 3; j++){
+      printf("%d ", matrixSum[i][j]);
+    }
+    printf("\n");
+  }
+  return 0;
+}
+*/
+
+// Question 188**********Assignment-33_Question-2 ***************
+// Write a program to calculate the product of two matrices each of order 3x3.
+/*
+#include <stdio.h>
+int main(){
+  int matrix1[3][3], matrix2[3][3], matrixProduct[3][3] = {0};
+  printf("Enter the values for the first 3x3 matrix:\n");
+  for(int i = 0; i < 3; i++){
+    for(int j = 0; j < 3; j++){
+      scanf("%d",  &matrix1[i][j]);
+    }
+  }
+  printf("Enter the values for the second 3x3 matrix:\n");
+  for(int i = 0; i < 3; i++){
+    for(int j = 0; j < 3; j++){
+      scanf("%d", &matrix2[i][j]);
+    }
+  }
+  printf("This is the product of two matrices: \n");
+  for(int i = 0; i < 3; i++){
+    for(int j = 0; j < 3; j++){
+      for(int k = 0; k < 3; k++){
+        matrixProduct[i][j] += matrix1[i][k] * matrix2[k][j];
+      }
+      printf("%d ", matrixProduct[i][j]);
+    }
+    printf("\n");
+  }
+  return 0;
+}
+*/
+
+// Question 189**********Assignment-33_Question-3 ***************
+// Write a program to print the transpose of a given matrix.
+/*
+#include <stdio.h>
+int main(){
+  int n;
+  printf("Enter the size of matirix : ");
+  scanf("%d", &n);
+  int transposeMatrix[n][n];
+  printf("Enter the values for the matrix:\n");
+  for(int i = 0; i < n; i++){
+    for(int j = 0; j < n; j++){
+      scanf("%d", &transposeMatrix[i][j]);
+    }
+  }
+  printf("\n");
+  printf("\n");
+  for(int i = 0; i < n; i++){
+    for(int j = i; j< n; j++){
+      int temp = transposeMatrix[i][j];
+      transposeMatrix[i][j] = transposeMatrix[j][i];
+      transposeMatrix[j][i] = temp;
+    }
+  }
+  for(int i = 0; i<n; i++){
+    for(int j = 0; j < n; j++){
+      printf("%d ", transposeMatrix[i][j]);
+    }
+    printf("\n");
+  }
+  return 0;
+}
+*/
+
+// Question 190********Assignment-33_Question-4,5,6,7,8,9,10************************
+// Four players are playing a tournament of Chess with round robin method (each player will play with every other player). Each win has 2 points, draw has 1 point and loose has 0 points. Declare a score_board two dimensional array to store the scores of the players agains each player.
+
+// For que-4, define a function to update score_board after each match result.
+// For que-4, define a function to display score_board.
+// For que-4, define a function which returns the score of a specific player
+// For que-4, define a function to find the winner of the tournament.
+// For que-4, define a function to display rank of the players.
+// For que-4, define a function to run tournament, in which user has to enter result of each game and update score board using score_board function.
+/*
+#include<stdio.h>
+void updateScoreBoard(int scoreBoard[4][4], int i, int j, int score){
+  scoreBoard[i][j] = score;
+  if(score == 2){
+    scoreBoard[j][i] = 0;
+  }else if(score == 0){
+    scoreBoard[j][i] = 2;
+  }else{
+    scoreBoard[j][i] = 1;
+  }
+}
+void printScoreBoard(int scoreBoard[4][4]){
+  for(int i = 0; i < 4; i++){
+    for(int j = 0; j < 4; j++){
+      printf("%d ", scoreBoard[i][j]);
+    }
+    printf("\n");
+  }
+}
+int printPlayerScore(int scoreBoard[4][4], int playerNumber){
+  playerNumber--;
+  int score = 0;
+  for(int i = 0; i < 4; i++){
+    score += scoreBoard[playerNumber][i];
+  }
+  return score;
+}
+
+void findWinner(int scoreBoard[4][4], int scorePlayer[4]){
+  int winner = 0;
+  for(int i = 0; i < 4; i++){
+    for(int j = 0; j < 4; j++){
+      scorePlayer[i] += scoreBoard[i][j];
+    }
+  }
+  for(int i = 1; i < 4; i++){
+    if(scorePlayer[winner] < scorePlayer[i]){
+      winner = i;
+    }
+  }
+  printf("Player %d is the winner\n", winner + 1);
+}
+
+void ranks(int scorePlayer[4]){
+  for(int i = 0; i < 4; i++){
+    printf("Player %d has %d points\n", i + 1, scorePlayer[i]);
+  }
+  printf("\n");
+  int rankArray[4], rank = 1, prevScore = 0;
+  for(int i = 0; i < 4; i++){
+    int max = 0;
+    for(int j = 0; j < 4; j++){
+      if(scorePlayer[max] < scorePlayer[j]){
+        max = j;
+      }
+    }
+    if(scorePlayer[max] != prevScore){
+      rankArray[max] = rank;
+      rank++;
+      prevScore = scorePlayer[max];
+      scorePlayer[max] = -1;
+    }else{
+      rankArray[max] = --rank;
+      rank++;
+      scorePlayer[max] = -1;
+    }
+  }
+  for(int i = 0; i < 4; i++){
+    printf("Player %d has rank %d\n", i + 1, rankArray[i]);
+  }
+}
+
+void runTournament(){
+  int scoreBoard[4][4] = {0};
+  printf("Match between Player_1 and Player_2. Enter the value if player_1 wins then 2, draw 1 and loose 0\n");
+  int score;
+  scanf("%d", &score);
+  updateScoreBoard(scoreBoard, 0, 1, score);
+  printf("Match between Player_1 and Player_3. Enter the value if player_1 wins then 2, draw 1 and loose 0\n");
+  scanf("%d", &score);
+  updateScoreBoard(scoreBoard, 0, 2, score);
+  printf("Match between Player_1 and Player_4. Enter the value if player_1 wins then 2, draw 1 and loose 0\n");
+  scanf("%d", &score);
+  updateScoreBoard(scoreBoard, 0, 3, score);
+  printf("Match between Player_2 and Player_3. Enter the value if player_2 wins then 2, draw 1 and loose 0\n");
+  scanf("%d", &score);
+  updateScoreBoard(scoreBoard, 1, 2, score);
+  printf("Match between Player_2 and Player_4. Enter the value if player_2 wins then 2, draw 1 and loose 0\n");
+  scanf("%d", &score);
+  updateScoreBoard(scoreBoard, 1, 3, score);
+  printf("Match between Player_3 and Player_4. Enter the value if player_3 wins then 2, draw 1 and loose 0\n");
+  scanf("%d", &score);
+  updateScoreBoard(scoreBoard, 2, 3, score);
+  printScoreBoard(scoreBoard);
+  printf("Enter the player Number, whose score you want to check\n");
+  int playerNumber;
+  scanf("%d", &playerNumber);
+  printf("%d\n", printPlayerScore(scoreBoard, playerNumber));
+  printf("\n");
+  int scorePlayers[4] = {0};
+  findWinner(scoreBoard, scorePlayers);
+  printf("\n");
+  ranks(scorePlayers);
+}
+int main(){
+  runTournament();
+  return 0;
+}
+*/
+
