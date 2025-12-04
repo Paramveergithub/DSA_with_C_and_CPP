@@ -298,3 +298,156 @@ int main(){
   return 0;
 }
 */
+
+// Question 171**********Assignment-29_Question-5 ***************
+// Write a program to find the smallest number stored in an array of size 10. Take array values from the user.
+/*
+#include <stdio.h>
+int main(){
+  int arr[10], min;
+  printf("Enter 10 elements: ");
+  for(int i = 0; i < 10; i++){
+    scanf("%d", &arr[i]);
+    if(i == 0 || arr[i] < min){
+      min = arr[i];
+    }
+  }
+  printf("Minimum element is: %d\n", min);
+  return 0;
+}
+*/
+
+// Question 172**********Assignment-30_Question-1 ***************
+// Write a program to sort elements of an array of size 10. Take array values from the user.
+/*
+#include <stdio.h>
+int main(){
+  int arr[10];
+  printf("Enter 10 elements: ");
+  for(int i = 0; i < 10; i++){
+    scanf("%d", &arr[i]);
+  }
+  for(int i = 0; i < 10; i++){
+    int curr = i;
+    for(int j = i - 1; j >= 0; j--){
+      if(arr[j] > arr[curr]){
+        int temp = arr[j];
+        arr[j] = arr[curr];
+        arr[curr] = temp;
+        curr--;
+      }
+    }
+  }
+  for(int i = 0; i < 10; i++){
+    printf("%d ", arr[i]);
+  }
+  return 0;
+}
+*/
+
+// Question 173**********Assignment-30_Question-2 ***************
+// Write a program to find second largest in an array. Take array values from the user.
+/*
+#include <stdio.h>
+int main(){
+  int n;
+  printf("Enter the size of the array: ");
+  scanf("%d", &n);
+  int arr[n], count = 0;
+  printf("Enter %d elements: ", n);
+  for(int i = 0; i < n; i++){
+    scanf("%d", &arr[i]);
+  }
+  for(int i = 0; i < n; i++){
+    int curr = i;
+    for(int j = i - 1; j >= 0; j--){
+      if(arr[j] > arr[curr]){
+        int temp = arr[j];
+        arr[j] = arr[curr];
+        arr[curr] = temp;
+        curr--;
+      }
+    }
+  }
+  for(int i = n-1; i >= 0; i--){
+    if(arr[i] != arr[i - 1]){
+      count++;
+    }
+    if(count == 2){
+      printf("Second largest element is: %d\n", arr[i]);
+      break;
+    }
+  }
+  return 0;
+}
+*/
+
+// Question 174**********Assignment-30_Question-3 ***************
+// Write a program to find the second smallest number in an array. Take array values from the user.
+/*
+#include <stdio.h>
+int main(){
+  int n;
+  printf("Enter the size of the array: ");
+  scanf("%d", &n);
+  int arr[n], count = 0;
+  printf("Enter %d elements: ", n);
+  for(int i = 0; i < n; i++){
+    scanf("%d", &arr[i]);
+  }
+  for(int i = 0; i < n; i++){
+    int curr = i;
+    for(int j = i - 1; j >= 0; j--){
+      if(arr[j] > arr[curr]){
+        int temp = arr[j];
+        arr[j] = arr[curr];
+        arr[curr] = temp;
+        curr--;
+      }
+    }
+  }
+  for(int i = 0; i < n; i++){
+    printf("%d ", arr[i]);
+  }
+  printf("\n");
+  for(int i = 0; i < n; i++){
+    if(arr[i] != arr[i + 1]){
+      count++;
+    }
+    if(count == 2){
+      printf("Second smallest element is: %d\n", arr[i]);
+      break;
+    }
+  }
+  return 0;
+}
+*/
+
+// Question 175**********Assignment-30_Question-4 ***************
+// Write a program to sort an array of 10 elements in descending order.
+/*
+#include <stdio.h>
+int main(){
+  int arr[10];
+  printf("Enter 10 elements: ");
+  for(int i = 0; i < 10; i++){
+    scanf("%d", &arr[i]);
+  }
+  for(int i = 0; i < 10; i++){
+    int curr = i;
+    for(int j = i - 1; j >= 0; j--){
+      if(arr[j] < arr[curr]){
+        int temp = arr[j];
+        arr[j] = arr[curr];
+        arr[curr] = temp;
+        curr--;
+      }
+    }
+  }
+  for(int i = 0; i < 10; i++){
+    printf("%d ", arr[i]);
+  }
+  return 0;
+}
+*/
+
