@@ -1431,3 +1431,145 @@ int main(){
 // */
 
 
+// Question 206 ********Assignment-37_Question-1 ***************
+// Write a function to count vowels in a given string.
+/*
+#include <stdio.h>
+#include <string.h>
+void countV(char *str){
+  int count = 0;
+  for(int i = 0; i < strlen(str); i++){
+    if(str[i] == 'a' || str[i] == 'e' || str[i] == 'i' || str[i] == 'o' || str[i] == 'u' || str[i] == 'A' || str[i] == 'E' || str[i] == 'I' || str[i] == 'O' || str[i] == 'U'){
+      count++;
+    }
+  }
+  printf("The number of vowels in the string is: %d\n", count);
+}
+int main(){
+  char str[100];
+  printf("Enter a string: ");
+  fgets(str, 100, stdin);
+  str[strcspn(str, "\n")] = '\0';
+  countV(str);
+  return 0;
+}
+*/
+
+// Question 207 ********Assignment-37_Question-2 ***************
+// Write a function to find a character in a given string. Return index of first occurrence of given character. Return -1 if character not found.
+/*
+#include <stdio.h>
+#include <string.h>
+int occur(char *str, char ch){
+  for(int i = 0; i < strlen(str); i++){
+    if(str[i] == ch){
+      return i;
+    }
+  }
+  return -1;
+}
+int main(){
+  char str[100];
+  printf("Enter a string: ");
+  fgets(str, 100, stdin);
+  str[strcspn(str, "\n")] = '\0';
+  char ch;
+  printf("Enter a character: ");
+  scanf(" %c", &ch);
+  int res = occur(str, ch);
+  if(res == -1){
+    printf("The character %c does not occur in the string\n", ch);
+  }else{
+    printf("The character %c occurs at index %d in the string\n", ch, res);
+  }
+  return 0;
+}
+*/
+
+// Question 208 ********Assignment-37_Question-3 ***************
+// Write a function to find character in a given string between specified indices (start index (inclusive) and end index(exclusive).
+/*
+#include <stdio.h>
+#include <string.h>
+void findChar(char *str, int index1, int index2, char ch){
+  while(index1 < index2){
+    if(str[index1] == ch){
+      printf("The character %c occurs at index %d in the string\n", ch, index1);
+      return;
+    }else{
+      index1++;
+    }
+  }
+  printf("The character %c does not occur in the string\n", ch);
+}
+int main(){
+  char str[100];
+  printf("Enter a string: ");
+  fgets(str, 100, stdin);
+  str[strcspn(str, "\n")] = '\0';
+  int index1, index2;
+  printf("Enter the range of two indices where the character has to find in the string: ");
+  scanf("%d %d", &index1, &index2);
+  char ch;
+  printf("Enter a character: ");
+  scanf(" %c", &ch);
+  findChar(str, index1, index2, ch);
+  return 0;
+}
+*/
+
+// Question 209 ********Assignment-37_Question-4 ***************
+// Write a function to swap two characters of a given string with specified indices.
+/*
+#include <stdio.h>
+#include <string.h>
+void swapChar(char *str, int index1, int index2){
+  char temp = str[index1];
+  str[index1] = str[index2];
+  str[index2] = temp;
+  printf("The string after swapping characters at indices %d and %d is: %s\n", index1, index2, str);
+}
+int main(){
+  char str[100];
+  printf("Enter a string: ");
+  fgets(str, 100, stdin);
+  str[strcspn(str, "\n")] = '\0';
+  int index1, index2;
+  printf("Enter two indices those should be swap in the string: ");
+  scanf("%d %d", &index1, &index2);
+  swapChar(str, index1, index2);
+  return 0;
+}
+*/
+
+// Question 210 ********Assignment-37_Question-5 ***************
+// Write a function to check whether a given string is an alphanumeric string or not. (Alphanumeric string must contain at least one alphabet and one digit)
+/*
+#include <stdio.h>
+#include <string.h>
+void alphaNumaric(char *str, int len){
+  int alpha = 0, digit = 0;
+  for(int i = 0; i < len; i++){
+    if(str[i] >= 'a' && str[i] <= 'z' || str[i] >= 'A' && str[i] <= 'Z'){
+      alpha++;
+    }else if(str[i] >= '0' && str[i] <= '9'){
+      digit++;
+    }
+  }
+  if(alpha && digit){
+    printf("The string is alphanumeric\n");
+  }else{
+    printf("The string is not alphanumeric\n");
+  }
+}
+int main(){
+  char str[100];
+  printf("Enter a string: ");
+  fgets(str, 100, stdin);
+  str[strcspn(str, "\n")] = '\0';
+  int len = strlen(str);
+  alphaNumaric(str, len);
+  return 0;
+}
+*/
+
