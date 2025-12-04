@@ -203,3 +203,98 @@ int main(){
   return 0;
 }
 */
+
+// Question 166**********Assignment-28_Question-5 ***************
+// Write a program in C to calculate the power of any number using recursion.
+/*
+#include <stdio.h>
+int powerCalc(int n, int power){
+  if(power == 0){
+    return 1;
+  }else if(power > 0){
+    return n * powerCalc(n, power - 1);
+  }else
+  {
+    return powerCalc(n, -power);
+  }
+}
+int main(){
+  int n, power;
+  printf("Enter a number and its power: ");
+  scanf("%d %d", &n, &power);
+  printf("The power of %d is: %d", n, powerCalc(n, power));
+}
+*/
+
+// Question 167**********Assignment-29_Question-1 ***************
+// Write a program to calculate the sum of numbers stored in an array of size 10. Take array values from the user.
+/*
+#include <stdio.h>
+int main(){
+  int arr[10], sum = 0;
+  printf("Enter 10 elements: ");
+  for(int i = 0; i < 10; i++){
+    scanf("%d", &arr[i]);
+    sum += arr[i];
+  }
+  printf("Sum of the elements is: %d\n", sum);
+  return 0;
+}
+*/
+
+// Question 168**********Assignment-29_Question-2 ***************
+// Write a program to calculate the average of numbers stored in an array of size 10. Take array values from the user.
+/*
+#include <stdio.h>
+int main(){
+  int arr[10];
+  float avg = 0, sum = 0;
+  printf("Enter 10 elements: ");
+  for(int i = 0; i < 10; i++){
+    scanf("%d", &arr[i]);
+    sum += arr[i];
+  }
+  avg = sum / 10.0;
+  printf("Average of the elements is: %d\n", avg);
+  return 0;
+}
+*/
+
+// Question 169**********Assignment-29_Question-3 ***************
+// Write a program to calculate the sum of all even numbers and sum of all odd numbers, which are stored in an array of size 10. Take array values from the user.
+/*
+#include <stdio.h>
+int main(){
+  int arr[10], sEven = 0, sOdd = 0;
+  printf("Enter 10 elements: ");
+  for(int i = 0; i < 10; i++){
+    scanf("%d", &arr[i]);
+    if(arr[i] % 2 == 0){
+      sEven += arr[i];
+    }else{
+      sOdd += arr[i];
+    }
+  }
+  printf("Sum of even elements is: %d\n", sEven);
+  printf("Sum of odd elements is: %d\n", sOdd);
+  return 0;
+}
+*/
+
+// Question 170**********Assignment-29_Question-4 ***************
+// Write a program to find the greatest number stored in an array of size 10. Take array values from the user.
+/*
+#include <stdio.h>
+int main(){
+  int arr[10], max= 0;
+  printf("Enter 10 elements: ");
+  for(int i = 0; i < 10; i++){
+    scanf("%d", &arr[i]);
+    if(arr[i] > max){
+      max = arr[i];
+    }
+  }
+  printf("Maximum element is: %d\n", max);
+  return 0;
+}
+*/
