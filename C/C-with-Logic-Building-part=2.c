@@ -1829,3 +1829,235 @@ int main(){
 }
 */
 
+// Question 216 ********Assignment-39_Question-1 ***************
+// Write a function to count frequency of each character of the given string.
+/*
+#include <stdio.h>
+#include <string.h>
+void countFreqOfChar(char *str, int len){
+  int freq[256] = {0};
+  for(int i = 0; i < len; i++){
+    freq[(unsigned char)str[i]]++;
+  }
+  for(int i = 0; i < 256; i++){
+    if(freq[i] != 0){
+      printf("The character '%c' occurs %d times\n", i, freq[i]);
+    }
+  }
+}
+int main(){
+  char str[100];
+  printf("Enter a string: ");
+  fgets(str, sizeof(str), stdin);
+  str[strcspn(str, "\n")] = '\0';
+  int n = strlen(str);
+  countFreqOfChar(str, n);
+  return 0;
+}
+*/
+
+// Question 217 ********Assignment-39_Question-2 ***************
+// Write a function to find a word in a given string.
+/*
+#include <stdio.h>
+#include <string.h>
+void findWord(char *str, char *word, int len){
+  int j = 0;
+  if(strlen(word) < 1 && len < 1){
+    printf("Not Found");
+    return;
+  }
+
+  for(int i = 0; i <= len; i++){
+    if(str[i] == word[j]){
+      // if((str[i+1] == ' ' || str[i+1] == '\0') && (word[j+1] == '\0')){
+      //   printf("Found");
+      //   return;
+      // }
+      int k = i + 1, j = 1;
+      while(word[j] != '\0'){
+        if(str[k] != word[j]){
+          break;
+        }
+        j++, k++;
+      }
+      if(word[j] == '\0' && (str[k] == ' ' || str[k] == '\0')){
+        printf("Found at index %d", i);
+        return;
+      }
+    }else{
+      // j = 0;
+    }
+  }
+  printf("Not Found");
+}
+int main(){
+  char str[100];
+  printf("Enter a string: ");
+  fgets(str, sizeof(str), stdin);
+  str[strcspn(str, "\n")] = '\0';
+  int len = strlen(str);
+  char word[100];
+  printf("Enter a word: ");
+  fgets(word, sizeof(word), stdin);
+  word[strcspn(word, "\n")] = '\0';
+  findWord(str, word, len);
+  return 0;
+}
+*/
+
+// Question 218 ********Assignment-39_Question-3 ***************
+// Write a function to make first character of each word of the string capital.
+/*
+#include <stdio.h>
+#include <string.h>
+void firstCharUpper(char *str){
+  int i = 0;
+  while(str[i]){
+    if(i == 0 && str[i] >= 'a' && str[i] <= 'z'){
+      str[i] -= 32;
+    }else if(str[i - 1] == ' ' && str[i] >= 'a' && str[i] <= 'z'){
+      str[i] -= 32;
+    }
+    i++;
+  }
+  printf("%s\n", str);
+}
+int main(){
+  char str[100];
+  printf("Enter a string: ");
+  fgets(str, sizeof(str), stdin);
+  str[strcspn(str, "\n")] = '\0';
+  firstCharUpper(str);
+  return 0;
+}
+*/
+
+// Question 219 ********Assignment-39_Question-4 ***************
+// Write a function to make acronym name from a given name. For example, "Ramesh Chand Tiwari" becomes "R C Tiwari", "Bhavesh Gupta" becomes "B Gupta"
+/*
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <ctype.h>
+void makeAcronym(char *str, int len){
+  int i = 0, e = len - 1, limit = 0;
+  if(str[i] == ' ' || str[e] == ' '){
+    printf("Don't enter unnecessary spaces in the string\n");
+    return;
+  }
+  int surname = e;
+  while(str[surname] != ' ' && surname >= 0){
+    if(isalpha((unsigned char)str[surname])){
+      surname--, limit++;
+    }else{
+      printf("The string should contain only alphabets\n");
+      return;
+    }
+  }
+  if(surname < i){
+    printf("The string should contain at least two words\n");
+    return;
+  }
+  if(limit < 3){
+    printf("The surname should contain at least three characters\n");
+    return;
+  }
+   str[surname + 1] = toupper(str[surname + 1]);
+  surname--;
+  int s = surname;
+  while(i <= s){
+    if(str[s] != ' '){
+      s--;
+    }else if(str[s] == ' '){
+      str[surname] = str[s + 1];
+      str[surname] = toupper(str[surname]);
+      surname--, s--;
+      if(s >= 0){
+        str[surname] = ' ';
+        surname--;
+      }
+    }
+    if(i == s){
+      str[surname] = str[i];
+      str[surname] = toupper(str[surname]);
+      s--;
+    }
+  }
+  e = e - surname;
+  for(int i = 0; i <= e; i++){
+    str[i] = str[surname++];
+  }
+  str[e + 1] = '\0';
+  printf("The acronym of the string is: %s\n", str);
+}
+int main(){
+  char *str = NULL;
+  char ch;
+  int length = 0;
+  printf("Enter a string: ");
+  str = (char *)malloc(1*sizeof(char));
+  if(str == NULL){
+    printf("Memory allocation failed\n");
+    return 1;
+  }
+  while((ch = getchar()) != '\n'){
+    str[length] = ch;
+    length++;
+    str = (char *)realloc(str, (length+1)*sizeof(char));
+    if(str == NULL){
+      printf("Memory allocation failed\n");
+      return 1;
+    }
+  }
+  str[length] = '\0';
+  makeAcronym(str, length);
+  free(str);
+  return 0;
+}
+*/
+
+// Question 220 ********Assignment-39_Question-5 ***************
+// Write a function to concatenate two strings.
+/*
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+char *strconcat(char *str1, char *str2 , int len1, int len2){
+  int len = len1 + len2;
+  char *concatenated = (char *)malloc((len + 1) * sizeof(char));
+  if(concatenated == NULL){
+    printf("Memory allocation failed\n");
+    return NULL;
+  }
+  for(int i = 0; i<len; i++){
+    if(i < len1){
+      concatenated[i] = str1[i];
+    }else{
+      concatenated[i] = str2[i - len1];
+    }
+  }
+  concatenated[len] = '\0';
+  return concatenated;
+}
+int main(){
+  char str1[100], str2[100];
+  printf("Enter a string: ");
+  fgets(str1, sizeof(str1), stdin);
+  str1[strcspn(str1, "\n")] = '\0';
+  printf("Enter another string: ");
+  fgets(str2, sizeof(str2), stdin);
+  str2[strcspn(str2, "\n")] = '\0';
+  int len1 = strlen(str1), len2 = strlen(str2);
+  if(len1 == 0 || len2 == 0){
+    printf("One of the strings is empty, cannot concatenate\n");
+    return 0;
+  }
+  char *result = strconcat(str1, str2, len1, len2);
+  printf("Below is the concatenated string:\n\n %s\n", result);
+  free(result);
+  // printf("Below is the concatenated string:\n\n %s\n", strcat(str1, str2));
+  return 0;
+}
+*/
+
