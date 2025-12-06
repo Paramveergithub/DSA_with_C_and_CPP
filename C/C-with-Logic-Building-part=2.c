@@ -3405,3 +3405,5 @@ int main(){
   return 0;
 }
 // */
+
+// gcc -std=c11 -o a.out C-with-Logic-Building-part=2.c && a.out
