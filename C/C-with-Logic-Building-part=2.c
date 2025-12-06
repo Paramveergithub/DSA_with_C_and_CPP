@@ -2690,3 +2690,250 @@ int main(){
   return 0;
 }
 */
+
+// Question 236 ********Assignment-43_Question-1 ***************
+// 1. Write a function to swap strings of two char arrays.
+/*
+#include <stdio.h>
+#include <string.h>
+#include <conio.h>
+void swapStrings(char *str1, char *str2){
+  char temp[10];
+  strcpy(temp, str1);
+  strcpy(str1, str2);
+  strcpy(str2, temp);
+}
+int main(){
+  char str1[10], str2[10];
+  printf("Enter first string(max 9 characters): ");
+  for(int i = 0; i< 9; i++){
+    str1[i] = _getch();
+    putchar(str1[i]);
+  }
+  str1[9] = '\0';
+  printf("\nEnter second string(max 9 characters): ");
+  for(int i = 0; i< 9; i++){
+    str2[i] = _getch();
+    putchar(str2[i]);
+  }
+  str2[9] = '\0';
+  swapStrings(str1, str2);
+  printf("\nAfter swapping - : %s\n%s\n", str1, str2);
+  return 0;
+}
+*/
+
+// Question 237 ********Assignment-43_Question-2 ***************
+// Write a function to sort an array of int type values. [void sort(int *ptr,int size);]  
+/*
+#include <stdio.h>
+void sort(int *ptr, int n){
+  for(int i = 0; i < n - 1; i++){
+    int j = i + 1, min = i;
+    while(j < n){
+      if(ptr[j] < ptr[min]){
+        min = j;
+      }
+      j++;
+    }
+    if(min != i){
+      int temp = ptr[i];
+      ptr[i] = ptr[min];
+      ptr[min] = temp;
+    }
+  }
+}
+int main(){
+  int n;
+  printf("Enter the size of the array: ");
+  scanf("%d", &n);
+  int ptr[n];
+  printf("Enter %d elements: ", n);
+  for(int i = 0; i < n; i++){
+    scanf("%d", &ptr[i]);
+  }
+  sort(ptr, n);
+  printf("The sorted array is: \n");
+  for(int i = 0; i < n; i++){
+    printf("%d ", ptr[i]);
+  }
+  return 0;
+}
+// */
+
+// Question 238 ********Assignment-43_Question-3 ***************
+// Write a function to merge two arrays in a given array. [ void merge(int *arr1, int size1, int *arr2, int size2, int *arr3); ]
+/*
+#include <stdio.h>
+void sort(int *ptr, int n){
+  for(int i = 0; i < n - 1; i++){
+    int j = i + 1, min = i;
+    while(j < n){
+      if(ptr[j] < ptr[min]){
+        min = j;
+      }
+      j++;
+    }
+    if(min != i){
+      int temp = ptr[i];
+      ptr[i] = ptr[min];
+      ptr[min] = temp;
+    }
+  }
+}
+void mergeArrays(int *arr1, int n1, int *arr2, int n2, int *arr3){
+  int n3 = n1 + n2, i = 0, j = 0, k = 0;
+  sort(arr1, n1);
+  sort(arr2, n2);
+  while(i < n1 && j < n2){
+    if(arr1[i] < arr2[j]){
+      arr3[k++] = arr1[i++];
+    }else{
+      arr3[k++] = arr2[j++];
+    }
+  }
+  while(i < n1){
+    arr3[k++] = arr1[i++];
+  }
+  while(j < n2){
+    arr3[k++] = arr2[j++];
+  }
+}
+int main(){
+  int n1, n2;
+  printf("Enter the sizes of two arrays: ");
+  scanf("%d %d", &n1, &n2);
+  int arr1[n1], arr2[n2];
+  printf("Enter %d elements of first array: ", n1);
+  for(int i = 0; i < n1; i++){
+    scanf("%d", &arr1[i]);
+  }
+  printf("Enter %d elements of second array: ", n2);
+  for(int i = 0; i < n2; i++){
+    scanf("%d", &arr2[i]);
+  }
+  int n3 = n1 + n2;
+  int arr3[n3];
+  mergeArrays(arr1, n1, arr2, n2, arr3);
+  printf("The merged array is: \n");
+  for(int i = 0; i < n3; i++){
+    printf("%d ", arr3[i]);
+  }
+  return 0;
+}
+// */
+
+// Question 239 ********Assignment-43_Question-4 ***************
+// Write a function to move first value of the array to the position where all smaller values will be in the left and greater values will be in the right.
+/*
+#include <stdio.h>
+void pivotValue(int *arr, int n){
+  int pivot = arr[0], start = 1, end = n - 1;
+  // Balance the array**************
+  while(start < end){
+    if(arr[start] >= pivot && arr[end] < pivot){
+      int temp = arr[start];
+      arr[start] = arr[end];
+      arr[end] = temp;
+      start++, end--;
+    }
+    if(arr[start] < pivot){
+      start++;
+    }
+    if(arr[end] >= pivot){
+      end--;
+    }
+  }
+  start = 1, end = n - 1;
+  // Place pivot at correct position**************
+  while(start < end){
+    if(pivot > arr[start]){
+      arr[start - 1] = arr[start++];
+      if(start == n){
+        arr[start - 1] = pivot;
+        break;
+      }
+    }else{
+      arr[start - 1] = pivot;
+      break;
+    }
+  }
+
+  start = 0, end = n - 1;
+  // fix Duplicacy of pivot**************
+  while(start < end){
+    if(arr[start] > pivot && arr[end] <= pivot){
+      int temp = arr[start];
+      arr[start] = arr[end];
+      arr[end] = temp;
+      start++, end--;
+    }else{
+      if(arr[start] <= pivot){
+        start++;
+      }else if(arr[end] > pivot){
+        end--;
+      }
+    }
+  }
+
+}
+int main(){
+  int n;
+  printf("Enter the size of the array: ");
+  scanf("%d", &n);
+  int arr[n];
+  printf("Enter %d elements: ", n);
+  for(int i = 0; i < n; i++){
+    scanf("%d", &arr[i]);
+  }
+  pivotValue(arr, n);
+  printf("The array after placing pivot value at correct position is: \n");
+  for(int i = 0; i < n; i++){
+    printf("%d ", arr[i]);
+  }
+  return 0;
+}
+// */
+
+// Question 240 ********Assignment-43_Question-5 ***************
+// There are five classes with different number of students in them. Five arrays containing marks of students of each class. Write a function to receive an address of an array of pointers to access marks of all the students. The job of function is to find the highest marks among all the classes.
+/*
+#include <stdio.h>
+#include <stdlib.h>
+void highestMarksOfStudents(int *marksOfStudents[], int students[], int classes){
+  int maxMarks = 0, classNo = 0, studentNo = 0;
+  for(int i = 0; i < classes; i++){
+    for(int j = 0; j < students[i]; j++){
+      if(marksOfStudents[i][j] > maxMarks){
+        maxMarks = marksOfStudents[i][j];
+        classNo = i + 1;
+        studentNo = j + 1;
+      }
+    }
+  }
+  printf("The highest marks are %d scored by student %d of class %d\n", maxMarks, studentNo, classNo);
+}
+int main(){
+  int classes;
+  printf("Enter the no. of classes : ");
+  scanf("%d", &classes);
+  int students[classes];
+  printf("Enter the no. of students present in each class : \n");
+  for(int i = 0; i < classes; i++){
+    scanf("%d", &students[i]);
+  }
+  int *marksOfStudents[classes];
+  for(int i = 0; i < classes; i++){
+    marksOfStudents[i] = (int *)malloc(students[i] * sizeof(int));
+    printf("Enter the marks of students of class %d : \n", i+1);
+    for(int j = 0; j < students[i]; j++){
+      scanf("%d", &marksOfStudents[i][j]);
+    }
+  }
+  highestMarksOfStudents(marksOfStudents, students, classes);
+  return 0;
+}
+// */
+
+
+
