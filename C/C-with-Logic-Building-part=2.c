@@ -3299,6 +3299,7 @@ int main(){
 // */
 
 // Question 250 ********Assignment-1_Question-1 ***************
+// write a C program to check whether a given number is even or odd.
 /*
 #include <stdio.h>
 int main(){
@@ -3315,4 +3316,92 @@ int main(){
 // */
 
 
+// Question 251 ********Assignment-1_Question-2 ***************
+// Write a C program to calculate factorial of a number.
+/*
+#include <stdio.h>
+int main(){
+  printf("Enter a number: ");
+  int n;
+  scanf("%d", &n);
+  int fact = 1;
+  for(int i = 1; i <= n; i++){
+    fact *= i;
+  }
+  printf("The factorial of %d is %d\n", n, fact);
+  return 0;
+}
+// */
 
+
+// Question 252 ********Assignment-1_Question-3 ***************
+// Write a C program to swap values of two int variables.
+/*
+#include <stdio.h>
+int main(){
+  int a, b;
+  printf("Enter two numbers: ");
+  scanf("%d %d", &a, &b);
+  int temp = a;
+  a = b;
+  b = temp;
+  printf("The swapped numbers are %d and %d\n", a, b);
+  return 0;
+}
+// */
+
+
+// Question 253 ********Assignment-1_Question-4 ***************
+// Write a C function to calculate LCM of two numbers (TSRS)
+/* 
+#include <stdio.h>
+int lcmCalc(int a, int b){
+  int i = 1, j = 1;
+  while(1){
+    if(a*i == b*j){
+      return a*i;
+    } else if(a*i < b*j){
+      i++;
+    } else{
+      j++;
+    }
+  }
+}
+int main(){
+  int a, b;
+  printf("Enter two numbers for lcm: ");
+  scanf("%d %d", &a, &b);
+  int lcm = lcmCalc(a, b);
+  printf("The lcm of %d and %d is %d\n", a, b, lcm);
+  return 0;
+}
+// */
+
+
+// Question 254 ********Assignment-1_Question-5 ***************
+// Write a C function to check whether a given number is a Prime number or not. (TSRS)
+/* 
+#include <stdio.h>
+int isPrime(int n){
+  int i = 2;
+  while(i < n){
+    if(n % i == 0){
+      return 0;
+    }
+    i++;
+  }
+  return 1;
+}
+int main(){
+  int a; 
+  printf("Enter a number: ");
+  scanf("%d", &a);
+  int p = isPrime(a);
+  if(p){
+    printf("The number %d is prime\n", a);
+  } else{
+    printf("The number %d is not prime\n", a);
+  }
+  return 0;
+}
+// */
