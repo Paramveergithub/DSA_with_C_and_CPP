@@ -2061,3 +2061,312 @@ int main(){
 }
 */
 
+
+// Question 221 ********Assignment-40_Question-1 ***************
+// Write a function to store strings, taken from user, to the given 2d char array.
+/*
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <stdbool.h>
+void ensure_ptr(char ***ptr, int *n){
+  *ptr = realloc(*ptr, (*n + 1) * sizeof(char *));
+  if(!*ptr){
+    printf("Pointer memory allocation failed\n");
+    exit(1);
+  }
+}
+void ensure_str(char **str, int *word_len){
+    *str = realloc(*str, (*word_len + 1) * sizeof(char));
+    if(*str == NULL){
+      printf("String memory allocation failed\n");
+      return;
+    }
+}
+void finalizeWord(char **str, int *word_len, bool *word, char ***ptr, int *n){
+  if(*word){
+    ensure_str(str, word_len);
+    (*str)[*word_len] = '\0';
+    ensure_ptr(ptr, n);
+    (*ptr)[*n] = *str;
+    (*n)++;
+    *word = false;
+    *word_len = 0;
+    *str = NULL;
+  }
+}
+void storeStringsIn2dPointerArray(char ***ptr, int *n){
+  char *str = NULL;
+  bool word = false;
+  int word_len = 0;
+  char ch;
+  while(1){
+      ch = getchar();
+      if(ch == '\n'){
+        finalizeWord(&str, &word_len, &word, ptr, n);
+        ensure_ptr(ptr, n);
+        (*ptr)[*n] = NULL;
+        break;
+      }else if(ch == ' '){
+        finalizeWord(&str, &word_len, &word, ptr, n);
+      }else{
+        ensure_str(&str, &word_len);
+        str[word_len++] = ch;
+        word = true;
+      }
+  }
+}
+void releaseMemoryPrint(char ***ptr){
+  for(int i = 0; (*ptr)[i] != NULL; i++){
+    printf("%s ", (*ptr)[i]);
+    free((*ptr)[i]);
+  }
+  free(*ptr);
+}
+int main(){
+  char **ptr = NULL;
+  int n = 0;
+  printf("Enter the string: ");
+  storeStringsIn2dPointerArray(&ptr, &n);
+  releaseMemoryPrint(&ptr);
+  return 0;
+}
+*/
+
+// Question 222 ********Assignment-40_Question-2 ***************
+// Write a program to find the number of vowels in each of the 5 strings stored in two dimensional arrays, taken from the user.
+/*
+#include <stdio.h>
+#include <string.h>
+int main(){
+  char str[5][30];
+  int i;
+  printf("Enter 5 strings: \n");
+  for(i = 0; i < 5; i++){
+    fgets(str[i], sizeof(str[i]), stdin);
+    str[i][strcspn(str[i], "\n")] = '\0';
+  }
+  for(int i = 0; i < 5; i++){
+    int count = 0, j = 0;
+    while(str[i][j]){
+      if(str[i][j] == 'a' || str[i][j] == 'e' || str[i][j] == 'i' || str[i][j] == 'o' || str[i][j] == 'u' || str[i][j] == 'A' || str[i][j] == 'E' || str[i][j] == 'I' || str[i][j] == 'O' || str[i][j] == 'U'){
+        count++;
+      }
+      j++;
+    }
+    if(count){
+      printf("The number of vowels in the string \"%s\" is: %d\n", str[i], count);
+    }
+  }
+  return 0;
+}
+*/
+
+// Question 223 ********Assignment-40_Question-3 ***************
+// Write a program to sort 10 city names stored in two dimensional arrays, taken from the user.
+/*
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+#include <ctype.h>
+void sortNames(char str[10][20], int n){
+  // for(int i = 0; i < n - 1; i++){
+  //   int j = i + 1;
+  //   int k = 0;
+  //   while(j < n){
+  //     if(str[i][k] > str[j][k]){
+  //       char temp[20];
+  //       strcpy(temp, str[i]);
+  //       strcpy(str[i], str[j]);
+  //       strcpy(str[j], temp);
+  //     }else if(str[i][k] == str[j][k]){
+  //       int a = k + 1;
+  //       while(1){
+  //         if(str[i][a] > str[j][a]){
+  //           char temp[20];
+  //           strcpy(temp, str[i]);
+  //           strcpy(str[i], str[j]);
+  //           strcpy(str[j], temp);
+  //           break;
+  //         }else if(str[i][a] == str[j][a]){
+  //           a++;
+  //         }else{
+  //           break;
+  //         }
+  //       }
+  //     }
+  //     j++;
+  //   }
+  // }
+
+                    // or
+  for(int i = 0; i < n - 1; i++){
+    for(int j = i + 1; j < n; j++){
+      if(strcmp(str[i], str[j]) > 0){
+        char temp[20];
+        strcpy(temp, str[i]);
+        strcpy(str[i], str[j]);
+        strcpy(str[j], temp);
+      }
+    }
+  }
+}
+int main(){
+  char str[10][20];
+  bool isWord = false;
+  printf("Enter 10 cities names: \n");
+  for(int i = 0; i < 10; i++){
+    int j = 0;
+    while(1){
+      char ch = getchar();
+      if(ch != '\n' && ch != ' '){
+        str[i][j++] = tolower(ch);
+        isWord = true;
+      }else if(ch == ' ' || ch == '\n'){
+        if(isWord){
+          str[i][j] = '\0';
+          isWord = false;
+          break;
+        }
+        continue;
+      }
+    }
+  }
+  sortNames(str, 10);
+  printf("The sorted city names are: \n \n");
+  for(int i = 0; i < 10; i++){
+    printf("%s\n", str[i]);
+  }
+  return 0;
+}
+*/
+
+// Question 224 ********Assignment-40_Question-4 ***************
+// Write a function to store each word a string in a 2 dimensional char array.
+/*
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+void storeWord2dArray(char str[], char wrd[][20], int *couunt){
+  char * token = strtok(str, " ");
+  while(token != NULL){
+    strcpy(wrd[*couunt], token);
+    (*couunt)++;
+    token = strtok(NULL, " ");
+  }
+}
+int main(){
+  char str[200];
+  char wrd[50][20];
+  printf("Enter something which will be stored in 2D array: \n");
+  fgets(str, sizeof(str), stdin);
+  str[strcspn(str, "\n")] = '\0';
+  int count = 0;
+
+  storeWord2dArray(str, wrd, &count);
+
+  printf("The strings stored in the 2D array are: \n\n");
+  for(int i = 0; i < count; i++){
+    printf("%s\n", wrd[i]);
+  }
+  return 0;
+}
+*/
+
+//  OR
+/*
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <stdbool.h>
+void storeWord2dArray(char str[], char wrd[][20], int *couunt){
+  int i = 0, j = 0;
+  bool isWord = false;
+  while(str[i]){
+    if(str[i] != ' '){
+      wrd[*couunt][j++] = str[i];
+      isWord = true;
+    }else if(str[i] == ' '){
+      if(isWord){
+        wrd[*couunt][j] = '\0';
+        (*couunt)++;
+        j = 0;
+        isWord = false;
+      }
+    }
+    i++;
+  }
+  if(isWord){
+    wrd[*couunt][j] = '\0';
+    (*couunt)++;
+  }
+  wrd[*couunt][0] = '\0';
+}
+int main(){
+  char str[200];
+  char wrd[50][20];
+  printf("Enter something which will be stored in 2D array: \n");
+  fgets(str, sizeof(str), stdin);
+  str[strcspn(str, "\n")] = '\0';
+  int count = 0;
+
+  storeWord2dArray(str, wrd, &count);
+
+  printf("The strings stored in the 2D array are: \n\n");
+  for(int i = 0; i < count; i++){
+    printf("%s\n", wrd[i]);
+  }
+  return 0;
+}
+// */
+
+// Question 225 ********Assignment-40_Question-5 ***************
+// Write a function to remove duplicate names stored in the list of names stored in a 2d char array.
+/*
+#include <stdio.h>
+#include <string.h>
+void removeDuplicateNames(char str[][20]){
+  int i = 0;
+  while(str[i][0]){
+    int j = i+1;
+    while(str[j][0]){
+      if(strcmp(str[i], str[j]) == 0){
+         int k = j;
+        while(str[k][0]){
+          strcpy(str[k], str[k + 1]);
+          k++;
+        }
+      }else{
+        j++;
+      }
+    }
+    i++;
+  }
+}
+int main(){
+  char str[100][20];
+  printf("Enter names : \n");
+  int i = 0, j = 0;
+    char ch;
+    while((ch = getchar()) != '\n'){
+      if(ch == ' '){
+        str[i][j] = '\0';
+        i++;
+        j = 0;
+      }else{
+        str[i][j++] = ch;
+      }
+    }
+    str[i++][j] = '\0';
+    str[i][0] = '\0';
+    removeDuplicateNames(str);
+    printf("\n The names after removing duplicates are: \n\n");
+    for(int i = 0; str[i][0]; i++){
+      printf("%s \n", str[i]);
+    }
+    return 0;
+}
+*/
+
+
+
