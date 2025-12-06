@@ -2560,3 +2560,133 @@ int main(){
 */
 
 
+// Question 231 ********Assignment-42_Question-1 ***************
+//  Write a function to swap values of two int variables (TSRN).
+/*
+#include <stdio.h>
+#include <string.h>
+void swapValues(int *a, int *b){
+  int temp = *a;
+  *a = *b;
+  *b = temp;
+}
+int main(){
+  int a, b;
+  printf("Enter two numbers: ");
+  scanf("%d %d", &a, &b);
+  swapValues(&a, &b);
+  printf("After swapping the values are: %d %d\n", a, b);
+  return 0;
+}
+*/
+
+// Question 232 ********Assignment-42_Question-2 ***************
+// Write a function to search all occurrences of a given character in a given string. Result of search is a list of indices to be stored in the given array. [void search_all_occurrences(char *str, char ch, int *arr); ]
+/*
+#include <stdio.h>
+#include <string.h>
+void search_all_occurrences(char *str, char ch, int *arr){
+  int i = 0, n = 0;
+  while(str[i]){
+    if(str[i] == ch){
+      arr[n++] = i;
+    }
+    i++;
+  }
+  for(int i = 0; i < n; i++){
+    printf("%d ", arr[i]);
+  }
+}
+int main(){
+  char ch;
+  printf("Enter a character: ");
+  scanf("%c", &ch);
+
+  char str[100];
+  printf("Enter a string: ");
+  fflush(stdin);
+  fgets(str, sizeof(str), stdin);
+  str[strcspn(str, "\n")] = '\0';
+
+  int arr[50];
+  search_all_occurrences(str, ch, arr);
+  return 0;
+}
+*/
+
+// Question 233 ********Assignment-42_Question-3 ***************
+// Write a function to convert a given string into uppercase.
+/*
+#include <stdio.h>
+#include <string.h>
+void convertToUpperCase(char *str){
+  int i = 0;
+  while(str[i]){
+    if(str[i] >= 'a' && str[i] <= 'z'){
+      str[i] -= 32;
+    }
+    i++;
+  }
+}
+int main(){
+  char str[100];
+  printf("Enter a string: ");
+  fgets(str, sizeof(str), stdin);
+  str[strcspn(str, "\n")] = '\0';
+  convertToUpperCase(str);
+  printf("The string in uppercase is: \n%s\n", str);
+  return 0;
+}
+*/
+
+// Question 234 ********Assignment-42_Question-4 ***************
+// Write a function to convert a given string into lowercase.
+/*
+#include <stdio.h>
+#include <string.h>
+#include<ctype.h>
+void convertToLowerCase(char *str){
+  int i = 0;
+  while(str[i]){
+    str[i] = tolower(str[i++]);
+  }
+}
+int main(){
+  char str[100];
+  printf("Enter a string: ");
+  fgets(str, sizeof(str), stdin);
+  str[strcspn(str, "\n")] = '\0';
+  convertToLowerCase(str);
+  printf("The string in lowercase is: \n%s\n", str);
+  return 0;
+}
+*/
+
+// Question 235 ********Assignment-42_Question-5 ***************
+// Write a function to extract a substring from a given string with specified start index (inclusive) and end index (exclusive), and store the extracted string in another char array. [void extract_string(char *str, int start_index, int end_index, char *result); ]
+/*
+#include <stdio.h>
+#include <string.h>
+void extractSubstring(char *str, int start, int end, char *subStr){
+  int i = 0;
+  while(start < end){
+    subStr[i++] = str[start++];
+  }
+  subStr[i] = '\0';
+}
+int main(){
+  char str[100], subStr[100];
+  printf("Enter a string: ");
+  fgets(str, sizeof(str), stdin);
+  str[strcspn(str, "\n")] = '\0';
+
+  printf("Enter start and end indices: ");
+  int start, end;
+  scanf("%d %d", &start, &end);
+
+  extractSubstring(str, start, end, subStr);
+
+  printf("The extracted substring is: %s\n", subStr);
+  return 0;
+}
+*/
