@@ -2369,4 +2369,194 @@ int main(){
 */
 
 
+// Question 226 ********Assignment-41_Question-1 ***************
+// Write a program to find words ending with a letter 's' and store each such word in a 2d char array.
+/*
+#include <stdio.h>
+#include <string.h>
+int main(){
+  char str[100], wrd[20][20];
+  printf("Enter a string: ");
+  fgets(str, sizeof(str), stdin);
+  str[strcspn(str, "\n")] = '\0';
+  int i = 0, k = 0;
+  while(str[i]){
+    while(str[i] == ' ') i++;
+    int j = i;
+    while(str[j] != ' ' && str[j] != '\0'){
+      if((str[j] == 's') && (str[j+1] == ' ' || str[j+1] == '\0')){
+        int l = 0;
+        while(i <= j){
+          wrd[k][l++] = str[i++];
+        }
+        wrd[k++][l] = '\0';
+        j++;
+        break;
+      }else{
+        j++;
+      }
+    }
+    if(str[j] == ' '){
+      i = j + 1;
+    }else if(str[j] == '\0'){
+      break;
+    }
+  }
+  wrd[k][0] = '\0';
+  for(int i = 0; wrd[i][0]; i++){
+    printf("%s\n", wrd[i]);
+  }
+  return 0;
+}
+*/
+
+// Question 227 ********Assignment-41_Question-2 ***************
+// Write a function to return the most repeating character in a list of strings.
+/*
+#include <stdio.h>
+#include <string.h>
+int main(){
+  char str[100];
+  printf("Enter a string: ");
+  fgets(str, sizeof(str), stdin);
+  str[strcspn(str, "\n")] = '\0';
+  int i = 0, freq[256] = {0};
+  while(str[i]){
+    if(str[i] != ' '){
+      freq[(unsigned char)str[i]]++;
+    }
+    i++;
+  }
+  char ch = str[0], max = freq[(unsigned char)str[0]];
+  for(int i = 1; i < 256; i++){
+    if(freq[i] > max){
+      max = freq[i];
+      ch = (char)i;
+    }
+  }
+  printf("The character '%c' has the highest frequency of %d\n", ch, max);
+  return 0;
+}
+*/
+
+// Question 228 ********Assignment-41_Question-3 ***************
+// Write a function to check whether a pair of strings are anagram or not. Both the strings are stored in a 2d char array.
+/*
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+void checkAnagram(char str[][20]){
+  int k = 0, j = 0;
+  int n1 = strlen(str[0]), n2 = strlen(str[1]);
+  if(n1 != n2){
+    printf("The strings are not anagram\n");
+    return;
+  }
+  while(k < 2){
+    for(int i = 0; i < n1 - 1; i++){
+      for(j = i + 1; j < n1; j++){
+        if(str[k][i] > str[k][j]){
+          char temp = str[k][i];
+          str[k][i] = str[k][j];
+          str[k][j] = temp;
+        }
+      }
+    }
+    for(int i = 0; i < n1; i++){
+      str[k][i] = tolower(str[k][i]);
+    }
+    k++;
+  }
+  if(strcmp(str[0], str[1]) == 0){
+    printf("The strings are anagram\n");
+  }else{
+    printf("The strings are not anagram\n");
+  }
+}
+int main(){
+  char str[2][20];
+  printf("Enter two strings: \n");
+  for(int i = 0; i < 2; i++){
+    fgets(str[i], sizeof(str[i]), stdin);
+    str[i][strcspn(str[i], "\n")] = '\0';
+  }
+  checkAnagram(str);
+  return 0;
+}
+// */
+
+// Question 229 ********Assignment-41_Question-4 ***************
+// Write a function to store all the words in a given string which are starting from 'a', in a two dimensional char array.
+/*
+#include <stdio.h>
+#include <string.h>
+void storeWrdStartA(char str[], char wrd[][20]){
+  int i = 0, k = 0;
+  while(str[i]){
+    if((i== 0 && str[i] == 'a') || (str[i-1] == ' ' && str[i] == 'a')){
+      int j = 0;
+      while(str[i] != ' ' && str[i] != '\0'){
+        wrd[k][j++] = str[i++];
+      }
+      wrd[k++][j] = '\0';
+    }else{
+      i++;
+    }
+  }
+  wrd[k][0] = '\0';
+  for(int i = 0; wrd[i][0]; i++){
+    printf("%s\n", wrd[i]);
+  }
+}
+int main(){
+  char str[100], wrd[20][20];
+  printf("Enter a string: ");
+  fgets(str, sizeof(str), stdin);
+  str[strcspn(str, "\n")] = '\0';
+  storeWrdStartA(str, wrd);
+  return 0;
+}
+// */
+
+// Question 230 ********Assignment-41_Question-5 ***************
+// A 2d array is full with 10 email ids. Write a function to find how many of them belongs to gmail.com
+/*
+#include <stdio.h>
+#include <string.h>
+void findGmail(char str[][40]){
+  char gmail[] = "@gmail.com";
+  int i = 0, count = 0;
+  while(i<10){
+    int j = 0, k = 0;
+    while(str[i][j]){
+      if(str[i][j] == gmail[k]){
+        j++, k++;
+      }else{
+        j++;
+        k = 0;
+      }
+      if(k == strlen(gmail)){
+        count++;
+      }
+    }
+    i++;
+  }
+  if(count){
+    printf("The number of gmail ids found : %d\n", count);
+  }else{
+    printf("No gmail ids found\n");
+  }
+}
+int main(){
+  char str[10][40];
+  printf("Enter 10 email ids: \n");
+  for(int i = 0; i < 10; i++){
+    fgets(str[i], sizeof(str[i]), stdin);
+    str[i][strcspn(str[i], "\n")] = '\0';
+  }
+  findGmail(str);
+  return 0;
+}
+*/
+
 
