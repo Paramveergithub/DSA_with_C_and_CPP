@@ -2935,5 +2935,243 @@ int main(){
 }
 // */
 
+// Question 241 ********Assignment-44_Question-1 ***************1,2,3,4,5,6 questions
+//  Define a structure Employee with member variables id, name, salary
+//  Write a function to take input employee data from the user. [Refer structure from  question 1]
+// Write a function to display employee data. [ Refer structure from question 1]
+// Write a function to find the highest salary employee from a given array of 10  employees. [Refer structure from question 1]
+// Write a function to sort employees according to their salaries [refer structure from  question 1]
+// Write a function to sort employees according to their names [refer structure from question 1]
+/*
+#include <stdio.h>
+#include <string.h> // for strcmp
+struct Employee{
+  int id;
+  char name[20];
+  int salary;
+};
+void takeInput(struct Employee *emp){
+  printf("Enter employee id: ");
+  scanf("%d", &emp->id); //or scanf("%d", &emp.id);
+  printf("Enter employee name: ");
+  scanf(" %[^\n]", emp->name);
+  printf("Enter employee salary: ");
+  scanf("%d", &emp->salary);
+}
+void display(struct Employee *emp){
+  printf("Employee id: %d\n", emp->id);
+  printf("Employee name: %s\n", emp->name);
+  printf("Employee salary: %d\n", emp->salary);
+}
+void highestSalary(struct Employee emp[], int n){
+  int max = emp[0].salary, index = 0;
+  for (int i = 1; i < n; i++){
+    if (emp[i].salary > max){
+      max = emp[i].salary;
+      index = i;
+    }
+  }
+  printf("\nThe employee with highest salary is: \n");
+  display(&emp[index]);
+}
+void sortSalaryWise(struct Employee emp[], int n){
+  for (int i = 0; i < n - 1; i++){
+    for (int j = i + 1; j < n; j++){
+      if (emp[i].salary > emp[j].salary){
+        struct Employee temp = emp[i];
+        emp[i] = emp[j];
+        emp[j] = temp;
+      }
+    }
+  }
+  printf("\nThe employees sorted salary wise are: \n");
+  for (int i = 0; i < n; i++){
+    display(&emp[i]);
+    printf("\n");
+  }
+}
+void sortNameWise(struct Employee emp[], int n)
+{
+  for (int i = 0; i < n - 1; i++)
+  {
+    for (int j = i + 1; j < n; j++)
+    {
+      if (strcmp(emp[i].name, emp[j].name) > 0)
+      {
+        struct Employee temp = emp[i];
+        emp[i] = emp[j];
+        emp[j] = temp;
+      }
+    }
+  }
+  printf("\nThe employee sorted name wise is: \n");
+  for (int i = 0; i < n; i++)
+  {
+    display(&emp[i]);
+  }
+}
+int main(){
+  struct Employee emp1;
+  takeInput(&emp1);
+  printf("\nThe employee details are: \n");
+  display(&emp1);
+  struct Employee e[10];
+  printf("\nEnter details of 10 employees: \n");
+  for (int i = 0; i < 10; i++){
+    printf("\nEnter details of employee : %d \n", i + 1);
+    takeInput(&e[i]);
+  }
+  highestSalary(e, 10);
+  sortSalaryWise(e, 10);
+  sortNameWise(e, 10);
+  return 0;
+}
+*/
+
+// Question 242 ********Assignment-45_Question-1 ***************
+// Write a program to calculate the difference between two time periods.
+/*
+#include <stdio.h>
+struct Time{
+  int hours;
+  int minutes;
+  int seconds;
+};
+int totalSec(struct Time t){
+  return t.hours * 3600 + t.minutes * 60 + t.seconds;
+}
+struct Time diffTime(int sec){
+  struct Time t;
+  t.hours = sec / 3600;
+  sec = sec % 3600;
+  t.minutes = sec / 60;
+  t.seconds = sec % 60;
+  return t;
+}
+int main(){
+  struct Time a, b, temp;
+  printf("Enter the time in hours, minutes and seconds: ");
+  scanf("%d %d %d", &a.hours, &a.minutes, &a.seconds);
+  printf("Enter another time in hours, minutes and seconds: ");
+  scanf("%d %d %d", &b.hours, &b.minutes, &b.seconds);
+
+  int totalSecA = totalSec(a);
+  int totalSecB = totalSec(b);
+
+  int diff = totalSecA > totalSecB ? totalSecA - totalSecB : totalSecB - totalSecA;
+
+  temp = diffTime(diff);
+  
+  printf("The difference between the two times is %d hours, %d minutes and %d seconds", temp.hours, temp.minutes, temp.seconds);
+  return 0;
+}
+*/
+
+// Question 243 ********Assignment-45_Question-2 ***************
+// Write a program to store information of 10 students and display them using structure.
+/*
+#include <stdio.h>
+struct Student{
+  int rollNo;
+  char name[20];
+  float marks;
+};
+int main(){
+  struct Student s1[10];
+  printf("Enter details of 10 students: \n");
+  for(int i = 0; i < 10; i++){
+    printf("Enter details of student %d: \n", i+1);
+    printf("Enter roll no: ");
+    scanf("%d", &s1[i].rollNo);
+    printf("Enter name: ");
+    scanf(" %[^\n]", s1[i].name);
+    printf("Enter marks: ");
+    scanf("%f", &s1[i].marks);
+  }
+  printf("\nThe details of 10 students are: \n");
+  for(int i = 0; i < 10; i++){
+    printf("Details of student %d: \n", i+1);
+    printf("Roll no: %d\n", s1[i].rollNo);
+    printf("Name: %s\n", s1[i].name);
+    printf("Marks: %.2f\n", s1[i].marks);
+  }
+  return 0;
+}
+*/
+
+// Question 244 ********Assignment-45_Question-3 ***************
+// Write a program to store information of n students and display them using structure.
+/*
+#include <stdio.h>
+struct Student{
+  int rollNo;
+  char name[20];
+  float marks;
+};
+int main(){
+  int n;
+  printf("Enter the number of students: ");
+  scanf("%d", &n);
+  struct Student s1[n];
+  printf("Enter details of %d students: \n", n);
+  for(int i = 0; i < n; i++){
+    printf("Enter details of student %d: \n", i+1);
+    printf("Enter roll no: ");
+    scanf("%d", &s1[i].rollNo);
+    printf("Enter name: ");
+    scanf(" %[^\n]", s1[i].name);
+    printf("Enter marks: ");
+    scanf("%f", &s1[i].marks);
+  }
+  printf("\nThe details of %d students are: \n", n);
+  for(int i = 0; i < n; i++){
+    printf("Details of student %d: \n", i+1);
+    printf("Roll no: %d\n", s1[i].rollNo);
+    printf("Name: %s\n", s1[i].name);
+    printf("Marks: %.2f\n", s1[i].marks);
+  }
+  return 0;
+}
+// */
+
+// Question 245 ********Assignment-45_Question-4 ***************
+// Write a program to enter the marks of 5 students in Chemistry, Mathematics and Physics (each out of 100) using a structure named Marks having elements roll no., name, chem_marks, maths_marks and phy_marks and then display the percentage of each student.
+/*
+#include <stdio.h>
+struct Marks{
+  int rollNo;
+  char name[20];
+  int chemistry;
+  int physics;
+  int mathematics;
+};
+int main(){
+  struct Marks strudent[5];
+  for(int i = 0; i < 5; i++){
+    printf("Enter details of student %d: \n", i+1);
+    printf("Enter roll no: ");
+    scanf("%d", &strudent[i].rollNo);
+    printf("Enter name: ");
+    scanf(" %[^\n]", strudent[i].name);
+    printf("Enter marks in chemistry: ");
+    scanf("%d", &strudent[i].chemistry);
+    printf("Enter marks in physics: ");
+    scanf("%d", &strudent[i].physics);
+    printf("Enter marks in mathematics: ");
+    scanf("%d", &strudent[i].mathematics);
+  }
+
+  int percentage[5];
+  for(int i = 0; i < 5; i++){
+    percentage[i] = (strudent[i].chemistry + strudent[i].physics + strudent[i].mathematics) / 3;
+  }
+  printf("\nThe percentage of 5 students are: \n");
+  for(int i = 0; i < 5; i++){
+    printf("Percentage of student no. %d : (%s) is: %d%%\n", i+1, strudent[i].name, percentage[i]);
+  }
+  return 0;
+}
+*/
+
 
 
