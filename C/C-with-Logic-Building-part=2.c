@@ -3173,5 +3173,146 @@ int main(){
 }
 */
 
+// Question 246 ********Assignment-46_Question-1 ***************
+// Define a function to input variable length string and store it in an array without memory wastage.
+/*
+#include <stdio.h>
+#include <stdlib.h>
+
+char *inputArr(){
+  char *str = NULL;
+  int len = 0;
+  printf("Enter a string: ");
+  char ch;
+  while((ch = getchar()) != '\n'){
+    str = (char *)realloc(str, (len + 1) * sizeof(char));
+    str[len++] = ch;
+  }
+  str = (char *)realloc(str, (len) * sizeof(char));
+  str[len] = '\0';
+  return str; 
+}
+int main(){
+  char *str =  inputArr();
+  printf("The string is: %s\n", str);
+  free(str);
+  return 0;
+}
+// */
+ 
+// Question 247 ********Assignment-46_Question-2 ***************
+// Write a program to ask the user to input a number of data values he would like to enter then create an array dynamically to accommodate the data values. Now take the input from the user and display the average of data values.
+/*
+#include <stdio.h>
+#include<stdlib.h>
+int main(){
+  int *dmaArr = NULL;
+  int sum = 0, avg = 0;
+  printf("Enter the values : \n");
+  int n = 0, value, ch;
+  while((scanf("%d", &value)) == 1){
+    dmaArr = (int *)realloc(dmaArr, (n + 1) * sizeof(int));
+    dmaArr[n++] = value;
+    sum += value;
+    if((ch = getchar()) == '\n'){
+      break;
+    }
+  }
+  printf("The values entered are : \n");
+  for(int i = 0; i < n; i++){
+    printf("%d ", dmaArr[i]);
+  }
+  avg = sum / n;
+  printf("\n The Average of %d values is : %d\n", n, avg);
+  free(dmaArr);
+  return 0;
+}
+// */
+
+// Question 248 ********Assignment-46_Question-3 ***************
+// Write a program to calculate the sum of n numbers entered by the user using malloc and free.
+/*
+#include <stdio.h>
+#include <string.h>
+int main(){
+  int n, sum = 0;
+  printf("how many numbers you want to enter: ");
+  scanf("%d", &n);
+  int *ptr = (int *)malloc(n * sizeof(int));
+  printf("Enter %d numbers: ", n);
+  for(int i = 0; i < n; i++){
+    scanf("%d", &ptr[i]);
+    sum += ptr[i];
+  }
+  printf("The sum of %d numbers is %d\n", n, sum);
+  free(ptr);
+  return 0;
+}
+// */
+
+// Question 249 ********Assignment-46_Question-4 ***************
+// Write a function to merge two array elements and store it in dynamically created array. Return address of this dynamically created array.
+/*
+#include <stdio.h>
+#include <stdlib.h>
+int *mergeArr(int *n){
+  int a, b;
+  printf("Enter the sizes of two arrays: ");
+  scanf("%d %d", &a, &b);
+  *n = a + b;
+  int arr1[a], arr2[b];
+  printf("Enter %d elements of first array: ", a);
+  for(int i = 0; i < a; i++){
+    scanf("%d", &arr1[i]);
+  }
+  printf("Enter %d elements of second array: ", b);
+  for(int i = 0; i < b; i++){
+    scanf("%d", &arr2[i]);
+  }
+
+  int j = 0, k = 0, i = 0;
+  int *merge = (int *)malloc(*n * sizeof(int));
+  while(j < a && k < b){
+    if(arr1[j] < arr2[k]){
+      merge[i++] = arr1[j++];
+    } else{
+        merge[i++] = arr2[k++];
+    }
+  }
+  while(j < a){
+    merge[i++] = arr1[j++];
+  }
+  while(k < b){
+    merge[i++] = arr2[k++];
+  }
+  return merge;
+}
+int main(){
+ int n = 0;
+ int *merge = mergeArr(&n);
+ printf("The merged array is: \n");
+  for(int i = 0; i < n; i++){
+    printf("%d ", merge[i]);
+  }
+  return 0;
+}
+// */
+
+// Question 250 ********Assignment-1_Question-1 ***************
+/*
+#include <stdio.h>
+int main(){
+  printf("Enter a number: ");
+  int n;
+  scanf("%d", &n);
+  if(n % 2 == 0){
+    printf("The number %d is even\n", n);
+  } else{
+    printf("The number %d is odd\n", n);
+  }
+  return 0;
+}
+// */
+
 
 
