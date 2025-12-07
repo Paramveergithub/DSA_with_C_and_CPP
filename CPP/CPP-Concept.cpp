@@ -664,3 +664,175 @@ int main(){
 // */
 
 
+// Question 281********Assignment-7_Question-2 ***************
+// Define overloaded functions to calculate volume of a cuboid, cone and sphere.
+/*
+#include <iostream>
+using namespace std;
+void volume(int l, int b, int h){
+  cout<<"Volume of cuboid is: "<<l*b*h<<endl;
+}
+void volume(int r, int h){
+  cout<<"Volume of cone is: "<<(3.14*r*r*h)/3<<endl;
+}
+void volume(int r){
+  cout<<"Volume of sphere is: "<<(4*3.14*r*r*r)/3<<endl;
+}
+int main(){
+  int l, b, h;
+  cout<<"Enter length, breadth and height of cuboid: ";
+  cin>>l>>b>>h;
+  volume(l, b, h);
+  int r, height;
+  cout<<"Enter the radius and height of cone: ";
+  cin>>r>>height;
+  volume(r, height);
+  int radius;
+  cout<<"Enter the radius of sphere: ";
+  cin>>radius;
+  volume(radius);
+  return 0;
+}
+// */
+
+// Question 282********Assignment-7_Question-3 ***************
+// Define a function to print a substring from startIndex(inclusive) to endIndex(exclusive). Define function in such a way that if second argument is not provided, string will print till the last possible index.
+/*
+#include <iostream>
+using namespace std;
+void substring(string str, int s, int e=-1){
+  if(e==-1){
+    e = str.length();
+  }
+  for(int i=s; i<e; i++){
+    cout<<str[i];
+  }
+}
+int main(){
+  string str;
+  cout<<"Enter a string: ";
+  cin>> str;
+  int s, e;
+  cout<<"Enter the starting index: ";
+  cin>>s;
+  char choice;
+  cout<<"Do you want to enter the ending index? (y/n): ";
+  cin>>choice;
+  if(choice=='y' || choice=='Y'){
+    cout<<"Enter the ending index: ";
+    cin>>e;
+    substring(str, s, e);
+  }else{
+    e = str.length();
+    substring(str, s);
+  }
+  return 0;
+}
+// */
+
+// Question 283********Assignment-7_Question-4 ***************
+// Define a function to swap two arrays.
+/*
+#include <iostream>
+using namespace std;
+void swapArray(int arr1[], int arr2[], int n){
+  for(int i=0; i<n; i++){
+    int temp = arr1[i];
+    arr1[i] = arr2[i];
+    arr2[i] = temp;
+  }
+}
+int main(){
+  int n1, n2;
+  cout<<"Enter the size of first and second array: ";
+  cin>>n1>>n2;
+  int arr1[n1], arr2[n2];
+  cout<<"Enter the elements of first array: ";
+  for(int i=0; i<n1; i++){
+    cin>>arr1[i];
+  }
+  cout<<"Enter the elements of second array: ";
+  for(int i=0; i<n2; i++){
+    cin>>arr2[i];
+  }
+  swapArray(arr1, arr2, n1);
+  cout<<"First array after swapping: ";
+  for(int i=0; i<n1; i++){
+    cout<<arr1[i]<<" ";
+  }
+  cout<<"\nSecond array after swapping: ";
+  for(int i=0; i<n2; i++){
+    cout<<arr2[i]<<" ";
+  }
+  return 0;
+}
+// */
+
+// Question 284********Assignment-7_Question-5 ***************
+// Define a function to merge two sorted arrays of same size.
+/*
+#include <iostream>
+using namespace std;
+void mergeArray(int arr1[], int arr2[], int arr3[], int n){
+   int i=0, j=0, k=0;
+  while(i<n && j<n){
+    if(arr1[i]<arr2[j])
+      arr3[k++]=arr1[i++];
+    else
+      arr3[k++]=arr2[j++];
+  }
+    while(i<n)
+      arr3[k++]=arr1[i++];
+    while(j<n)
+      arr3[k++]=arr2[j++];
+}
+int main(){
+  int n;
+  cout<<"Enter the size of array: ";
+  cin>>n;
+  int arr1[n];
+  cout<<"Enter the elements of array: ";
+  for(int i=0; i<n; i++){
+    cin>>arr1[i];
+  }
+  int arr2[n];
+  cout<<"Another array elements enter here: ";
+  for(int i=0; i<n; i++){
+    cin>>arr2[i];
+  }
+  int arr3[n*2];
+  mergeArray(arr1, arr2, arr3 ,n);
+  cout<<"Merged array is: ";
+  for(int i=0; i<2*n; i++){
+    cout<<arr3[i]<<" ";
+  }
+  return 0;
+}
+// */
+
+// Question 285********Assignment-8_Question-1 ***************
+// Define a class Complex to represent a complex number. Declare instance member variables to store real and imaginary part of a complex number, also define instance member functions to set values of complex number and print values of complex number.
+/*
+#include <iostream>
+using namespace std;
+class Complex{
+  private:
+    int real, imag;
+  public:
+    void setData(int r, int i){
+      real = r;
+      imag = i;
+    }
+    void showData(){
+      cout<<real<<" + "<<imag<<"i"<<endl;
+    }
+};
+int main(){
+  Complex c1;
+  c1.setData(3, 4);
+  c1.showData();
+  return 0;
+}
+// */
+
+
