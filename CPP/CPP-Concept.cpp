@@ -1334,6 +1334,172 @@ int main(){
 }
 // */
 
+// Question 296********Assignment-10_Question-3 ***************
+// 3. Define a class Time with hr,min,sec as instance member variables. Define constructor to initialise time object.
+/*
+#include <iostream>
+using namespace std;
+class Time{
+  private:
+   int hr, min, sec;
+  public:
+  Time(int h, int m, int s){
+    hr = h;
+    min = m;
+    sec = s;
+  }
+};
+int main(){
+  Time t1(10, 30, 45);
+  return 0;
+}
+// */
+
+// Question 297********Assignment-10_Question-4 ***************
+// 4. Define a class Book with booked, title and price as instance member variables. Define non parameterised and parameterised constructor in the class.
+/*
+#include <iostream>
+#include <cstring>
+using namespace std;
+class Book{
+  private:
+    int bookId;
+    char title[50];
+    int price;
+  public:
+  Book(){
+    bookId = 0;
+    strcpy(title, "");
+    price = 0;
+  }
+  Book(int id, char t[], int p){
+    bookId = id;
+    strcpy(title, t);
+    price = p;
+  }
+};
+int main(){
+  Book b1(101, "C++ Programming", 500);
+  return 0;
+}
+// */
+
+// Question 298********Assignment-10_Question-5 ***************
+// 5. Define a class Complex with instance variables for real and imaginary part of a complex number. Define only one parameterised constructor in the class to initialise complex object. Also define showData method in the class to display object data. Now create an array of Complex class with size 5 and display values of each object.
+/*
+#include <iostream>
+using namespace std;
+class Complex{
+  private:
+    int real, imag;
+  public:
+  Complex(int r, int i){
+    real = r;
+    imag = i;
+  }
+  void showData(){
+    cout<<"Complex number: "<<real<<" + "<<imag<<"i"<<endl;
+  }
+
+};
+int main(){
+  Complex * arr[5];
+  cout<<"Enter 5 complex numbers (real and imaginary parts): "<<endl;
+  for(int i=0; i<5; i++){
+    int r, im;
+    cout<<"Complex number "<<i+1<<" : ";
+    cin>>r>>im;
+    arr[i] = new Complex(r, im);
+  }
+  for(int i=0; i<5; i++){
+    cout<<"Complex number "<<i+1<<" : ";
+    arr[i]->showData(); // or (*arr[i]).showData();
+  }
+
+  for(int i=0; i<5; i++){
+    delete arr[i];
+  }
+  return 0;
+}
+// */
+
+// Question 299********Assignment-11_Question-1 ***************
+// 1. Define a class Numbers with size and arr pointer as instance variables. Provide constructor to initialise instance members, dynamically allocate an array of given size and store address in arr variable of object. Also define destructor to deallocate memory of array. Implement deep copy using copy constructor to avoid memory issues.
+/*
+#include <iostream>
+using namespace std;
+class Numbers{
+  private:
+   int size;
+   int *arr;
+  public:
+  Numbers(int s){
+    size = s;
+    arr = new int[size];
+    for(int i=0; i<size; i++){
+      cin>>arr[i];
+    }
+  }
+  Numbers(const Numbers &n){
+    size = n.size;
+    arr = new int[size];
+    for(int i=0; i<size; i++){
+      arr[i] = n.arr[i];
+    }
+  }
+  void showData(){
+    cout<<"Array elements are: ";
+    for(int i=0; i<size; i++){
+      cout<<arr[i]<<" ";
+    }
+    cout<<endl;
+  }
+  ~Numbers(){
+    delete[] arr;
+  }
+};
+int main(){
+  Numbers n1(5);
+  n1.showData();
+  Numbers n2 = n1;
+  n2.showData();
+  return 0;
+}
+// */
+
+// Question 300********Assignment-11_Question-2 ***************
+// 2. Define a class student and write a program to enter student details using constructor and define member function to display all the details.
+/*
+#include <iostream>
+#include <cstring>
+using namespace std;
+class Student{
+  private:
+   string name;
+   char subjectName[20];
+   int classNo;
+  public:
+  Student(){
+    cout<<"Enter the student Details: "<<endl;
+    cout<<"Name: "; getline(cin, name);
+    cout<<"Subject Name: "; cin.getline(subjectName, 20);
+    cout<<"Class Number: "; cin>>classNo;
+  }
+  void showData(){
+    cout<<"\nStudent Details: "<<endl;
+    cout<<"Name: "<<name<<endl;
+    cout<<"Subject Name: "<<subjectName<<endl;
+    cout<<"Class Number: "<<classNo<<endl;
+  }
+};
+int main(){
+  Student s1;
+  s1.showData();
+  return 0;
+}
+// */
+
+
 
 
 
