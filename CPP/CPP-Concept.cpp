@@ -1009,5 +1009,331 @@ int main(){
 }
 // */
 
+// Question 291********Assignment-9_Question-2 ***************
+// Define a class Time to represent a time with instance variables him and s to store hour, minute and second. Also define following member functions
+// 1. void setTime(int,int,int)
+// 2. void showTime()
+// 3. void normalize()
+// 4. Time add(Time)
+// 5. bool is_greater(Time)
+/*
+#include <iostream>
+using namespace std;
+class Time{
+  private:
+  int h, m, s;
+  public:
+  void setTime(int hours, int minutes, int seconds){
+    h = hours;
+    m = minutes;
+    s = seconds;
+  }
+  void showTime(){
+    cout<<h<<" : "<<m<<" : "<<s<<endl;
+  }
+  void normalizeTime(){
+    if(s>=60){
+      m += s/60;
+      s = s%60;
+    }
+    if(m>=60){
+      h += m/60;
+      m = m%60;
+    }
+  }
+  Time add(Time t2){
+    Time temp;
+    temp.s = s + t2.s;
+    temp.m = m + t2.m;
+    temp.h = h + t2.h;
+    temp.normalizeTime();
+    return temp;
+  }
+  bool is_greater(Time t2){
+    if(h > t2.h){
+      return true;
+    }else if(h < t2.h){
+      return false;
+    }else{
+      if(m > t2.m){
+        return true;
+      }else if(m < t2.m){
+        return false;
+      }else{
+        if(s > t2.s){
+          return true;
+        }else{
+          return false;
+        }
+      }
+    }
+  }
+};
+int main(){
+  Time t1;
+  t1.setTime(10, 45, 50);
+  Time t2;
+  t2.setTime(12, 30, 20);
+  Time t3;
+  t3 = t1.add(t2);
+  t3.showTime();
+  if(t1.is_greater(t2)){
+    cout<<"t1 is greater than t2"<<endl;
+  }else{
+    cout<<"t2 is greater than t1"<<endl;
+  }
+  return 0;
+}
+// */
+
+// Question 292********Assignment-9_Question-3****************
+// 3. Define a class TestResult with properties roll_no, right, wrong, net_score. Also define class properties right_weightage, wrong weightage. Provide methods to set and get all the properties.
+
+// 4. Write a driver function main() to use TestResult class. Create an array to 5 TestResult objects, set values to all the objects and display the results in sorted order (by net_score).
+/*
+#include <iostream>
+using namespace std;
+class TestResult{
+ private:
+  int rollNo;
+  int right;
+  int wrong;
+  int netScore;
+ public:
+  static int rightWeightage;
+  static int wrongWeightage;
+  void setData(int r, int ri, int w){
+    rollNo = r;
+    right = ri;
+    wrong = w;
+    netScore = (right * rightWeightage) - (wrong * wrongWeightage);
+  }
+  void showData(){
+    cout << "\nRoll No: " << rollNo << endl;
+    cout << "Right Answers: " << right << endl;
+    cout << "Wrong Answers: " << wrong << endl;
+    cout << "Net Score: " << netScore << endl;
+  }
+  static void setWeightage(int r, int w){
+    rightWeightage = r;
+    wrongWeightage = w;
+  }
+  int getNetScore() const{
+    return netScore;
+  }
+};
+int TestResult::rightWeightage = 2;
+int TestResult::wrongWeightage = 1;
+void sortedResult(TestResult arr[], int n){
+  for (int i = 0; i < n - 1; i++){
+    for (int j = 0; j < n - i - 1; j++){
+      if (arr[j].getNetScore() < arr[j + 1].getNetScore())
+      {
+        TestResult temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
+      }
+    }
+  }
+}
+int main(){
+  TestResult s[5];
+  TestResult::setWeightage(3, 1);
+  for (int i = 0; i < 5; i++) {
+    cout << "Enter data for student " << i + 1 << endl;
+    int id, rightAns, wrongAns;
+    cout << "Roll No: ";
+    cin >> id;
+    cout << "Right Answers: ";
+    cin >> rightAns;
+    cout << "Wrong Answers: ";
+    cin >> wrongAns;
+    s[i].setData(id, rightAns, wrongAns);
+  }
+
+  sortedResult(s, 5);
+
+  for (int i = 0; i < 5; i++){
+    s[i].showData();
+  }
+  return 0;
+}
+// */
+
+// Question 293********Assignment-9_Question-5 
+// Define a class Matrix to represent a 3x3 order matrix. Provide appropriate methods and properties to the class. Also define following methods in the class:
+// 1. Matrix add(Matrix)
+// 2. Matrix sub(Matrix)
+// 3. Matrix multiply (Matrix)
+// 4. Matrix transpose()
+// 5. bool is_singular()
+/*
+#include <iostream>
+using namespace std;
+class matrix{
+  private:
+  int arr[3][3];
+  public:
+  matrix(){
+    cout<<"Enter elements of 3x3 matrix: ";
+    for(int i=0; i<3; i++){
+      for(int j=0; j<3; j++){
+        cin>>arr[i][j];
+      }
+    }
+  }
+  matrix (int reBuild[3][3]){
+    for(int i=0; i<3; i++){
+      for(int j=0; j<3; j++){
+        arr[i][j] = reBuild[i][j];
+      }
+    }
+  }
+  void showMatrix(){
+    cout<<"Matrix is: "<<endl;
+    for(int i=0; i<3; i++){
+      for(int j=0; j<3; j++){
+        cout<<arr[i][j]<<" ";
+      }
+      cout<<endl;
+    }
+  }
+  matrix add(matrix m2){
+    int res[3][3];
+    for(int i=0; i<3; i++){
+      for(int j=0; j<3; j++){
+        res[i][j] = arr[i][j] + m2.arr[i][j];
+      }
+    }
+    matrix m3(res);
+    return m3;
+  }
+  matrix subtract(matrix m2){
+    int res[3][3];
+    for(int i=0; i<3; i++){
+      for(int j=0; j<3; j++){
+        res[i][j] = arr[i][j] - m2.arr[i][j];
+      }
+    }
+    matrix m3(res);
+    return m3;
+  }
+  matrix multiply(matrix m2){
+    int res[3][3] = {0};
+    for(int i=0; i<3; i++){
+      for(int j=0; j<3; j++){
+        for(int k=0; k<3; k++){
+          res[i][j] += arr[i][k] * m2.arr[k][j];
+        }
+      }
+    }
+    matrix m3(res);
+    return m3;
+  }
+  matrix transpose(){
+    int res[3][3];
+    for(int i=0; i<3; i++){
+      for(int j=0; j<3; j++){
+        res[j][i] = arr[i][j];
+      }
+    }
+    matrix m3(res);
+    return m3;
+  }
+  bool isSingular(){
+    int det = arr[0][0]*(arr[1][1]*arr[2][2] - arr[1][2]*arr[2][1]) -
+              arr[0][1]*(arr[1][0]*arr[2][2] - arr[1][2]*arr[2][0]) +
+              arr[0][2]*(arr[1][0]*arr[2][1] - arr[1][1]*arr[2][0]);
+    return (det == 0);
+  }
+};
+
+int main(){
+  cout<<"Enter first matrix: "<<endl;
+  matrix m1;
+  cout<<"Enter second matrix: "<<endl;
+  matrix m2;
+
+  matrix sum = m1.add(m2);
+  cout<<"Addition of two matrices: "<<endl;
+  sum.showMatrix();
+
+  matrix subtraction = m1.subtract(m2);
+  cout<<"Subtraction of two matrices: "<<endl;
+  subtraction.showMatrix();
+
+  matrix multiplication = m1.multiply(m2);
+  cout<<"Multiplication of two matrices: "<<endl;
+  multiplication.showMatrix();
+
+  matrix transpose = m1.transpose();
+  cout<<"Transpose of first matrix: "<<endl;
+  transpose.showMatrix();
+
+  cout<<"first matrix is "<<(m1.isSingular() ? "singular" : "not singular")<<endl;
+  return 0;
+}
+// */
+
+// Question 294********Assignment-10_Question-1 ***************
+// 1. Define a class Cuboid with length, breadth and height as instance member variables. Define constructors to initialise member variables.
+/*
+#include <iostream>
+using namespace std;
+class Cuboid{
+  private:
+   int length, breadth, height;
+  public:
+  Cuboid(int l, int b, int h){
+    length = l;
+    breadth = b;
+    height = h;
+  }
+};
+int main(){
+  Cuboid c1(10, 5, 8);
+  return 0;
+}
+// */
+
+// Question 295********Assignment-10_Question-2 ***************
+// 2. Define a class Customer with instance members cust_id, name, email, mobile. Define non parameterised constructor and parameterised constructor in the class. 
+/*
+#include <iostream>
+#include <cstring>
+using namespace std;
+class Customer{
+  private:
+   int cust_id;
+   char name[40];
+   char email[40];
+   char mobile[15];
+  public:
+  Customer(){
+    cust_id = 0;
+    strcpy(name, "");
+    strcpy(email, "");
+    strcpy(mobile, "");
+  }
+  Customer(int id, char n[], char e[], char m[]){
+    cust_id = id;
+    strcpy(name, n);
+    strcpy(email, e);
+    strcpy(mobile, m);
+  }
+};
+int main(){
+  cout<<"Enter customer details: "<<endl;
+  cout<<"Customer ID: ";
+  int id; cin>>id;
+  cout<<"Name: "; char n[40]; cin.getline(n, 40);
+  cout<<"Email: "; char e[40]; cin.getline(e, 40);
+  cout<<"Mobile: "; char m[15]; cin.getline(m, 15);
+  Customer c1(id, n, e, m);
+  return 0;
+}
+// */
+
+
 
 
