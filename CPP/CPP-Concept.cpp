@@ -1699,6 +1699,316 @@ int main(){
 }
 // */
 
+// Question 306********Assignment-12_Question-4 ***************
+// 4. In Question-2, overload operator+ to add two Time objects.
+/*
+#include <iostream>
+using namespace std;
+class Time{
+  private:
+  int hours, minutes, seconds;
+  public:
+  Time(int h = 0, int m = 0, int s = 0){
+    hours = h;
+    minutes = m;
+    seconds = s;
+  }
+
+  void normalise(){
+    if(seconds>=60){
+      minutes += seconds/60;
+      seconds = seconds%60;
+    }
+    if(minutes>=60){
+      hours += minutes/60;
+      minutes = minutes%60;
+    }
+    if(hours>=24){
+      hours = hours%24;
+    }
+  }
+  Time operator +(Time t2){
+    Time temp;
+    temp.hours = hours + t2.hours;
+    temp.minutes = minutes + t2.minutes;
+    temp.seconds = seconds + t2.seconds;
+    temp.normalise();
+    return temp;
+  }
+  void showTime(){
+    cout<<hours<<" : "<<minutes<<" : "<<seconds<<endl;
+  }
+};
+int main(){
+  Time t1(10, 45, 50), t2(12, 30, 20);
+  Time t3 = t1+t2;
+  t3.showTime();
+  return 0;
+}
+// */
+
+// Question 307********Assignment-12_Question-5 ***************
+// 5. Define a class matrix to represent 3x3 matrix. Provide appropriate instance methods. Also define operator +, operator -, operator * to perform addition, subtraction and multiplication operations respectively.
+/*
+#include <iostream>
+using namespace std;
+class matrix{
+  private:
+  int arr[3][3];
+  public:
+  matrix(){
+    for(int i=0; i<3; i++){
+      for(int j=0; j<3; j++){
+        arr[i][j] = 0;
+      }
+    }
+  }
+  void read(){
+    cout<<"Enter elements of 3x3 matrix: ";
+    for(int i=0; i<3; i++){
+      for(int j=0; j<3; j++){
+        cin>>arr[i][j];
+      }
+    }
+  }
+  matrix operator +(matrix m2){
+    matrix temp;
+    for(int i=0; i<3; i++){
+      for(int j=0; j<3; j++){
+        temp.arr[i][j] = arr[i][j] + m2.arr[i][j];
+      }
+    }
+    return temp;
+  }
+  matrix operator -(matrix m2){
+    matrix temp;
+    for(int i=0; i<3; i++){
+      for(int j=0; j<3; j++){
+        temp.arr[i][j] = arr[i][j] - m2.arr[i][j];
+      }
+    }
+    return temp;
+  }
+  matrix operator *(matrix m2){
+    matrix temp;
+    for(int i=0; i<3; i++){
+      for(int j=0; j<3; j++){
+        temp.arr[i][j] = 0;
+        for(int k=0; k<3; k++){
+          temp.arr[i][j] += arr[i][k] * m2.arr[k][j];
+        }
+      }
+    }
+    return temp;
+  }
+  void showMatrix(){
+    cout<<"Matrix is: "<<endl;
+    for(int i=0; i<3; i++){
+      for(int j=0; j<3; j++){
+        cout<<arr[i][j]<<" ";
+      }
+      cout<<endl;
+    }
+  }
+};
+int main(){
+  cout<<"Enter first matrix: "<<endl;
+  matrix m1;
+  m1.read();
+  cout<<"Enter second matrix: "<<endl;
+  matrix m2;
+  m2.read();
+
+  matrix sum = m1+m2;
+  cout<<"Sum of matrices: "<<endl;
+  sum.showMatrix();
+
+  matrix sub = m1 - m2;
+  cout<<"Subtraction of matrices: "<<endl;
+  sub.showMatrix();
+
+  matrix mul = m1 * m2;
+  cout<<"Multiplication of matrices: "<<endl;
+  mul.showMatrix();
+  return 0;
+}
+// */
+
+// Question 308********Assignment-13_Question-1 and 2 ****************
+// 1. Define a C++ class fraction
+  // class fraction
+  // {
+  //    long numerator;
+  //    long denominator,
+  //   public : 
+  //   fraction(long n = 0, long d = 0);
+  // }
+//  Define an operator + to add two fraction object.
+// 2. In Question - 1, define an operator<to compare two fraction objects.
+/*
+#include <iostream>
+using namespace std;
+class fraction{
+   long numerator;
+   long denominator;
+  public:
+  fraction(long n = 0, long d = 1){
+    numerator = n;
+    denominator = d;
+  }
+  fraction operator +(fraction f2){
+    long n = (numerator * f2.denominator) + (f2.numerator * denominator);
+    long d = denominator * f2.denominator;
+    return fraction(n, d);
+  }
+
+  bool operator <(fraction f2){
+    return (numerator * f2.denominator) < (f2.numerator * denominator);
+  }
+  void showFraction(){
+    cout<<numerator<<"/"<<denominator<<endl;
+  }
+};
+int main(){
+  fraction f1(1, 2), f2(3, 4);
+  fraction f3 = f1 + f2;
+  // cout<<"Addition of fractions: ";
+  // f3.showFraction();
+  if(f1 < f2){
+    f1.showFraction();
+    cout<<" is less than ";
+  }else{
+    f2.showFraction();
+    cout<<" is less than ";
+  }
+  return 0;
+}
+// */
+
+// Question 309********Assignment-13_Question-3 & 4 ****************
+// 3. Consider a class Distance 
+  // class Distance{
+  //   int km, m, cm;
+  //   public:
+  //   // methods;
+  // };
+  // Overload the operator+ to add two distance objects.
+// 4. In Question - 3, define operator pre decrement and post decrement to decrease distance by 1 cm.
+/*
+#include <iostream>
+using namespace std;
+class Distance{
+  int km, m, cm;
+  public:
+  Distance(int k = 0, int mtr = 0, int c = 0){
+    km = k;
+    m = mtr;
+    cm = c;
+  }
+  Distance operator +(Distance d2){
+    int total_cm = km * 100000 + m * 100 + cm + d2.km * 100000 + d2.m * 100 + d2.cm;
+    int k = total_cm / 100000;
+    total_cm = total_cm % 100000;
+    int m = total_cm / 100;
+    int c = total_cm % 100;
+    return Distance(k, m, c);
+  }
+  Distance operator --(){
+    if(km == 0 && m == 0 && cm == 0){
+      return *this;
+    }else if(cm == 0){
+      cm = 99;
+      if(m == 0){
+        m = 999;
+        --km;
+      }else{
+        --m;
+      }
+    }else{
+      --cm;
+    }
+    return *this;
+  }
+  Distance operator --(int){
+    Distance temp = *this;
+    if(km == 0 && m == 0 && cm == 0){
+      return temp;
+    }else if(cm == 0){
+      cm = 99;
+      if(m == 0){
+        m = 999;
+        km--;
+      }else{
+        m--;
+      }
+    }else{
+      cm--;
+    }
+    return temp;
+  }
+  void showDistance(){
+    cout<<km<<" km, "<<m<<" m, "<<cm<<" cm"<<endl;
+  }
+};
+int main(){
+  Distance d1(2, 500, 75), d2(3, 750, 50);
+  Distance d3 = d1 + d2;
+  // d3.showDistance();
+  --d3;
+  d3.showDistance();
+  d3--;
+  d3.showDistance();
+  return 0;
+}
+// */
+
+// Question 310********Assignment-13_Question-5 ***************
+// 5. Consider the following class Array
+  // class Array{
+  //   int *p : int size;
+  //   public:
+  //   // methods
+  // };
+// Define constructor to allocate an array of given size(size is given through parameter).Define a subscript operator to access element at given index.Define destructor to deallocates the memory of array.
+/*
+#include <iostream>
+using namespace std;
+class Array{
+  int *p;
+  int size;
+  public:
+  Array(int s){
+    size = s;
+    p = new int[size];
+    for(int i=0; i<size; i++){
+      p[i] = 0;
+    }
+  }
+ int & operator [](int index){
+    if(index < 0 || index >= size){
+      cout<<"Index out of bounds"<<endl;
+      exit(1);
+    }
+    return p[index];
+  }
+  ~Array(){
+    delete[] p;
+  }
+};
+int main(){
+  Array arr(5);
+  arr[0] = 10;
+  arr[1] = 20;
+  arr[2] = 30;
+  arr[3] = 40;
+  arr[4] = 50;
+  for(int i=0; i<5; i++){
+    cout<<arr[i]<<" ";
+  }
+  cout<<endl;
+  return 0;
+}
+// */
 
 
 
