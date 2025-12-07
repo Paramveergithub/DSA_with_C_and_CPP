@@ -1500,6 +1500,207 @@ int main(){
 // */
 
 
+// Question 301********Assignment-11_Question-3 ***************
+// Define a class Date with d, m, y as instance variables. Initialise members using initialisers.
+/*
+#include <iostream>
+using namespace std;
+class Date{
+  private:
+  int d, m, y;
+  public:
+  Date(int day, int month, int year):d(day), m(month), y(year){
+  }
+  void showDate(){
+    cout<<d<<"-"<<m<<"-"<<y<<endl;
+  }
+};
+int main(){
+  Date date1(15, 8, 2023);
+  date1.showDate();
+  return 0;
+}
+// */
+
+// Question 302********Assignment-11_Question-4 ***************
+// 4. Define a class Room for a hotel management project with room number, room type, is_AC, price as instance variables. Initialise instance variables using constructor.
+/*
+#include <iostream>
+using namespace std;
+class Room{
+  private:
+  int roomNo;
+  string roomType;
+  bool isAc;
+  int price;
+  public:
+  Room(int rNo, string rType, bool ac, int p){
+    roomNo = rNo;
+    roomType = rType;
+    isAc = ac;
+    price = p;
+  }
+  void showData(){
+    cout<<"Room No: "<<roomNo<<endl;
+    cout<<"Room Type: "<<roomType<<endl;
+    cout<<"AC: "<<isAc<<endl;
+    cout<<"Price: "<<price<<endl;
+  }
+};
+int main(){
+  Room r1(101, "Deluxe", true, 2000);
+  r1.showData();
+  return 0;
+}
+// */
+
+// Question 303********Assignment-11_Question-5 ***************
+// 5. Define Circle class with radius as instance variable. Define two constructors in the class -non parameterised and parameterised.
+/*
+#include <iostream>
+using namespace std;
+class Circle{
+  private:
+   int radius;
+  public:
+   Circle(){
+    radius = 1;
+   }
+   Circle(int r){
+    radius = r;
+   }
+};
+int main(){
+  Circle c1(20);
+  return 0;
+}
+// */
+
+// Question 304********Assignment-12_Question-1 ***************
+// 1. Define a class Complex with appropriate instance variables and member functions. Define following operators in the class:
+// 1. +
+// 2. -
+// 3. *
+// 4. ==
+/*
+#include <iostream>
+using namespace std;
+class Complex{
+  private:
+  int real, imag;
+  public:
+  Complex(int r = 0, int i = 0){
+    real = r;
+    imag = i;
+  }
+  Complex operator +(const Complex c2){
+    return Complex(real + c2.real, imag + c2.imag);
+  }
+  Complex operator -(const Complex c2){
+    return Complex(real - c2.real, imag - c2.imag);
+  }
+  Complex operator *(const Complex c2){
+    return Complex((real * c2.real) - (imag * c2.imag), (real * c2.imag) + (imag * c2.real));
+  }
+  bool operator ==(const Complex c2){
+    return (real == c2.real && imag == c2.imag);
+  }
+  void display(){
+    cout<<real<<" + "<<imag<<"i"<<endl;
+  }
+};
+int main(){
+   Complex c1(5, 10), c2(5, 10);
+   Complex sum = c1 + c2;
+   cout<<"Sum is: ";
+   sum.display();
+   Complex sub = c1 - c2;
+   cout<<"Subtraction is: "; sub.display();
+   Complex mul = c1 * c2;
+   cout<<"Multiplication is: ";  mul.display();
+    if(c1 == c2){
+      cout<<"c1 and c2 are equal"<<endl;
+    }else{
+      cout<<"c1 and c2 are not equal"<<endl;
+    }
+  return 0;
+}
+// */
+
+// Question 305********Assignment-12_Question-2 & 3 ***************
+// 2. Create a class Time which contains hour, min and second as fields. Overload greater than. (>) operator to compare two time objects.
+
+// 3. In Question-2, overload pre-increment and post-increment operator to increment Time object value by one second.
+/*
+#include <iostream>
+using namespace std;
+class Time{
+  private:
+  int hours, minutes, seconds;
+  public:
+  Time(int h = 0, int m = 0, int s = 0){
+    hours = h;
+    minutes = m;
+    seconds = s;
+  }
+  void showTime(){
+    cout<<hours<<" : "<<minutes<<" : "<<seconds<<endl;
+  }
+  bool operator >(Time t2){
+    if(hours> t2.hours){
+      return true;
+    }else if(hours == t2.hours && minutes > t2.minutes){
+      return true;
+    }else if(hours == t2.hours && minutes == t2.minutes && seconds > t2.seconds){
+      return true;
+    }else{
+      return false;
+    }
+  }
+  void normalise(){
+    if(seconds>=60){
+      minutes += seconds/60;
+      seconds = seconds%60;
+    }
+    if(minutes>=60){
+      hours += minutes/60;
+      minutes = minutes%60;
+    }
+    if(hours>=24){
+      hours = hours%24;
+    }
+  }
+  Time operator ++(){
+    ++seconds;
+    normalise();
+    return *this;
+  }
+  Time operator ++(int){
+    Time temp = *this;
+    seconds++;
+    normalise();
+    return temp;
+  }
+};
+int main(){
+  Time t1(10, 45, 50), t2(12, 30, 20);
+  t1.showTime();
+  t2.showTime();
+  // if(t1 > t2){
+  //   cout<<"t1 is greater than t2"<<endl;
+  // }else{
+  //   cout<<"t2 is greater than t1"<<endl;
+  // }
+  ++t1;
+  t1.showTime();
+  t1++;
+  t1.showTime();
+  return 0;
+}
+// */
+
+
+
 
 
 
