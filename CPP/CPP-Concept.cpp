@@ -463,3 +463,204 @@ int main(){
 // */
 
 
+// Question 276********Assignment-6_Question-2 ***************
+// Define a function to sort an array of strings in ascending or descending order depending on bool type argument (true for ascending and false for descending). Use default argument to implement it.
+/*
+#include <iostream>
+#include <string>
+using namespace std;
+void sortArray(string arr[], int n, bool order = true){
+// void sortArray(string arr[], int n, bool order = false){
+  if(order){
+    for(int i=0; i<n-1; i++){
+      for(int j=0; j<n-i-1; j++){
+        if(arr[j]>arr[j+1]){
+          string temp = arr[j];
+          arr[j] = arr[j+1];
+          arr[j+1] = temp;
+        }
+      }
+    }
+    cout<<"\nSorted Ascending array is: ";
+    for(int i=0; i<5; i++){
+      cout<<arr[i]<<endl;
+    }
+  }else{
+    for(int i=0; i<n-1; i++){
+      for(int j=0; j<n-i-1; j++){
+        if(arr[j]<arr[j+1]){
+          string temp = arr[j];
+          arr[j] = arr[j+1];
+          arr[j+1] = temp;
+        }
+      }
+    }
+    cout<<"\nSorted Descending array is: ";
+    for(int i=0; i<5; i++){
+      cout<<arr[i]<<" "<<endl;
+    }
+  }
+}
+int main(){
+  string str[5];
+  cout<<"Enter 5 strings: ";
+  for(int i=0; i<5; i++){
+    cin>>str[i];
+  }
+  int n = sizeof(str)/sizeof(str[0]);
+  sortArray(str, n, 1);
+  return 0;
+}
+// */
+
+// Question 277********Assignment-6_Question-3 ***************
+// Define a function to rotate an array by n positions in the d direction. Implement position and direction using default arguments. Argument d can be -1 or 1 denoting left or right direction. Argument n should be the last argument with default value 1. 
+/*
+#include <iostream>
+using namespace std;
+void rotate(int arr[], int s, int d = 1, int n = 1){
+  for(int r=0; r<n; r++){
+    int t = arr[s-1];
+    for(int i=s-1; i>0; i--){
+      arr[i] = arr[i-1];
+    }
+    arr[0] = t;
+  }
+}
+// void rotate(int arr[], int s, int d = -1, int n = 1){
+//   for(int r=0; r<n; r++){
+//     int t = arr[0];
+//     for(int i=0; i<s-1; i++){
+//       arr[i] = arr[i+1];
+//     }
+//     arr[s-1] = t;
+//   }
+// }
+int main(){
+  int n;
+  cout<<"Enter the size of array: ";
+  cin>>n;
+  int arr[n];
+  cout<<"Enter the elements of array: ";
+  for(int i=0; i<n; i++){
+    cin>>arr[i];
+  }
+  rotate(arr, n);
+  cout<<"Array after rotation is: ";
+  for(int i=0; i<n; i++){
+    cout<<arr[i]<<" ";
+  }
+  return 0;
+}
+// */
+
+// Question 278********Assignment-6_Question-4 ***************
+// Define a function to calculate LCM of three numbers.
+/*
+#include <iostream>
+using namespace std;
+void calLCM(int a, int b, int c){
+  if(a==0 || b==0 || c==0){
+    cout<<"LCM is not possible"<<endl;
+    return;
+  }else if(a<0){
+    a=-a;
+  }else if(b<0){
+    b=-b;
+  }else if(c<0){
+    c=-c;
+  }
+  int i=1, j=1, k=1;
+  while(1){
+    if(a*i == b*j && b*j == c*k){
+      cout<<"LCM of "<<a<<", "<<b<<" and "<<c<<" is: "<<a*i<<endl;
+      break;
+    }
+    if((a*i) < (b*j)){
+      if((a*i) < (c*k)){
+        i++;
+      }else{
+        k++;
+      }
+    }else if((b*j) < (c*k)){
+      if((b*j) < (a*i)){
+        j++;
+      }else{
+        i++;
+      }
+    }else{
+      k++;
+    }
+  }
+}
+int main(){
+  int a, b, c;
+  cout<<"Enter three numbers: ";
+  cin>>a>>b>>c;
+  calLCM(a, b, c);
+  return 0;
+}
+// */
+
+// Question 279********Assignment-6_Question-5 ***************
+// Define a function to print all the prime factors of a given number. [ for example num=36, prime factors are 2, 3]
+/*
+#include <iostream>
+using namespace std;
+void isPrime(int n){
+  int i=2;
+  while(i<n){
+    if(n%i==0){
+      break;
+    }
+    i++;
+  }
+  if(i==n){
+    cout<<n<<" ";
+  }
+}
+void primeFactors(int n){
+  int i=2;
+  while(n>1){
+    while(n%i==0){
+      n=n/i;
+    }
+    isPrime(i);
+    i++;
+  }
+}
+int main(){
+  int n;
+  cout<<"Enter a number: ";
+  cin>>n;
+  primeFactors(n);
+  return 0;
+}
+// */
+
+// Question 280********Assignment-7_Question-1 ***************
+
+// Define a function to calculate HCF of two numbers.
+/*
+#include <iostream>
+using namespace std;
+void calHcf(int a, int b){
+  int min = (a<b)?a:b;
+  while(min){
+    if(a%min==0 && b%min==0){
+      cout<<"HCF of "<<a<<" and "<<b<<" is: "<<min<<endl;
+      break;
+    }
+    min--;
+  }
+}
+int main(){
+  int a, b;
+  cout<<"Enter two numbers: ";
+  cin>>a>>b;
+  calHcf(a, b);
+  return 0;
+}
+// */
+
+
