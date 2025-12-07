@@ -836,3 +836,178 @@ int main(){
 // */
 
 
+// Question 286********Assignment-8_Question-2 ***************
+// Define a class Time to represent Time (like 3 hr 45 min 20 sec). Declare appropriate number of instance member variables and also define instance member functions to set values for time and display values of time.
+/*
+#include <iostream>
+using namespace std;
+class Time{
+  private:
+  int hours, minutes, seconds;
+  public:
+  void setTime(int h, int m, int s){
+    hours = h;
+    minutes = m;
+    seconds = s;
+  }
+  void showTime(){
+    cout<<hours<<" : "<<minutes<<" : "<<seconds<<endl;
+  }
+};
+int main(){
+  Time t1;
+  t1.setTime(2, 30, 45);
+  t1.showTime();
+  return 0;
+}
+// */
+
+// Question 287********Assignment-8_Question-3 ***************
+// Define a class Date to represent date (like d=31, m=12, y=2022). Declare appropriate number of instance member variables and also define instance member functions to set date and get date.
+/*
+#include <iostream>
+using namespace std;
+class Date{
+  private:
+    int day, month, year;
+  public:
+    void setDate(int d, int m, int y){
+      day = d;
+      month = m;
+      year = y;
+    }
+    void showDate(){
+      cout<<"d = "<<day<<", m = "<<month<<", y = "<<year<<endl;
+    }
+};
+int main(){
+  Date date1;
+  date1.setDate(15, 8, 2023);
+  date1.showDate();
+  return 0;
+}
+// */
+
+// Question 288********Assignment-8_Question-4 ***************
+// In question 3, define a methods to display date in the following pattern 
+// 1. 31-12-2022
+// 2. 31-Dec-2022
+/*
+#include <iostream>
+using namespace std;
+class Date{
+  private:
+    int day, month, year;
+  public:
+    void setDate(int d, int m, int y){
+      day = d;
+      month = m;
+      year = y;
+    }
+    void displayNumaeric(){
+      cout<<day<<"-"<<month<<"-"<<year<<endl;
+    }
+    void displayMonthName(){
+      string monthName[13] = {"", "Jan", "Feb", "Mar", "April", "May", "June", "July", "Aug", "Sep", "Octo", "Nov", "Dec"};
+      cout<<day<<"-"<<monthName[month]<<"-"<<year<<endl;
+    }
+};
+int main(){
+  Date d;
+  d.setDate(15, 8, 2023);
+  d.displayNumaeric();
+  d.displayMonthName();
+  return 0;
+}
+*/
+
+// Question 289********Assignment-8_Question-5 ***************
+// Define a class Circle with radius as its property. Provide setRadius() and getRadius() methods. Also define methods to return area and circumference of circle.
+/*
+#include <iostream>
+using namespace std;
+class Circle{
+  private:
+    float radius;
+  public:
+  void setRadius(float r){
+    radius = r;
+  }
+  void getRadius(){
+    cout<<"\nRadius of circle is: "<<radius<<endl;
+  }
+  void area(){
+    cout<<"Area of circle is: "<<3.14*radius*radius<<endl;
+  }
+  void circumference(){
+    cout<<"Circumference of circle is: "<<2*3.14*radius<<endl;
+  }
+};
+int main(){
+  Circle c;
+  c.setRadius(5.5);
+  c.getRadius();
+  c.area();
+  c.circumference();
+  return 0;
+}
+// */
+
+// Question 290********Assignment-9_Question-1 ***************
+// Define a class Complex to represent a complex number with instance variables a and b to store real and imaginary parts. Also define following member functions
+// 1. void setData(int,int)
+// 2. void showData()
+// 3. Complex add(Complex)
+// 4. Complex subtract(Complex)
+// 5. Complex multiply(Complex)
+/*
+#include <iostream>
+using namespace std;
+class Complex{
+  private:
+    int real, imag;
+  public:
+  void setData(int r, int i){
+    real = r;
+    imag = i;
+  }
+  void showData(){
+    cout<<real<<" + "<<imag<<"i"<<endl;
+  }
+  Complex add(Complex c2){
+    Complex temp;
+    temp.real = real + c2.real;
+    temp.imag = imag + c2.imag;
+    return temp;
+  }
+  Complex subtract(Complex c2){
+    Complex temp;
+    temp.real = real - c2.real;
+    temp.imag = imag - c2.imag;
+    return temp;
+  }
+  Complex multiply(Complex c2){
+    Complex temp;
+    temp.real = (real * c2.real) - (imag * c2.imag);
+    temp.imag = (real * c2.imag) + (imag * c2.real);
+    return temp;
+  }
+};
+int main(){
+  Complex c1;
+  c1.setData(3, 4);
+  Complex c2;
+  c2.setData(1, 2);
+  Complex c3;
+  c3 = c1.add(c2);
+  c3.showData();
+  c3 = c1.subtract(c2);
+  c3.showData();
+  c3 = c1.multiply(c2);
+  c3.showData();
+  return 0;
+}
+// */
+
+
+
