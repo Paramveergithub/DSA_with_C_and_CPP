@@ -177,5 +177,137 @@ int main(){
 // */
 
 
+// Question 266********Assignment-4_Question-2 ***************
+// Define a C++ function to find the highest value digit in a given number.
+/*
+#include <iostream>
+using namespace std;
+void highestValueDigit(int a){
+  int maxDigit=0;
+  while(a>0){
+    int digit = a%10;
+    if(digit>maxDigit){
+      maxDigit=digit;
+    }
+    a=a/10;
+  }
+  cout<<"Highest value digit is: "<<maxDigit<<endl;
+}
+int main(){
+  int a;
+  cout<<"Enter the number: ";
+  cin>>a;
+  highestValueDigit(a);
+  return 0;
+}
+// */
+
+// Question 267********Assignment-4_Question-3 ***************
+// Define a C++ function to calculate x raised to the power y.
+/*
+#include <iostream>
+using namespace std;
+void calPower(int x, int y){
+  int power=x, i=1;
+  while(i < y){
+    power=power*x;
+    i++;
+  }
+  cout<<x<<"^"<<y<<" = "<<power<<endl;
+}
+int main(){
+  int x, y;
+  cout << "Enter a number and its power: ";
+  cin >> x >> y;
+  calPower(x, y);
+  return 0;
+}
+// */
+
+// Question 268********Assignment-4_Question-4 ***************
+// Define a C++ function to print Pascal Triangle up to N lines.
+/*
+#include <iostream>
+using namespace std;
+int fact(int n){
+  if(n==0 || n==1){
+    return 1;
+  }
+  int factorial=1;
+  for(int i=2; i<=n; i++){
+    factorial*=i;
+  }
+  return factorial;
+}
+void pascalTriangle(int n){
+  for(int i = 0; i < n; i++){
+    for(int j = 0; j < n-i-1; j++){
+      cout<<" ";
+    }
+    for(int j = 0; j <= i; j++){
+      cout<<fact(i)/(fact(j)*fact(i-j))<<" ";
+    }
+    cout<<endl;
+  }
+}
+int main(){
+  int n;
+  cin>>n;
+  pascalTriangle(n);
+  return 0;
+}
+// */
+
+// Question 269********Assignment-4_Question-5 ***************
+// Define a C++ function to check whether a given number is a term in a Fibonacci series or not.
+/*
+#include <iostream>
+using namespace std;
+void checkFibTerm(int n){
+  int fib = 0, l1 = 0, l2 = 1;
+  if(l1 == n || l2 == n){
+    cout<<n<<" is a Fibonacci term"<<endl;
+    return;
+  }
+  while(fib < n){
+    fib = l1 + l2;
+    if(fib == n){
+      cout<<n<<" is a Fibonacci term"<<endl;
+      return;
+    }
+    l1 = l2;
+    l2 = fib;
+  }
+  cout<<n<<" is not a Fibonacci term"<<endl;
+}
+int main(){
+  int n;
+  cout<<"Enter the number of terms: ";
+  cin>>n;
+  checkFibTerm(n);
+  return 0;
+}
+// */
+
+// Question 270********Assignment-5_Question-1 ***************
+// Define a C++ function to swap data of two int variables using call by reference
+/*
+#include <iostream>
+using namespace std;
+void swapThis(int &a, int &b){
+  int temp = a;
+  a = b;
+  b = temp;
+}
+int main(){
+  int a, b;
+  cout<<"Enter two numbers: ";
+  cin>>a>>b;
+  swapThis(a, b);
+  cout<<"After swapping: "<<a<<" "<<b<<endl;
+  return 0;
+}
+// */
+
 
 
