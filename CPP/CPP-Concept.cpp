@@ -2994,3 +2994,237 @@ int main(){
 }
 // */
 
+
+// Question 331********Assignment-21_Question-1 ***************
+// Assignment-21: File Handling
+// 1. Write a C++ program to copy content of file and store in other file.
+/*
+#include <iostream>
+#include<fstream>
+using namespace std;
+int main(){
+  string sourceFile, destFile;
+  cout<<"Enter source file name: ";
+  cin>>sourceFile;
+  cout<<"Enter destination file name: ";
+  cin>>destFile;
+  ofstream source(sourceFile);  // Create for writing source file
+  source<< "Hello World!";  // Write some content to source file
+  if(!source){
+    cout<<"Failed to create source file!"<<endl;
+    return 1;
+  }
+  source.close();
+  ifstream src(sourceFile); // Open source file for reading
+  if(!src){
+    cout<<"Source file not found!"<<endl;
+    return 1;
+  }
+  ofstream dest(destFile); // Create destination file for writing
+  if(!dest){
+    cout<<"Failed to create destination file!"<<endl;
+    return 1;
+  }
+
+  dest<<src.rdbuf(); // Copy content from source to destination
+  cout<<"File copied successfully!"<<endl;
+  src.close();
+  dest.close();
+  return 0;
+}
+// */
+
+// Question 332********Assignment-21_Question-2 ***************
+// 2. Write a C++ program to read and display content of a file.
+/*
+#include <iostream>
+#include<fstream>
+using namespace std;
+int main(){
+  string fileName;
+  cout<<"Enter file name: ";
+  cin>>fileName;
+  ifstream file(fileName);
+  if(!file){
+    cout<<"File not found!"<<endl;
+    return 1;
+  }
+  while(!file.eof()){
+    string line;
+    getline(file, line);
+    cout<<line<<endl;
+  }
+  file.close();
+  return 0;
+}
+// */
+
+// Question 333********Assignment-21_Question-3, 4, 5, 6, 7 and 8 ****************
+// 3. Define a class Employee with empid, name and salary as instance variables. Also provide instance methods to input and display Employee record.
+
+// 4. In question 3, define a member function to store new employee record in a file.
+
+// 5. In question 3, define a member function to print all employee records stored in a file.
+
+// 6. In question 3, define a member function to search an employee by his empid in a file. Print his record if found, otherwise display a message of search failed.
+
+// 7. In question 3, define a member function to edit employee data of given empid. 
+
+// 8. In question 3, define a member function to delete an employee record of given empid
+/*
+#include <iostream>
+#include<fstream>
+using namespace std;
+class Employee{
+  private:
+  int empId;
+  string name;
+  int salary;
+  public:
+  void setData(){
+    cout<<"Enter employee id: ";
+    cin>>empId;
+    cout<<"Enter employee name: ";
+    cin>>name;
+    cout<<"Enter employee salary: ";
+    cin>>salary;
+  }
+  void showData(){
+    cout<<"Employee ID: "<<empId<<endl;
+    cout<<"Employee Name: "<<name<<endl;
+    cout<<"Employee Salary: "<<salary<<endl;
+  }
+  void newEmp(const string &filename){
+    ofstream file(filename, ios::app);  // Append mode to add new employee
+    setData();
+    file<<endl<<empId<<" "<<name<<" "<<salary;
+    file.close();
+  }
+  void allEmp(const string &filename){
+    ifstream file(filename);
+    if(!file){
+      cout<<"File not found!"<<endl;
+      return;
+    }
+    while(file>>empId>>name>>salary){
+      showData();
+      cout<<endl;
+    }
+    file.close();
+  }
+  void searchEmp(const string &filename, int &id){
+    ifstream file(filename);
+    if(!file){
+      cout<<"File not found!"<<endl;
+      return;
+    }
+    bool found = false;
+    while(!file.eof()){
+      file>>empId>>name>>salary;
+      if(empId == id){
+        showData();
+        found = true;
+        break;
+      }
+    }
+    if(!found){
+      cout<<"Employee Does not exist!"<<endl;
+    }
+    file.close();
+  }
+  void editEmp(const string &filename, int &id){
+   // edit employee data of given id
+   ifstream file(filename);
+   if(!file){
+      cout<<"File not found!"<<endl;
+      return;
+   }
+   cout<<"edit Employee data of given id"<<endl;
+   cout<<"Enter new name: ";
+   string newName;
+    cin>>newName;
+    cout<<"Enter new salary: ";
+    int newSalary;
+    cin>>newSalary;
+    ofstream tempFile("temp.txt");
+    bool found = false;
+    while(file>>empId>>name>>salary){
+        if(empId == id){
+          tempFile<<empId<<" "<<newName<<" "<<newSalary<<endl;
+          found = true;
+        }else{
+          tempFile<<empId<<" "<<name<<" "<<salary<<endl;
+        }
+    }
+    if(!found){
+      cout<<"Employee Does not exist!"<<endl;
+    }
+    file.close();
+    tempFile.close();
+    remove(filename.c_str());
+    rename("temp.txt", filename.c_str());
+  }
+  void deleteEmp(const string &filename, int &id){
+   // delete employee data of given id
+    ifstream file(filename);
+    if(!file){
+      cout<<"File not found!"<<endl;
+      return;
+    }
+    ofstream tempFile("temp.txt");
+    bool found = false;
+    while(file>>empId>>name>>salary){
+        if(empId == id){
+          found = true;
+        }else{
+          tempFile<<empId<<" "<<name<<" "<<salary<<endl;
+        }
+    }
+    if(!found){
+      cout<<"Employee Does not exist!"<<endl;
+    }
+    file.close();
+    tempFile.close();
+    remove(filename.c_str());
+    rename("temp.txt", filename.c_str());
+  }
+};
+int main(){
+  Employee e;
+  string filename = "employees.txt";
+  e.newEmp(filename);  
+  e.newEmp(filename);  
+  e.newEmp(filename);  
+
+  cout<<"\n\n All Employees:"<<endl;
+  e.allEmp(filename); 
+
+  int searchId;
+  cout<<"Enter employee id to search: ";
+  cin>>searchId;
+  e.searchEmp(filename, searchId);
+
+
+  cout<<"\n\nEdit Employee data of given id:"<<endl;
+  int editId;
+  cout<<"Enter employee id to edit: ";
+  cin>>editId;
+  e.editEmp(filename, editId);
+
+  cout<<"\n\n All Employees after edit:"<<endl;
+  e.allEmp(filename); 
+
+  cout<<"\n\nDelete Employee data of given id:"<<endl;
+  int deleteId;
+  cout<<"Enter employee id to delete: ";
+  cin>>deleteId;
+  e.deleteEmp(filename, deleteId);
+  return 0;
+}
+// */
+
+
+
+
+
+// g++ -std=c++20 cpp.cpp -o  cpp && cpp
