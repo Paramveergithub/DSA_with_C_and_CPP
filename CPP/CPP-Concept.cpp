@@ -2474,4 +2474,267 @@ int main(){
 // */
 
 
+// Question 321********Assignment-17_Question-5,6 & 7 ***************
+// 5. Define a class String with char pointer and length of the string as instance member variables. Define a method to dynamically create an array of char type and hold the input string in such a way that the array length is just enough to accommodate the input string.
+
+// 6. In question-5, define methods to convert string into uppercase, lowercase.
+
+// 7. In question-5, define methods to print string, return string, return length of string.
+/*
+#include <iostream>
+#include <cstring>
+using namespace std;
+class String{
+  private:
+  char *p;
+  int l;
+  public:
+  String(){
+    p = NULL;
+    l = 0;
+  }
+  void setValue(){
+    cout<<"Enter a string: ";
+    char ch;
+    p = new char[1];
+    cin.get(ch);
+    p[0] = ch;
+    l = 1;
+    while(ch != '\n'){
+      cin.get(ch);
+      l++;
+      char *temp = new char[l];
+      for(int i=0; i<l-1; i++){
+        temp[i] = p[i];
+      }
+      temp[l-1] = ch;
+      temp[l] = '\0';
+      delete[] p;
+      p = temp;
+    }
+  }
+  void upperCase(){
+    for(int i=0; i<l; i++){
+      if(p[i]>='a' && p[i]<='z'){
+        p[i] -= 32;
+      }
+    }
+  }
+  void lowerCase(){
+    for(int i=0; i<l; i++){
+      if(p[i]>='A' && p[i]<='Z'){
+        p[i] += 32;
+      }
+    }
+  }
+  string showValue(){
+    cout<<"String: "<<p<<endl;
+    return p;
+  }
+  int length(){
+    return l;
+  }
+  ~String(){
+    delete[] p;
+  }
+};
+int main(){
+  String str;
+  str.setValue();
+  str.showValue();
+  str.upperCase();
+  str.showValue();
+  str.lowerCase();
+  string s = str.showValue();
+  cout<<s<<endl;
+  cout<<"Length of string: "<<str.length()<<endl;
+  return 0;
+}
+// missing destructor call in setValue leading to memory leak
+// */
+
+// Question 322********Assignment-18_Question-1 ***************
+// Assignment-18: Inheritance
+// 1. Define a class Person with name and age as instance variables as private members. Provide setters and getters as protected methods. Derive a class Employee from Person class with private instance variable salary. Provide public methods setEmployee() and showEmployee().
+/*
+#include <iostream>
+using namespace std;
+class Person{
+  private:
+    string name;
+    int age;
+  protected:
+    void setName(string n){
+      name = n;
+    }
+    void setAge(int a){
+      age = a;
+    }
+    string getName(){
+      return name;
+    }
+    int getAge(){
+      return age;
+    }
+};
+class Employee : public Person{
+  private:
+  int salary;
+  public:
+  void setEmployee(string n, int a, int s){
+    setName(n);
+    setAge(a);
+    salary = s;
+  }
+  void showEmployee(){
+    cout<<"Name: "<<getName()<<endl;
+    cout<<"Age: "<<getAge()<<endl;
+    cout<<"Salary: "<<salary<<endl;
+  }
+};
+int main(){
+  Employee e;
+  e.setEmployee("John", 25, 50000);
+  e.showEmployee();
+  return 0;
+}
+// */
+
+// Question 323********Assignment-18_Question-2 ***************
+// 2. Define a class Circle with radius as private instance variable and setRadius(). getRadius().getArea() as public instance methods. Define a class ThickCircle as a subclass of Circle with thickness as private instance variable and getThickness(). setThickness() as public instance methods. Provide an overridden method getArea() to calculate area of thick portion of circle.
+/*
+#include <iostream>
+using namespace std;
+class Circle{
+  private:
+    float radius;
+  public:
+  void setRadius(float r){
+    radius = r;
+  }
+  float getRadius(){
+    return radius;
+  }
+  float area(){
+    return 3.14*radius*radius;
+  }
+};
+class ThickCircle:public Circle{
+  private:
+    float thickness;
+  public:
+  void setThickness(float t){
+    thickness = t;
+  }
+  float getThickness(){
+    return thickness;
+  }
+  float area(){
+    float a = 3.14 * ((getRadius()*getRadius()) - ((getRadius()-thickness)*(getRadius()-thickness)));
+    return a;
+  }
+};
+int main(){
+  ThickCircle tc;
+  tc.setRadius(10);
+  tc.setThickness(2);
+  cout<<"\nThickness of Circle: "<<tc.getThickness()<<endl;
+  cout<<"Area of Thickness of Circle: "<<tc.area()<<endl;
+  return 0;
+}
+// */
+
+// Question 324********Assignment-18_Question-3 ***************
+// 3. Define a class Coordinate with x and y as instance variables. Define overloaded versions of getDistance(), first with no argument calculating distance from origin, and second with one argument of Coordinate type to calculate distance between two coordinates. Also define other methods if required.
+/*
+#include <iostream>
+#include <cmath>
+using namespace std;
+class Coordinate{
+  private:
+  int x, y;
+  public:
+  Coordinate(int a, int b){
+    x = a;
+    y = b;
+  }
+  int getDistance(){
+    return sqrt(x*x + y*y);
+  }
+  int getDistance(Coordinate c){
+    return sqrt((c.x-x)*(c.x-x) + (c.y-y)*(c.y-y));
+  }
+};
+int main(){
+  Coordinate c1(3, 4);
+   cout<<"Distance from origin: "<<c1.getDistance()<<endl;
+  Coordinate c2(7, 1);
+  cout<<"Distance between c1 and c2: "<<c1.getDistance(c2)<<endl;
+  return 0;
+}
+// */
+
+// Question 325********Assignment-18_Question-4 & 5 ***************
+// 4. Define a class Shape with shapeName as instance variable. Provide setter and getter.
+// 5. In question 3 & 4, derive a class StraightLine from Shape with two Coordinate type objects as instance members. Provide methods to setLine(), getDistance() and showLine()
+/*
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+class Coordinate{
+  private:
+  int x, y;
+  public:
+  void setCoordinate(int a, int b){ x = a, y = b;}
+
+  int getX(){    return x;  }
+  int getY(){    return y;  }
+
+  int getDistance(){ return sqrt(x*x + y*y); }
+
+  int getDistance(Coordinate c){
+    return sqrt((c.x-x)*(c.x-x) + (c.y-y)*(c.y-y));  }
+};
+
+class Shape{
+  private:
+   string shapeName;
+  public:
+  void setShapeName(string n){
+    shapeName = n;
+  }
+  string getShapeName(){
+    return shapeName;
+  }
+};
+
+class StraightLine : public Shape{
+  private:
+  Coordinate start, end;
+  public:
+  void setLine(Coordinate c1, Coordinate c2){
+    start = c1, end = c2;
+  }
+  float getDistance(){
+    return start.getDistance(end);
+  }
+  void showLine(){
+    cout<<"Shape: "<<getShapeName()<<endl;
+    cout<<"Start point: ("<<start.getX()<<", "<<start.getY()<<")"<<endl;
+    cout<<"End point: ("<<end.getX()<<", "<<end.getY()<<")"<<endl;
+    cout<<"Distance: "<<getDistance()<<endl;
+  }
+};
+int main(){
+  Coordinate c1, c2;
+  c1.setCoordinate(3, 4), c2.setCoordinate(7, 1);
+  StraightLine sl;
+  sl.setShapeName("Straight Line");
+  sl.setLine(c1, c2);
+  sl.showLine();
+  return 0;
+}
+// */
+
 
