@@ -2241,4 +2241,237 @@ int main(){
 // */
 
 
+// Question 316********Assignment-15_Question-3 & 4 ***************
+// 3. Create a Coordinate class with 2 instance variables x and y. Overload comma operator such that when you write c3 = (c1, c2) then c2 is assigned to c3. Where c1, c2,and c3 are objects of Coordinate class.
+// 4. In Question-3, provide overloaded insertion and extraction operators.
+/*
+#include <iostream>
+using namespace std;
+class coordinate{
+  private:
+    int x, y;
+  public:
+  coordinate(int x = 0, int y = 0){
+    this->x = x;
+    this->y = y;
+  }
+
+  coordinate operator ,(const coordinate &c2){
+    return coordinate(c2.x, c2.y);
+  }
+
+  istream& operator >>(istream &in){
+    cout<<"Enter x and y coordinates: ";
+    in>>x>>y;
+    return in;
+  }
+  ostream& operator <<(ostream &out){
+    out<<"("<<x<<", "<<y<<")"<<endl;
+    return out;
+  }
+  void display(){
+    cout<<"("<<x<<", "<<y<<")"<<endl;
+  }
+};
+int main(){
+  coordinate c1(1,2), c2(3,4), c3;
+  // c1.display();
+  // c2.display();
+  // c3.display();
+  // c3 = (c1, c2);
+  // c3.display();
+  c3 >> cin;
+  c3 << cout;
+  return 0;
+}
+// */
+
+// Question 317********Assignment-15_Question-5 ***************
+// 5. Define a class Student with roll no, name and age as instance variables. Create setStudent() and showStudent() methods in the class. Overload operator == to compare two Student objects.
+/*
+#include <iostream>
+using namespace std;
+class Student{
+  private:
+  int rollNo;
+  string name;
+  int age;
+  public:
+  void setData(int r, string n, int a){
+    rollNo = r;
+    name = n;
+    age = a;
+  }
+  void showData(){
+    cout<<"Roll No: "<<rollNo<<endl;
+    cout<<"Name: "<<name<<endl;
+    cout<<"Age: "<<age<<endl;
+  }
+  bool operator==(const Student &s2)const{
+    return (rollNo == s2.rollNo && name == s2.name && age == s2.age);
+  }
+};
+int main(){
+  Student s1, s2;
+  s1.setData(101, "John Doe", 20);
+  s2.setData(102, "Peter", 21);
+  s1.showData();
+  s2.showData();
+  if(s1==s2){
+    cout<<"s1 and s2 are equal"<<endl;
+  }else{
+    cout<<"s1 and s2 are not equal"<<endl;
+  }
+  return 0;
+}
+// */
+
+// Question 318********Assignment-16_Question-1 ***************
+// Assignment-16: Pointer, this, DMA
+// 1. Define a class Person with name and age as instance variables. Provide parameterised constructor with two formal arguments name & age, to initialise instance variables.
+/*
+#include <iostream>
+using namespace std;
+class Person{
+  private:
+  string name;
+  int age;
+  public:
+  Person(string name = "", int age = 0){
+    this->name = name;
+    this->age = age;
+  }
+};
+int main(){
+  Person p1("Alice", 30);
+  return 0;
+}
+// */
+
+// Question 319********Assignment-16_Question-2 & 3 ***************
+// 2. Define a class Complex with instance variables a and b to store real and imaginary part of a complex number. Provide setData() method with formal arguments with the name a and b, to set the values of instance variables. Also define showData() method to display instance member variable values.
+
+// 3. In question-2, write a non member function in which instantiate Complex class dynamically. Initialise instance variables and display their values.
+/*
+#include <iostream>
+using namespace std;
+class Complex{
+  private:
+  int a, b;
+  public:
+  void setData(int a, int b){
+    this->a = a;
+    this->b = b;
+  }
+  void showData(){
+    cout<<"Complex number: "<<a<<" + "<<b<<"i"<<endl;
+  }
+};
+
+void createComplex(){
+  Complex *c = new Complex();
+  c->setData(3, 4);
+  c->showData();
+  delete c;
+}
+int main(){
+  Complex c1;
+  c1.setData(5, 10);
+  c1.showData();
+  createComplex();
+  return 0;
+}
+// */
+
+// Question 320********Assignment-17_Question-1, 2, 3 & 4 ***************
+// Assignment-17: Pointer, this, DMA
+// 1. Define a class Time with instance variables hr, min and sec. Provide instance methods setTime() and showTime().setTime() method has formal arguments with the same name as instance variables. Also define setters and getters.
+
+// 2. In question-1, define a method to dynamically create an array of Time objects with specified size (received through argument) and return array.
+
+// 3. In question-1, define a method to sort Time object array.
+
+// 4. In question-1, define a method to display Time object array values. Array is received through argument.
+/*
+#include <iostream>
+using namespace std;
+class Time{
+private:
+  int hr, min, sec;
+public:
+  void setTime(int hr, int min, int sec){
+    this->hr = hr;
+    this->min = min;
+    this->sec = sec;
+  }
+  void showTime(){
+    cout << "Time: " << hr << " : " << min << " : " << sec << endl;
+  }
+  void setterHr(int hr){
+    this->hr = hr;
+  }
+  void setterMin(int min){
+    this->min = min;
+  }
+  void setterSec(int sec){
+    this->sec = sec;
+  }
+  int getterHr(){
+    return hr;
+  }
+  int getterMin(){
+    return min;
+  }
+  int getterSec(){
+    return sec;
+  }
+  Time* dmaCreateArray(int size){
+    Time *arr = new Time[size];
+    return arr;
+  }
+  void sortA(Time tArray[], int s){
+    for (int i = 0; i < s - 1; i++){
+      for (int j = i + 1; j < s; j++){
+        if (tArray[i].hr > tArray[j].hr ||
+            (tArray[i].hr == tArray[j].hr && tArray[i].min > tArray[j].min) ||
+            (tArray[i].hr == tArray[j].hr && tArray[i].min == tArray[j].min && tArray[i].sec > tArray[j].sec)){
+          Time temp = tArray[i];
+          tArray[i] = tArray[j];
+          tArray[j] = temp;
+        }
+      }
+    }
+  }
+  void displayA(Time tArray[], int s){
+    for (int i = 0; i < s; i++){
+      tArray[i].showTime();
+    }
+  }
+};
+int main(){
+  Time t1;
+  t1.setTime(10, 30, 45);
+  t1.showTime();
+  t1.setterHr(12);
+  t1.setterMin(45);
+  t1.setterSec(30);
+  cout << "New Time: " << t1.getterHr() << " : " << t1.getterMin() << " : " << t1.getterSec() << endl;
+  int size = 5;
+  Time *tArray = t1.dmaCreateArray(size);
+  cout << "Enter 5 time values: " << endl;
+  for (int i = 0; i < 5; i++){
+    int h, m, s;
+    cout << "Time " << i + 1 << ": ";
+    cin >> h >> m >> s;
+    tArray[i].setTime(h, m, s);
+  }
+  t1.sortA(tArray, size);
+  cout << "Sorted Time values: " << endl;
+  t1.displayA(tArray, size);
+  delete[] tArray;
+  return 0;
+}
+// */
+
+
 
