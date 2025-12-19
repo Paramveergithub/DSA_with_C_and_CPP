@@ -2011,6 +2011,234 @@ int main(){
 // */
 
 
+// Question 311********Assignment-14_Question-1 ***************
+// Assignment-14: Operator Overloading, friend operator
+// 1. Define a class Complex and overload following operators as a friend.
+// a. +
+// b. -
+// c. *
+/*
+#include <iostream>
+using namespace std;
+class Complex{
+  int real, imag;
+  public:
+  Complex(int r = 0, int i = 0){
+    real = r, imag = i;
+  }
+  friend Complex operator +(const Complex &c1, const Complex &c2);
+  friend Complex operator -(const Complex &c1, const Complex &c2);
+  friend Complex operator *(const Complex &c1, const Complex &c2);
+  void display(){
+    cout<<real<<" + "<<imag<<"i"<<endl;
+  }
+};
+
+Complex operator +(const Complex &c1, const Complex &c2){
+  return Complex(c1.real + c2.real, c1.imag + c2.imag);
+}
+Complex operator -(const Complex &c1, const Complex &c2){
+  return Complex(c1.real - c2.real, c1.imag - c2.imag);
+}
+Complex operator *(const Complex &c1, const Complex &c2){
+  return Complex(c1.real * c2.real - c1.imag * c2.imag, c1.real * c2.imag + c1.imag * c2.real);
+}
+int main(){
+  Complex c1(3, 4), c2(1, 2);
+  Complex c3 = c1 + c2;
+  c3.display();
+  c3 = c1 - c2;
+  c3.display();
+  c3 = c1 * c2;
+  c3.display();
+  return 0;
+}
+// */
+
+// Question 312********Assignment-14_Question-2 & 3 ***************
+// 2. Define a class Time with appropriate instance variables and member functions. Overload following operators
+// a. <<< insertion operator
+// b. >> extraction operator
+
+// 3. In Question-2, over load operator= to perform copy of Time object.
+/*
+#include <iostream>
+using namespace std;
+class Time{
+  private:
+  int hours, minutes, seconds;
+  public:
+  Time(int h = 0, int m = 0, int s = 0){
+    hours = h, minutes = m, seconds = s;
+  }
+  friend istream& operator >>(istream &in, Time &t);
+  friend ostream& operator <<(ostream &out, const Time &t);
+
+  Time& operator =(const Time &t1){
+    hours = t1.hours;
+    minutes = t1.minutes;
+    seconds = t1.seconds;
+    return *this;
+  }
+};
+istream& operator >>(istream &in, Time &t){
+  cout<<"Enter hours: "; in>>t.hours;
+  cout<<"Enter minutes: "; in>>t.minutes;
+  cout<<"Enter seconds: "; in>>t.seconds;
+  return in;
+}
+ostream& operator <<(ostream &out, const Time &t){
+  out<<t.hours<<" : "<<t.minutes<<" : "<<t.seconds<<endl;
+  return out;
+}
+int main(){
+  Time t1;
+  cin>>t1;
+  Time t2;
+  t2 = t1;
+  cout<<t2;
+  return 0;
+}
+// */
+
+// Question 313********Assignment-14_Question-4 & 5***************
+// 4. Consider the following class Array
+/*  class Array{
+        int *p;
+        int size;
+       public:
+        // methods
+    }; */
+// Define operator = to perform deep copy of Array objects.
+
+// 5. In Question 4, define a friend operator + to concatenate two Array objects.
+/*
+#include <iostream>
+using namespace std;
+class Array{
+  int *p;
+  int size;
+  public:
+  Array(int s){
+    size = s;
+    p = new int[size];
+    for(int i=0; i<size; i++){
+      p[i] = i+1;
+    }
+  }
+
+  Array(){
+    size = 0;
+    p = nullptr;
+  }
+  Array& operator =(const Array &arr){
+    size = arr.size;
+    p = new int[size];
+    for(int i=0; i<size; i++){
+      p[i] = arr.p[i];
+    }
+    return *this;
+  }
+  void showData(){
+    for(int i=0; i<size; i++){
+      cout<<p[i]<<" ";
+    }
+    cout<<endl;
+  }
+  friend Array operator +( const Array &arr1, const Array &arr2);
+  ~Array(){
+    delete[] p;
+  }
+};
+Array operator +( const Array &arr1, const Array &arr2){
+  int nSize = arr1.size +  arr2.size;
+  Array temp(nSize);
+  for(int i=0; i<arr1.size; i++){
+    temp.p[i] = arr1.p[i];
+  }
+  for(int i=0; i<arr2.size; i++){
+    temp.p[arr1.size + i] = arr2.p[i];
+  }
+  return temp;
+}
+int main(){
+  Array arr1(5), arr2;
+  arr2 = arr1;
+  arr2.showData();
+  Array arr3;
+  arr3 = arr1 + arr2;
+  arr3.showData();
+  return 0;
+}
+// */
+
+// Question 314********Assignment-15_Question-1 ***************
+// Assignment-15: Operator Overloading, friend operator
+// 1. Define a class Complex and provide a unary friend operator - to negate the real and imaginary part of a complex number.
+/*
+#include <iostream>
+using namespace std;
+class Complex{
+  private:
+    int real, imag;
+  public:
+  Complex(int r = 0, int i = 0){
+    real = r;
+    imag = i;
+  }
+  friend Complex operator -(const Complex &c);
+  void display(){
+    cout<<real<<" + "<<imag<<"i"<<endl;
+  }
+};
+Complex operator -(const Complex &c){
+  return Complex(-c.real, -c.imag);
+}
+int main(){
+  Complex c1(5, 10);
+  c1.display();
+  Complex c2 = -c1;
+  c2.display();
+  return 0;
+}
+// */
+
+// Question 315********Assignment-15_Question-2 ***************
+// 2. Define a class Integer with instance variable of type int. Provide a friend logical operator not !. Also define a friend operator == to compare two Integer objects.
+/*
+#include <iostream>
+using namespace std;
+class Integer{
+  private:
+    int value;
+  public:
+  Integer(int v = 0){
+    value = v;
+  }
+  friend bool operator !(const Integer &i);
+  friend bool operator ==(const Integer &i1, const Integer &i2);
+};
+bool operator !(const Integer &i1){
+  return !(i1.value);
+}
+bool operator ==(const Integer &i1, const Integer &i2){
+  return (i1.value == i2.value);
+}
+int main(){
+  Integer i1(10), i2(10), i3(1);
+  if(i1 == i2){
+    cout<<"i1 and i2 are equal"<<endl;
+  }else  {
+    cout<<"i1 and i2 are not equal"<<endl;
+  }
+  if(!i3){
+      cout<<"i3 is true"<<endl;
+    }else{
+      cout<<"i3 is false"<<endl;
+  }
+  return 0;
+}
+// */
 
 
 
