@@ -2738,3 +2738,259 @@ int main(){
 // */
 
 
+// Question 326********Assignment-19_Question-1 ***************
+// Assignment-19: Inheritance
+// 1. Define a class Game with an array of 5 int variables as instance member to store the score of each of 5 rounds. Provide method to setScore(int round, int score). Also provide method getScore(int round).
+/*
+#include <iostream>
+using namespace std;
+class Game{
+  private:
+  int rounds[5];
+  public:
+  Game(){
+    for(int i=0; i<5; i++){
+      rounds[i] = 0;
+    }
+  }
+  void setScore(int round, int score){
+    if(round >= 1 && round <= 5){
+      rounds[round-1] = score;
+    }
+  }
+  int getScore(int round){
+    return rounds[round-1];
+  }
+};
+int main(){
+  Game g;
+  g.setScore(1, 10);
+  g.setScore(2, 20);
+  g.setScore(3, 30);
+  g.setScore(4, 40);
+  g.setScore(5, 50);
+  for(int i=0; i<5; i++){
+    cout<<"Round "<<i+1<<": "<<g.getScore(i+1)<<endl;
+  }
+  return 0;
+}
+// */
+
+// Question 327********Assignment-19_Question-2 ***************
+// 2. In question 6, derive a class GameResult with an array of 5 int type variables to store the result in each round. Result value is 2 for win, 0 for loose and 1 for draw. Provide methods to set Result and getResult. Write method to calculate final result of the game.
+/*
+#include <iostream>
+using namespace std;
+class GameResult{
+  private:
+  int res[5];
+  public:
+  GameResult(){
+    for(int i=0; i<5; i++){
+      res[i] = 0;
+    }
+  }
+  void setResult(int round, int score){
+    if((round >= 1 && round <= 5) && (score == 0 || score == 1 || score == 2)){
+      res[round-1] = score;
+    }
+  }
+  int getResult(int round){
+    return res[round-1];
+  }
+  void getFinalResult(){
+    int sum = 0;
+    for(int i=0; i<5; i++){
+      sum += res[i];
+    }
+    cout<<"Final Result: "<<sum<<endl;
+  }
+};
+int main(){
+  GameResult g;
+  g.setResult(1, 0);
+  g.setResult(2, 0);
+  g.setResult(3, 2);
+  g.setResult(4, 2);
+  g.setResult(5, 1);
+  g.getFinalResult();
+  return 0;
+}
+// */
+
+// Question 328********Assignment-19_Question-3 ***************
+// 3. Define a class Actor with name, age as instance variables and setter, getters as instance methods. Define a class TVActor as a derived class of Actor with instance variable to store number of TV projects done or running and define setter, getter. Also define setTVActor() and showTVActor(). Define a class MovieActor as a derived class of Actor with instance variable to store number of movies doe or running and define setter, getter. Also define setMovieActor() and showMovieActor(). Derive a class AllScreenActor from TVActor and MovieActor. Define a method to setActorData() and showActorData().
+/*
+#include <iostream>
+using namespace std;
+class Actor{
+  private:
+  string name;
+  int age;
+  public:
+  void setName(string n){ name = n; }
+  void setAge(int a){ age = a; }
+  string getName(){ return name; }
+  int getAge(){ return age; }
+};
+class TVActor : virtual public Actor{
+  private:
+  int NoOfTvProjectsDone;
+  public:
+  void setNoOfTvProjectsDone(int n){ NoOfTvProjectsDone = n; }
+  int getNoOfTvProjectsDone(){ return NoOfTvProjectsDone; }
+  void setTvActor(string n, int a, int nTvProjectsDone){
+    setName(n);
+    setAge(a);
+    setNoOfTvProjectsDone(nTvProjectsDone);
+  }
+  void showTvActor(){
+    cout<<"Name: "<<getName()<<endl;
+    cout<<"Age: "<<getAge()<<endl;
+    cout<<"Number of TV projects done: "<<getNoOfTvProjectsDone()<<endl;
+  }
+};
+class MovieActor : virtual public Actor{
+  private:
+  int NoOfMovieProjectsDone;
+  public:
+  void setNoOfMovieProjectsDone(int n){ NoOfMovieProjectsDone = n; }
+
+  int getNoOfMovieProjectsDone(){ return NoOfMovieProjectsDone; }
+
+  void setMovieActor(string n, int a, int nMovieProjectsDone){
+    setName(n);
+    setAge(a);
+    setNoOfMovieProjectsDone(nMovieProjectsDone);
+  }
+
+  void showMovieActor(){
+    cout<<"Name: "<<getName()<<endl;
+    cout<<"Age: "<<getAge()<<endl;
+    cout<<"Number of Movie projects done: "<<getNoOfMovieProjectsDone()<<endl;
+  }
+};
+class AllScreenActor : public TVActor, public MovieActor{
+  public: 
+  void setActorData(string n, int a, int nTvProjectsDone, int nMovieProjectsDone){
+    setName(n);
+    setAge(a);
+    setNoOfTvProjectsDone(nTvProjectsDone);
+    setNoOfMovieProjectsDone(nMovieProjectsDone);
+  }
+
+  void showAllScreenActor(){
+    cout<<"Name: "<<getName()<<endl;
+    cout<<"Age: "<<getAge()<<endl;
+    cout<<"Number of TV projects done: "<<getNoOfTvProjectsDone()<<endl;
+    cout<<"Number of Movie projects done: "<<getNoOfMovieProjectsDone()<<endl;
+  }
+};
+int main(){
+  AllScreenActor a1;
+  a1.setActorData("John", 30, 5, 3);
+  a1.showAllScreenActor();
+  return 0;
+}
+//  
+// */
+
+
+// Question 329********Assignment-20_Question-1 ***************
+// Assignment-20: Overriding, Late Binding, Abstract class
+// 1. Define a class A with two int type member variables. Define a member function to setData() and showData() to set and display values of member variables. Also define a member function with the name input() to take input from the user. Define a class B with one int type member variable. Override input() function in order to input three values from the user for all three member variables. Also override showData() function to display all three values.
+/*
+#include <iostream>
+using namespace std;
+class A{
+  protected:
+  int a, b;
+  public:
+  void setA(int x){ a = x; }
+  void setB(int y){ b = y; }
+  virtual void show(){
+    cout<<"a = "<<a<<endl;
+    cout<<"b = "<<b<<endl;
+  }
+  virtual void input(){
+    cout<<"Enter 2 values: ";
+    cin>>a>>b;
+  }
+};
+class B : public A{
+  private:
+  int c;
+  public:
+  void input()override{
+    cout<<"Enter 3 values: ";
+    cin>>a>>b>>c;
+  }
+  void show()override{
+    cout<<"a = "<<a<<endl;
+    cout<<"b = "<<b<<endl;
+    cout<<"c = "<<c<<endl;
+  }
+};
+int main(){
+  B obj;
+  obj.input();
+  obj.show();
+  return 0;
+}
+// */
+
+// Question 330********Assignment-20_Question-2 ***************
+// 2. Define a class Shape with member variable to store name of the shape (like rectangle, square, circle, etc.) Provide methods to set and display name of the shape. Define a pure virtual function area() in Shape class. Define two derived classes of Shape, one is rectangle and second is square. Define appropriate members in both the classes. Demonstrate usage of the classes by making driver function main().
+/*
+#include <iostream>
+using namespace std;
+class Shape{
+  private:
+  string shapName;
+  public:
+  void setShapeName(string s){ shapName = s; }
+  void displayShapeName(){ cout<<"Shape Name: "<<shapName<<endl; }
+
+  virtual float area()=0;
+};
+
+class rectangle : public Shape{
+  private:
+  int length, breadth;
+  public:
+  void setRectangle(int l, int b){
+    length = l;
+    breadth = b;
+  }
+  float area() override{
+    return length*breadth;
+  }
+};
+
+class square : public Shape{
+  private:
+  int side;
+  public:
+  void setSquare(int s){
+    side = s;
+  }
+  float area() override{
+    return side*side;
+  }
+};
+int main(){
+  rectangle r;
+  r.setShapeName("Rectangle");
+  r.setRectangle(10, 5);
+  r.displayShapeName();
+  cout<<"Area: "<<r.area()<<endl;
+
+  square s;
+  s.setShapeName("Square");
+  s.setSquare(5);
+  s.displayShapeName();
+  cout<<"Area: "<<s.area()<<endl;
+  return 0;
+}
+// */
+
