@@ -4,6 +4,7 @@
 
 141 to 365 days    => 225 * 1 = 225 Questions  -> 1 Question / day.
 
-366 to 730         => 365 * 1 = 365 Questions  -> 1 Question / day.
+366 to 730 days    => 365 * 1 = 365 Questions  -> 1 Question / day.
 
 Total Questions => 715 + 365 = 1080 Questions is my GOAL.
+ It is a 2-Year Journey.
