@@ -1,10 +1,12 @@
 1 to 70 days       => 70 * 5 = 350 Questions   -> 5 Questions / day.
 
-71 to 140 days     => 70 * 2 = 140 Questions   -> 2 Questions / day.
+71 to 140 days     => 70 * 4 = 280 Questions   -> 4 Questions / day.
 
-141 to 365 days    => 225 * 1 = 225 Questions  -> 1 Question / day.
+141 to 210 days    => 70 * 3 = 210 Questions   -> 3 Question / day.
 
-366 to 730 days    => 365 * 1 = 365 Questions  -> 1 Question / day.
+211 to 280 days    => 70 * 2 = 140 Questions   -> 2 Question / day.
 
-Total Questions => 715 + 365 = 1080 Questions is my GOAL.
- It is a 2-Year Journey. 🔥🎯🥇😍 :)
+281 to 730 days    => 450 * 1 = 450 Questions  -> 1 Question / day.
+
+Total Questions => 730 days = 1430 Questions 🎯.
+ It is a 2-Year Journey. 🔥 🥇 :)
