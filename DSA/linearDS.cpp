@@ -1367,10 +1367,10 @@ int main(){
 // Question 344*******Assignment-9 ***************
 // 9. Define a method to convert infix to postfix expression.
 
-// Question 345*******Assignment-10 ***************
+// Question 345*******Assignment-9 ***************
 // 10. Define a method to evalute postfix expression.
 
-// /*
+/*
 #include<iostream>
 #include<cmath>
 #include<cctype>
@@ -1527,12 +1527,543 @@ int main(){
 
 // Question 346*******Assignment-10 ***************
 // Queue using array
+// 1. Define a class Queue with capacity, front, rear and ptr pointer as member variables. implement queue using array.
+
+// 2. In this question, define a parameterised constructor to initialize member variables.
+
+// 3. In this question, define a method to insert a new element at the rear in the queue.
+
+// 4. In this question, define a method to view rear element of the queue.
+
+// 5. In this question, define a method to view front element of the queue.
+
+// 6. In this question, define a method to delete the front element from the queue.
+
+// 7. In this question, define a method to check queue overflow.
+
+// 8. In this question, define a method to check queue underflow.
+
+// 9. Define a method to count number of elements present in the queue.
+
+// 10. Define a destructor to deallocates the memory.
 /*
 #include <iostream>
 using namespace std;
+class Queue{
+  private:
+  int capacity;
+  int front;
+  int rear;
+  int *ptr;
+  public:
+  Queue(int c){
+    if(c < 1) c = 10;
+    capacity = c;
+    front = -1;
+    rear = -1;
+    ptr = new int[capacity];
+  }
+  void enqueue(int v){
+    if(front == (rear+1)%capacity){
+      cout<<"Queue is full."<<endl;
+      return;
+    }
+    if(rear == -1){
+      front = rear = 0;
+    }else{
+      rear = (rear + 1) % capacity;
+    }
+    ptr[rear] = v;
+  }
+  void viewRear(){
+    if(front == -1){
+      cout<<"Queue is empty."<<endl;
+      return;
+    }
+    cout<<"Rear element is: "<<ptr[rear]<<endl;
+  }
+  void viewFront(){
+    if(front == -1){
+      cout<<"Queue is empty."<<endl;
+      return;
+    }
+    cout<<"Front element is: "<<ptr[front]<<endl;
+  }
+  void dequeue(){
+    if(rear == -1){
+      cout<<"Queue is empty."<<endl;
+      return;
+    }
+    if(front == rear){
+      front = rear = -1;
+    }else{
+      front = (front + 1) % capacity;
+    }
+  }
+  bool isOverflow(){
+    return (front == (rear+1)%capacity);
+  }
+  bool isUnderflow(){
+    return rear == -1;
+  }
+  int countElements(){
+    if(rear == -1)   return 0;
+    if(rear >= front) return rear - front + 1;
+    return (capacity - front + rear + 1);
+  }
+  ~Queue(){
+    delete[] ptr;
+  }
+};
 int main(){
-
+  Queue q(5);
+  q.enqueue(10);
+  q.enqueue(20);
+  q.enqueue(30);
+  q.viewFront();
+  q.viewRear();
+  q.dequeue();
+  q.viewFront();
+  if(q.isOverflow()){
+    cout<<"Queue is full."<<endl;
+  }else{
+    cout<<"Queue is not full."<<endl;
+  }
+  if(q.isUnderflow()){
+    cout<<"Queue is empty."<<endl;
+  }else{
+    cout<<"Queue is not empty."<<endl;
+  }
+  cout<<"Number of elements in the queue: "<<q.countElements()<<endl;
+  return 0;
 }
+// */
+
+
+
+// Question 347*******Assignment-11 ***************
+// Queue using linked list
+// 1. Define a class Queue with node type pointers front and rear as member variables. implement queue using Singly linked list.
+
+// 2. In this question, define a constructor to initialize member variables.
+
+// 3. In this question, define a method to insert a new element at the rear in the queue.
+
+// 4. In this question, define a method to view rear element of the queue.
+
+// 5. In this question, define a method to view front element of the queue.
+
+// 6. In this question, define a method to delete the front element from the queue.
+
+// 7. In this question, define a method to count number of elements present in the queue.
+
+// 8. In this question, define a destructor to deallocates the memory.
+/*
+#include <iostream>
+using namespace std;
+class Node{
+  public:
+   int data;
+   Node *next;
+};
+class Queue{
+  private:
+  Node* front;
+  Node* rear;
+  public:
+  Queue(){
+    front = NULL;
+    rear = NULL;
+  }
+  void insert(int v){
+    Node* n = new Node;
+    n->data = v;
+    n->next = NULL;
+    if(rear == NULL){
+      front = rear = n;
+      return;
+    }
+    rear->next = n;
+    rear = n;
+  }
+  void viewRear(){
+    if(rear == NULL){
+      cout<<"Queue is empty."<<endl;
+      return;
+    }
+    cout<<"Rear element is: "<<rear->data<<endl;
+  }
+  void viewFront(){
+    if(front == NULL){
+      cout<<"Queue is empty."<<endl;
+      return;
+    }
+    cout<<"Front element is: "<<front->data<<endl;
+  }
+  void delFirst(){
+    if(front == NULL){
+      cout<<"Queue is empty."<<endl;
+      return;
+    }
+    Node* temp = front;
+    front = front->next;
+    delete temp;
+    if(front == NULL){
+      rear = NULL;
+    }
+  }
+  void count(){
+    int c = 0;
+    if(front == NULL){
+      cout<<"Number of elements in the queue: "<<c<<endl;
+      return;
+    }
+    Node* t = front;
+    while(t != NULL){
+      c++;
+      t = t->next;
+    }
+    cout<<"Number of elements in the queue: "<<c<<endl;
+  }
+  ~Queue(){
+    while(front != NULL){
+      Node* temp = front;
+      front = front->next;
+      delete temp;
+    }
+  }
+};
+int main(){
+  Queue q;
+  q.insert(10);
+  q.insert(20);
+  q.insert(30);
+  q.viewFront();
+  q.viewRear();
+  q.delFirst();
+  q.viewFront();
+  q.count();
+  return 0;
+}
+//  */
+
+
+// Question 348*******Assignment-12 ***************
+// Deque
+// 1. Define a class Deque with node type pointers front and rear as member variables. implement deque using Doubly linked list.
+
+// 2. In this question, define a constructor to initialize member variables.
+
+// 3. In this question, define a method to insert a new element at the front in the deque.
+
+// 4. In this question, define a method to insert a new element at the rear in the deque.
+
+// 5. In this question, define a method to delete the front element from the deque.
+
+// 6. In this question, define a method to delete the rear element from the deque.  
+
+// 7. In this question, define a method to get front element of the deque.
+
+// 8. In this question, define a method to get rear element of the deque.
+
+// 9. In this question, define a method to check whether the deque is empty or not.
+
+// 10. Define a destructor to deallocate the memory.
+/*
+#include <iostream>
+using namespace std;
+class Node{
+  public:
+   int data;
+   Node *next;
+   Node *prev;
+};
+class Deque{
+  private:
+   Node *front;
+   Node *rear;
+  public:
+  Deque(){
+    front = NULL;
+    rear = NULL;
+  }
+  void insertAtfront(int e){
+    Node *n = new Node;
+    n->data = e;
+    if(front == NULL){
+      n->next = front;
+      n->prev = front;
+      front = rear = n;
+      return;
+    }
+    n->next = front;
+    n->prev = NULL;
+    front->prev = n;
+    front = n;
+  }
+  void insertAtrear(int e){
+    Node *n = new Node;
+    n->data = e;
+    n->next = NULL;
+    if(rear == NULL){
+      n->prev = rear;
+      front = rear = n;
+      return;
+    }
+    n->prev = rear;
+    rear->next = n;
+    rear = n;
+  }
+  void delFront(){
+    if(front == NULL){
+      cout<<"Deque is empty."<<endl;
+      return;
+    }
+    Node *temp = front;
+    front = front->next;
+    if(front != NULL){
+      front->prev = NULL;
+    }
+    delete temp;
+    if(front == NULL){
+      rear = NULL;
+    }
+  }
+  void delRear(){
+    if(rear == NULL){
+      cout<<"Deque is empty."<<endl;
+      return;
+    }
+    Node *temp = rear;
+    rear = rear->prev;
+    if(rear != NULL){
+      rear->next = NULL;
+    }
+    delete temp;
+    if(rear == NULL){
+      front = NULL;
+    }
+  }
+  int getFront(){
+    if(front == NULL){
+      cout<<"Deque is empty."<<endl;
+      return -1;
+    }
+    return front->data;
+  }
+  int getRear(){
+    if(rear == NULL){
+      cout<<"Deque is empty."<<endl;
+      return -1;
+    }
+    return rear->data;
+  }
+  bool isEmpty(){
+    return front == NULL;
+  }
+  ~Deque(){
+    while(front != NULL){
+      Node *temp = front;
+      front = front->next;
+      delete temp;
+    }
+  }
+};
+int main(){
+  Deque dq;
+  dq.insertAtfront(10);
+  dq.insertAtrear(20);
+  cout<<"Front element: "<<dq.getFront()<<endl;
+  cout<<"Rear element: "<<dq.getRear()<<endl;
+  dq.delFront();
+  cout<<"Front element after deletion: "<<dq.getFront()<<endl;
+  dq.delRear();
+  if(dq.isEmpty()){
+    cout<<"Deque is empty."<<endl;
+  }else{
+    cout<<"Deque is not empty."<<endl;
+  }
+  return 0;
+}
+// */
+
+
+// Question 349*******Assignment-13 ***************
+// Priority Queue using linked list
+// 1. Define a class PriorityQueue with node type pointer start as member variable. implement priority queue using Singly linked list.
+
+// 2. In this question, define a constructor to initialize member variable.
+
+// 3. In this question, define a method to insert a new element in the Priority Queue according to its priority.
+
+// 4. In this question, define a method to delete the highest priority element from the Priority Queue.
+
+// 5. In this question, define a method to get the highest priority element from the Priority Queue.
+
+// 6. In this question, define a method to get the highest priority from the Priority Queue.
+
+// 7. In this question, define a method to check whether the Priority Queue is empty or not.
+
+// 8. Define a destructor to deallocates the memory.
+/*
+#include<iostream>
+using namespace std;
+class node{
+  public:
+  int data;
+  int priority;
+  node *next;
+};
+class PriorityQueue{
+  node *start;
+  public:
+  PriorityQueue(){
+    start = NULL;
+  }
+  void insert(int e, int p){
+    node *n = new node;
+    n->data = e;
+    n->priority = p;
+    n->next = NULL;
+    if(start == NULL || start->priority < p){
+      n->next = start;
+      start = n;
+    }else{
+      node* t = start;
+      while(t->next != NULL && t->next->priority >= p){
+        t = t->next;
+      }
+      n->next = t->next;
+      t->next = n;
+    }
+  }
+
+  void del(){
+    if(start == NULL){
+      cout<<"Priority Queue is empty."<<endl;
+      return;
+    }
+    node *temp = start;
+    start = start->next;
+    delete temp;
+  }
+
+  int getHighestPriorityElement(){
+    if(start == NULL){
+      cout<<"Priority Queue is empty."<<endl;
+      return -1;
+    }
+    return start->data;
+  }
+
+  int getHighestPriority(){
+    if(start == NULL){
+      cout<<"Priority Queue is empty."<<endl;
+      return -1;
+    }
+    return start->priority;
+  }
+
+  bool isEmpty(){
+    return start == NULL;
+  }
+
+  ~PriorityQueue(){
+    while(start != NULL){
+      node *temp = start;
+      start = start->next;
+      delete temp;
+    }
+  }  
+};
+
+int main(){
+  PriorityQueue pq;
+  pq.insert(10, 2);
+  pq.insert(20, 1);
+  pq.insert(30, 3);
+  cout<<"Highest priority element: "<<pq.getHighestPriorityElement()<<endl;
+  cout<<"Highest priority: "<<pq.getHighestPriority()<<endl;
+  pq.del();
+  cout<<"Highest priority element after deletion: "<<pq.getHighestPriorityElement()<<endl;
+  if(pq.isEmpty()){
+    cout<<"Priority Queue is empty."<<endl;
+  }else{
+    cout<<"Priority Queue is not empty."<<endl;
+  }
+  return 0;
+}
+// */
+
+
+// Question 350*******Assignment-13 ***************
+// Priority Queue using 2D arrays
+// 9. Define a logic to implement priority queue using 2D arrays.
+/*
+#include<iostream>
+#define MAX_Ele 10
+#define MAX_Pr 5
+int pq[MAX_Pr][MAX_Ele];
+int pEleCount[MAX_Pr] = {0};
+using namespace std;
+void insert(int e, int p){
+  if(p < 0 || p >= MAX_Pr){
+    cout<<"Invalid priority."<<endl;
+    return;
+  }
+  if(pEleCount[p] >= MAX_Ele){
+    cout<<"Priority Queue is full for priority "<<p<<endl;
+    return;
+  }
+  pq[p][pEleCount[p]++] = e;
+}
+
+void pop(){
+  for(int i = MAX_Pr -1; i>=0; i--){
+    if(pEleCount[i] > 0){
+      pEleCount[i]--;
+      return;
+    }
+  }
+}
+int top(){
+  for(int i = MAX_Pr -1; i>=0; i--){
+    if(pEleCount[i] > 0){
+      return pq[i][pEleCount[i]-1];
+    }
+  }
+  cout<<"Priority Queue is empty."<<endl;
+  return -1;
+}
+void display(){
+  for(int i = MAX_Pr-1; i>=0; i--){
+    if(pEleCount[i]>0){
+      for(int j = 0; j<pEleCount[i]; j++){
+        cout<<pq[i][j]<<"(p:"<<i<<") ";
+      }
+      cout<<endl;
+    }
+  }
+}
+
+int main(){
+  insert(10, 2);
+  insert(20, 1);
+  insert(30, 3);
+  insert(40, 2);
+  insert(50, 4);
+  cout<<"Priority Queue elements: "<<endl;
+  display();
+  cout<<"Top element: "<<top()<<endl;
+  pop();
+  cout<<"Top element after pop: "<<top()<<endl;
+  return 0;  
+}
+// */
+
+// Question 351*******Assignment-13 ***************
+// 10. Define a logic to implement min priority queue and max priority queue in the same data structure.
+
 // */
 
 
@@ -1543,4 +2074,168 @@ int main(){
 
 
 
-// g++ -std=c++20 Array.cpp -o Array && Array
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// g++ -std=c++20 linearDS.cpp -o linearDS && linearDS
