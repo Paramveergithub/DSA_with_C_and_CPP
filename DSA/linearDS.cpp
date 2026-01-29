@@ -2059,183 +2059,667 @@ int main(){
   cout<<"Top element after pop: "<<top()<<endl;
   return 0;  
 }
-// */
+*/
+
 
 // Question 351*******Assignment-13 ***************
 // 10. Define a logic to implement min priority queue and max priority queue in the same data structure.
+/*
+#include<iostream>
+#define size 10
+using namespace std;
+int arr[size];
+int n = 0, mode = 0;
 
+void insert(int e){
+  if(n >= size){
+    cout<<"Priority Queue is full."<<endl;
+    return;
+  }
+  arr[n++] = e;
+}
+
+int sizeOfPQ(){
+  return n;
+}
+
+void pop(){
+  if(n == 0){
+    cout<<"Priority Queue is empty."<<endl;
+    return;
+  }
+  int idx = 0;
+  for(int i = 1; i<n; i++){
+    if(mode == 0 && arr[i] < arr[idx]){
+      idx = i;
+    }else if(mode == 1 && arr[i] > arr[idx]){
+      idx = i;
+    }
+  }
+  for(int i = idx; i<n-1; i++){
+    arr[i] = arr[i+1];
+  }
+  n--;
+}
+
+int top(){
+  if(n == 0){
+    cout<<"Priority Queue is empty."<<endl;
+    return -1;
+  }
+  int idx = 0;
+  for(int i = 1; i<n; i++){
+    if(mode == 0 && arr[i] < arr[idx]){
+      idx = i;
+    }else if(mode == 1 && arr[i] > arr[idx]){
+      idx = i;
+    }
+  }
+  return arr[idx];
+}
+
+void display(){
+  for(int i = 0; i<n; i++){
+    cout<<arr[i]<<" ";
+  }
+  cout<<endl;
+}
+
+int main(){
+  insert(10);
+  insert(20);
+  insert(4);
+  insert(38);
+  display();
+
+  mode = 0; // min
+  cout<<"Peek "<< top()<<endl;
+  pop();
+  display();
+  
+  mode = 1; // max
+  cout<<"Peek "<< top()<<endl;
+  pop();
+  display();
+}
+//  */
+
+
+// Question 407*******Assignment-14 (Tree) ***************
+// 1. Define a class BST(Binary Search Tree) with node type pointer root as member variable. implement Binary Search Tree using linked representation.
+
+// 2. in this question, define a constructor to initialise root pointer with NULL.
+
+// 3. In this question, define a method to check whether the tree is empty or not.
+
+// 4. define a method to insert a new element in the BST.
+
+// 5. Define a method for preorder traversal of the BST.
+
+// 6. Define a method for inorder traversal of the BST.
+
+// 7. Define a method for postorder traversal of the BST.
+
+// 8. define a method to delete an element from BST.
+
+// 9. define a method to search an item in the BST.
+
+// 10. define a destructor to release memory of all the nodes of BST.
+/* 
+#include<iostream>
+using namespace std;
+class Node{
+  public:
+   int data;
+   Node *left;
+   Node *right;
+  Node(int v): data(v), left(NULL), right(NULL) {}
+};
+class BST{
+  Node* root;
+  public:
+
+  BST(): root(NULL) {}
+
+  bool isEmpty(){
+    return root == NULL;
+  }
+
+  void insert(int v){
+    Node* n = new Node(v);
+    if(root == NULL){
+      root = n;
+      return;
+    }
+    Node* current = root;
+    Node* parent = NULL;
+    while(current != NULL){
+      parent = current;
+      if(v < current->data){
+        current = current->left;
+      }else if(v > current->data){
+        current = current->right;
+      }else{
+        delete n;
+        cout<<"Duplicate value "<<v<<" not allowed in BST."<<endl;
+        return;
+      }
+    }
+    if(v < parent->data){
+      parent->left = n;
+    }else{
+      parent->right = n;
+    }
+  }
+
+  void preOrder(Node* root){
+    if(root == NULL) return;
+    cout<<root->data<<" ";
+    preOrder(root->left);
+    preOrder(root->right);
+  }
+  void preOrder(){
+    preOrder(root);
+  }
+
+  void inOrder(Node* root){
+    if(root == NULL) return;
+    inOrder(root->left);
+    cout<<root->data<<" ";
+    inOrder(root->right);
+  }
+  void inOrder(){
+    inOrder(root);
+  }
+
+  void postOrder(Node* root){
+    if(root == NULL) return;
+    postOrder(root->left);
+    postOrder(root->right);
+    cout<<root->data<<" ";
+  }
+  void postOrder(){
+    postOrder(root);
+  }
+
+  Node* deleteRec(Node* root, int v){
+    if(root == NULL) return root;
+    if(v < root->data){
+      root->left = deleteRec(root->left, v);
+    }else if(v > root->data){
+      root->right = deleteRec(root->right, v);
+    }else{
+      // case 0 & 1 child
+      if(root->left == NULL){
+        Node* t = root->right;
+        delete root;
+        return t;
+      }else{
+        Node* t = root->left;
+        delete root;
+        return t;
+      }
+      // case 2 child
+      Node* a = root->right;
+      while(a->left != NULL){
+        a = a->left;
+      }
+      root->data = a->data;
+      root->right = deleteRec(root->right, a->data);
+      return root;
+    }
+  }
+  void del(int v){
+    root = deleteRec(root, v);
+  }
+
+  bool searchRec(Node* root, int v){
+    if(root == NULL) return false;
+    if(root->data == v) return true;
+    if(v < root->data){
+      return searchRec(root->left, v);
+    }else{
+      return searchRec(root->right, v);
+    }
+  }
+  bool search(int v){
+    return searchRec(root, v);
+  }
+
+  void destroyTree(Node* root){
+    if(root == NULL) return;
+    destroyTree(root->left);
+    destroyTree(root->right);
+    delete root;
+  }
+  ~BST(){
+    // post order deletion
+    destroyTree(root);
+  }
+};
+int main(){
+  BST tree;
+  tree.insert(50);
+  tree.insert(30);
+  tree.insert(20);
+  tree.insert(40);
+  tree.insert(70);
+  tree.insert(60);
+  tree.insert(80);
+
+  cout<<"Preorder traversal: ";
+  tree.preOrder();
+  cout<<endl;
+
+  cout<<"Inorder traversal: ";
+  tree.inOrder();
+  cout<<endl;
+
+  cout<<"Postorder traversal: ";
+  tree.postOrder();
+  cout<<endl;
+
+  int key = 20;
+  cout<<"Delete "<<key<<endl;
+  tree.del(key);
+  cout<<"Inorder traversal after deletion: ";
+  tree.inOrder();
+  cout<<endl;
+
+  key = 90;
+  if(tree.search(key)){
+    cout<<key<<" found in the tree."<<endl;
+  }else{
+    cout<<key<<" not found in the tree."<<endl;
+  }
+
+  return 0;
+}
 // */
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//*******Assignment-15 (Recursion) ***************
+// Question 408:- Write a recursive function to print first N natural numbers.
+/*
+#include <iostream>
+using namespace std;
+void printNNaturalN(int n){
+  if(n == 0) return;
+  printNNaturalN(n-1);
+  cout<<n<<" ";
+}
+int main(){
+  int n;
+  cin>>n;
+  printNNaturalN(n);
+}
+// */
+
+
+// Question 409:- Write a recursive function to print first N natural numbers in reverse order.
+/*
+#include <iostream>
+using namespace std;
+void nNaturalNRev(int n){
+  if(n == 0) return;
+  cout<<n<<" ";
+  nNaturalNRev(n-1);
+}
+
+int main(){
+  int n; cin>>n;
+  nNaturalNRev(n);
+}
+// */
+
+
+// Question 410:- Write a recursive function to print first N odd natural numbers.
+/*
+#include <iostream>
+using namespace std;
+void nNaturalOdd(int n){
+  if(n == 0) return;
+  nNaturalOdd(n-1);
+  cout<<n*2-1<<' ';
+}
+
+int main(){
+  int n; cin>>n;
+  nNaturalOdd(n);
+}
+// */
+
+
+// Question 411:- Write a recursive function to print first N odd natural numbers in reverse order.
+/*
+#include <iostream>
+using namespace std;
+void nNaturalOddRev(int n){
+  if(n == 0) return;
+  cout<<n*2-1<<' ';
+  nNaturalOddRev(n-1);
+}
+
+int main(){
+  int n; cin>>n;
+  nNaturalOddRev(n);
+}
+// */
+
+
+// Question 412:- Write a recursive function to print first N even natural numbers.
+/*
+#include <iostream>
+using namespace std;
+void nNaturalEven(int n){
+  if(n == 0) return;
+  nNaturalEven(n-1);
+  cout<<n*2<<' ';
+}
+
+int main(){
+  int n; cin>>n;
+  nNaturalEven(n);
+}
+// */
+
+
+// Question 413:- Write a recursive function to print first N even natural numbers in reverse order.
+/*
+#include <iostream>
+using namespace std;
+void nNaturalEvenRev(int n){
+  if(n == 0) return;
+  cout<<n*2<<' ';
+  nNaturalEvenRev(n-1);
+}
+int main(){
+  int n; cin>>n;
+  nNaturalEvenRev(n);
+}
+// */
+
+// Question 414:- Write a recursive function to print squares of first N natural numbers.
+/*
+#include <iostream>
+using namespace std;
+void nNaturalSquare(int n){
+  if(n == 0) return;
+  nNaturalSquare(n-1);
+  cout<<n*n<<" ";
+}
+int main(){
+  int n; cin>>n;
+  nNaturalSquare(n);
+}
+// */
+
+
+// Question 415:- Write a recursive function to print squares of first N natural numbers in reverse order.
+/*
+#include <iostream>
+using namespace std;
+void nNaturalSquareRev(int n){
+  if(n == 0) return;
+  cout<<n*n<<" ";
+  nNaturalSquareRev(n-1);
+}
+int main(){
+  int n; cin>>n;
+  nNaturalSquareRev(n);
+}
+// */
+
+
+// Question 416:- Write a recursive function to print cubes of first N natural numbers.
+/*
+#include <iostream>
+using namespace std;
+void nNaturalCube(int n){
+  if(n == 0) return;
+  nNaturalCube(n-1);
+  cout<<n*n*n<<" ";
+}
+int main(){
+  int n; cin>>n;
+  nNaturalCube(n);
+}
+// */
+
+
+// Question 417:- Write a recursive function to print cubes of first N natural numbers in reverse order.
+/*
+#include <iostream>
+using namespace std;
+void nNaturalCubeRev(int n){
+  if(n == 0) return;
+  cout<<n*n*n<<" ";
+  nNaturalCubeRev(n-1);
+}
+int main(){
+  int n; cin>>n;
+  nNaturalCubeRev(n);
+}
+// */
+
+//***********Assignment- 16 (More on Recursion)*********/
+// Question 418:- Write a recursive function to calculate sum of first N natural numbers. (1)
+/*
+#include <iostream>
+using namespace std;
+int sumNNatural(int n){
+  if(n == 0) return 0;
+  return n + sumNNatural(n-1);
+}
+int main(){
+  int n; cin>>n;
+  cout<<"Sum of first "<<n<<" natural numbers is: "<<sumNNatural(n)<<endl;
+}
+// */
+
+
+// Question 419:- Write a recursive function to calculate sum of first N odd natural numbers. (2)
+/*
+#include <iostream>
+using namespace std;
+int sumNOddNatural(int n){
+  if(n == 0) return 0;
+  return (2*n - 1) + sumNOddNatural(n-1);
+}
+int main(){
+  int n; cin>>n;
+  cout<<"Sum of first "<<n<<" odd natural numbers is: "<<sumNOddNatural(n)<<endl;
+}
+// */
+
+
+// Question 420:- Write a recursive function to calculate sum of first N even natural numbers. (3)
+/*
+#include <iostream>
+using namespace std;
+int sumNEvenNatural(int n){
+  if(n == 0) return 0;
+  return (2*n) + sumNEvenNatural(n-1);
+}
+int main(){
+  int n; cin>>n;
+  cout<<"Sum of first "<<n<<" even natural numbers is: "<<sumNEvenNatural(n)<<endl;
+}
+// */
+
+
+// Question 421:- write a recursive function to calculate sum of squares of first N natural numbers. (4)
+/*
+#include <iostream>
+using namespace std;
+int sumNSquareNatural(int n){
+  if(n == 0) return 0;
+  return (n*n) + sumNSquareNatural(n-1);
+}
+int main(){
+  int n; cin>>n;
+  cout<<"Sum of squares of first "<<n<<" natural numbers is: "<<sumNSquareNatural(n)<<endl;
+}
+// */
+
+
+// Question 422:- write a recursive function to calculate factorial of a number. (5)
+/*
+#include <iostream>
+using namespace std;
+int fact(int n){
+  if(n == 0) return 1;
+  return n*fact(n-1);
+}
+int main(){
+  int n; cin>>n;
+  cout<<"Factorial of "<<n<<" is: "<<fact(n)<<endl;
+}
+// */
+
+
+// Question 423:-- Write a recursive function to calculate sum of the digits of a number. (6)
+/*
+#include <iostream>
+using namespace std;
+
+int sumOfDigits(int n){
+  if(n == 0) return 0;
+  return (n%10) + sumOfDigits(n/10);
+}
+int main(){
+  int n; cin>>n;
+  cout<<"Sum of digits of "<<n<<" is: "<<sumOfDigits(n)<<endl;
+}
+// */ 
+
+
+// Question 424:- Write a recursive function to print binary of a given decimal number. (7)
+/*
+#include <iostream>
+using namespace std;
+void printBinary(int n){
+  if(n == 0) return;
+  printBinary(n/2);
+  cout<<n%2;
+}
+int main(){
+  int n; cin>>n;
+  printBinary(n);
+}
+// */
+
+
+// Question 425:- write a recursive function to find nth term of fibonacci series. (8)
+/*
+#include <iostream>
+using namespace std;
+int fib(int n){
+  if(n == 1) return 0;
+  if(n == 2) return 1;
+  return fib(n-1) + fib(n-2);
+}
+int main(){
+  int n; cin>>n;
+  if(n <= 0){
+    cout<<"You have entered invalid number for fibonacci series";
+    return 0;
+  }
+  cout<<"Fibonacci term at position "<<n<<" is: "<<fib(n)<<endl;
+}
+// */
+
+
+// Question 426:- Write a recursive function to calculate HCF of two numbers. (9)
+/*
+//           Brute force
+// #include <iostream>
+// using namespace std;
+// int hcf(int a, int b, int h){
+//   if(a%h == 0 && b%h == 0) return h;
+//   return hcf(a, b, h-1);
+// }
+// int main(){
+//   int a, b; cin>>a>>b;
+//   int h = (a < b) ? a : b;
+//   cout<<"HCF of "<<a<<" and "<<b<<" is: "<<hcf(a, b, h)<<endl;
+// }
+
+//              OR
+
+#include <iostream>
+using namespace std;
+int hcf(int a, int b){
+  if(b == 0) return a;
+  return hcf(b, a%b);
+}
+int main(){
+  int a, b; cin>>a>>b;
+  cout<<"HCF of "<<a<<" and "<<b<<" is: "<<hcf(a, b)<<endl;
+}
+// */
+
+
+// Question 427:- Write a recursive function to calculate x power y. (10)
+// day - 90 1st Q
+/*
+#include <iostream>
+using namespace std;
+int power(int x, int y){
+  if(y == 1) return x;
+  return x * power(x, y-1);
+}
+int main(){
+  int x, y; cin>>x>>y;
+  if(y < 0){
+    cout<<"You have entered invalid power value."<<endl;
+    return 0;
+  }
+  if(y == 0){
+    cout<<x<<" power "<<y<<" is: 1"<<endl;
+    return 0;
+  }
+  cout<<x<<" power "<<y<<" is: "<<power(x, y)<<endl;
+}
+// */
+
+//************Assignment- 17 (Graph Matrix)**********/
+// day - 90 2nd Q
+// Question 428:-  ASAP
+
+
+//******Assignment- 18 (Graph List Representation)*****/
+// day - 90 3rd Q
+// Question 429:- ASAP
+
+
+//*******Assignment- 19 (Sorting) */
+// day - 90 4th Q
+// Question 430:- ASAP
+
+
+// Question 431:-
+// Question 432:-
+// Question 433:-
+// Question 434:-
+// Question 435:-
+// Question 436:-
+// Question 437:-
+// Question 438:-
+// Question 439:-
+
+
+//*********Assignment- 20 (Heap)**************/
+// Question 440:-
+// Question 441:-
+// Question 442:-
+
+
+//**********Assignment-21 (Searching)*************/
+// Question 443:-
+// Question 444:-
+
+
+
+// ****************Completed_DSA******************
 // g++ -std=c++20 linearDS.cpp -o linearDS && linearDS

@@ -4,7 +4,7 @@
 
 
 # Question 383: when was the first version of python launched?
-# :- 1991
+# :- 1994
 
 
 # Question 384: "Python is a platform independent language" - True/False?
@@ -21,6 +21,7 @@
 
 # ********Assignment-2 (Fundamentals of python)**********
 # Question 387 : Write a command to get the python version you are using.
+# python --version
 # :- import sys
 # print(sys.version)
 
@@ -32,6 +33,8 @@
 # :- By importing the py_compile module and using py_compile.compile() function.
 # import py_compile
 # py_compile.compile('basic.py', 'basic.pyc')
+#       or
+# python -m py_compile basic.py
 
 
 # Question 390 : How to run a python file from command prompt or terminal?
@@ -76,32 +79,17 @@
 
 
 # Question 399 : Write a python script to print values of three variables, each in a new line. All three variables are filled with some integer values.
-# a = 10
-# b = 20
-# c = 30
-# print(a)
-# print(b)
-# print(c)
-
+# a, b, c = 10, 20, 30
+# print(a, b, c, sep=" ")
 
 # Question 400 : Create 5 variables each of them containing different types of data (like 35, true, "paramveer", 4.4, 4+3j). Write a python script to print values of all the variables along with their data types.
-# a = 33
-# b = True
-# c = "paramveer"
-# d = 3.5
-# e = 3+2j
-# print(a, type(a))
-# print(b, type(b))
-# print(c, type(c))
-# print(d, type(d))
-# print(e, type(e))
+# a, b, c, d, e = 35, True, "paramveer", 4.4, 4+3j
+# print(a, type(a), b, type(b), c, type(c), d, type(d), e, type(e) , sep="\n")
 
 
 # Question 401 : Create three variables and assign current date to them, first variable contains day number, second variable contains month number, third variable contains year. Write a python script to display date in standard way (e.g. 29/11/2022)
-# a = 29
-# b = 11
-# c = 2022
-# print(a,"/",b,"/",c)
+# a, b, c = 29, 11, 2022
+# print(a, b, c, sep="/")
 
 
 # ********Assignment-5 (import and keywords)******
@@ -112,6 +100,8 @@
 
 
 # Question 403 : Use help section on python shell to see all the keywords.
+# on terminal type : python then type help("keywords")
+#       or
 # help("keywords")
 
 
@@ -122,6 +112,22 @@
 
 # Question 405 : Out of all the keywords, name those keywords which are used as data.
 # False, None, True
+
+
+# Question 406 : What is the use of del keyword in python?
+# :- The del keyword is used to delete objects in Python, such as variables, list items, or dictionary entries.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
