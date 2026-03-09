@@ -2061,7 +2061,6 @@ int main(){
 }
 */
 
-
 // Question 351*******Assignment-13 ***************
 // 10. Define a logic to implement min priority queue and max priority queue in the same data structure.
 /*
@@ -2087,20 +2086,20 @@ void pop(){
   if(n == 0){
     cout<<"Priority Queue is empty."<<endl;
     return;
-  }
+    }
   int idx = 0;
   for(int i = 1; i<n; i++){
     if(mode == 0 && arr[i] < arr[idx]){
       idx = i;
-    }else if(mode == 1 && arr[i] > arr[idx]){
-      idx = i;
-    }
-  }
-  for(int i = idx; i<n-1; i++){
-    arr[i] = arr[i+1];
+      }else if(mode == 1 && arr[i] > arr[idx]){
+        idx = i;
+        }
+        }
+        for(int i = idx; i<n-1; i++){
+          arr[i] = arr[i+1];
   }
   n--;
-}
+  }
 
 int top(){
   if(n == 0){
@@ -2121,17 +2120,17 @@ int top(){
 void display(){
   for(int i = 0; i<n; i++){
     cout<<arr[i]<<" ";
-  }
-  cout<<endl;
-}
+    }
+    cout<<endl;
+    }
 
-int main(){
-  insert(10);
-  insert(20);
-  insert(4);
-  insert(38);
-  display();
-
+    int main(){
+      insert(10);
+      insert(20);
+      insert(4);
+      insert(38);
+      display();
+      
   mode = 0; // min
   cout<<"Peek "<< top()<<endl;
   pop();
@@ -2141,12 +2140,12 @@ int main(){
   cout<<"Peek "<< top()<<endl;
   pop();
   display();
-}
-//  */
+  }
+  //  */
+  
 
-
-// Question 407*******Assignment-14 (Tree) ***************
-// 1. Define a class BST(Binary Search Tree) with node type pointer root as member variable. implement Binary Search Tree using linked representation.
+  // Question 407*******Assignment-14 (Tree) ***************
+  // 1. Define a class BST(Binary Search Tree) with node type pointer root as member variable. implement Binary Search Tree using linked representation.
 
 // 2. in this question, define a constructor to initialise root pointer with NULL.
 
@@ -2170,7 +2169,7 @@ int main(){
 using namespace std;
 class Node{
   public:
-   int data;
+  int data;
    Node *left;
    Node *right;
   Node(int v): data(v), left(NULL), right(NULL) {}
@@ -2183,28 +2182,28 @@ class BST{
 
   bool isEmpty(){
     return root == NULL;
-  }
+    }
 
   void insert(int v){
     Node* n = new Node(v);
     if(root == NULL){
       root = n;
       return;
-    }
-    Node* current = root;
-    Node* parent = NULL;
-    while(current != NULL){
+      }
+      Node* current = root;
+      Node* parent = NULL;
+      while(current != NULL){
       parent = current;
       if(v < current->data){
         current = current->left;
-      }else if(v > current->data){
-        current = current->right;
+        }else if(v > current->data){
+          current = current->right;
       }else{
         delete n;
         cout<<"Duplicate value "<<v<<" not allowed in BST."<<endl;
         return;
       }
-    }
+      }
     if(v < parent->data){
       parent->left = n;
     }else{
@@ -2231,7 +2230,7 @@ class BST{
   void inOrder(){
     inOrder(root);
   }
-
+  
   void postOrder(Node* root){
     if(root == NULL) return;
     postOrder(root->left);
@@ -2246,9 +2245,9 @@ class BST{
     if(root == NULL) return root;
     if(v < root->data){
       root->left = deleteRec(root->left, v);
-    }else if(v > root->data){
-      root->right = deleteRec(root->right, v);
-    }else{
+      }else if(v > root->data){
+        root->right = deleteRec(root->right, v);
+        }else{
       // case 0 & 1 child
       if(root->left == NULL){
         Node* t = root->right;
@@ -2332,7 +2331,7 @@ int main(){
   }else{
     cout<<key<<" not found in the tree."<<endl;
   }
-
+  
   return 0;
 }
 // */
@@ -2447,8 +2446,8 @@ void nNaturalSquare(int n){
   if(n == 0) return;
   nNaturalSquare(n-1);
   cout<<n*n<<" ";
-}
-int main(){
+  }
+  int main(){
   int n; cin>>n;
   nNaturalSquare(n);
 }
@@ -2570,7 +2569,7 @@ using namespace std;
 int fact(int n){
   if(n == 0) return 1;
   return n*fact(n-1);
-}
+  }
 int main(){
   int n; cin>>n;
   cout<<"Factorial of "<<n<<" is: "<<fact(n)<<endl;
@@ -2606,9 +2605,9 @@ void printBinary(int n){
 int main(){
   int n; cin>>n;
   printBinary(n);
-}
-// */
-
+  }
+  // */
+  
 
 // Question 425:- write a recursive function to find nth term of fibonacci series. (8)
 /*
@@ -2618,7 +2617,7 @@ int fib(int n){
   if(n == 1) return 0;
   if(n == 2) return 1;
   return fib(n-1) + fib(n-2);
-}
+  }
 int main(){
   int n; cin>>n;
   if(n <= 0){
@@ -2683,43 +2682,716 @@ int main(){
 }
 // */
 
+//________________________________________________________________________
 //************Assignment- 17 (Graph Matrix)**********/
 // day - 90 2nd Q
-// Question 428:-  ASAP
+// Question 428:- 1. Define a class Graph using matrix representation with v_count, e_count and adj pointer as instance variables.
+/*
+#include <iostream>
+using namespace std;
+class Graph{
+  private:
+  int v_count;
+  int e_count;
+  int** adj;
+  public:
+
+  Graph(int v, int e){
+    v_count = v;
+    e_count = e;
+    adj = new int*[v_count];
+    for(int i = 0; i<v_count; i++){
+      adj[i] = new int[v_count];
+      for(int j = 0; j<v_count; j++){
+        adj[i][j] = 0;
+      }
+    }
+  }
+
+// 2. define a method createGraph() to create and store adjacent node information.
+  void createGraph(){
+    int u, v; 
+    cout<<"Enter "<<e_count<<" edges (u v): "<<endl; // u = starting vertex, v = ending vertex
+    for(int i = 0; i<e_count; i++){
+      cin>>u>>v;
+      adj[u][v] = 1;
+      adj[v][u] = 1; // for undirected graph
+    }
+  }
+
+// 3. define a method to print graph matrix.
+  void printGraph(){
+    for(int i =0; i<v_count; i++){
+      for(int j = 0; j<v_count; j++){
+        cout<<adj[i][j]<<' ';
+      }
+      cout<<endl;
+    }
+    cout<<endl;
+  }
+
+// 4. define a method to print all adjacent nodes of a given vertex.
+  void printAllAdj(int v){
+    cout<<"Adjacent nodes of "<<v<<" : ";
+    for(int i = 0; i<v_count; i++){
+      if(adj[v][i]> 0){
+        cout<<i<<' ';
+      }
+    }
+    cout<<endl;
+  }
+
+// 5. define a method to check if a given node is isolated node.
+  bool isIsolated(int v){
+    for(int i =0; i<e_count;i++){
+      if(adj[v][i] > 0){
+        return false;
+      }
+    }
+    return true;
+  }
+
+// 6. define a destructor to deallocates memory.
+  ~Graph(){
+    for(int i=0;i<e_count;i++){
+      delete [] adj[i];
+    }
+    delete [] adj;
+  }
+   
+};
+
+int main(){
+  Graph g(4, 3);
+  g.createGraph();
+  g.printGraph();
+  g.printAllAdj(1);
+  if(g.isIsolated(1)){
+    cout<<"Yes, It is."<<endl;
+  }else{
+    cout<<"No, It is not \n";
+  }
+}
+// */
 
 
 //******Assignment- 18 (Graph List Representation)*****/
 // day - 90 3rd Q
-// Question 429:- ASAP
+// Question 429:- 1. Define a class Graph to implement linked list representation of graph. Define needful structure for node and class for AdjList.
+// 2. Define appropriate constructors in the classes AdjList and Graph.
+// 3. Define appropriate methods to manage linked list in AdjList.
+// 4. Define createGraph() method in Graph class to allocate memory for array of AdjList Objects.
+// 5. Define addEdge() method in Graph class to add a new node in adjacency list.
+// 6. Define a method to print graph (print values of adjacency list).
+// 7. Define destructors in the classes AdjList and Graph.
+
+/*
+#include <iostream>
+using namespace std;
+struct Node{
+  int data;
+  Node* next;
+
+  Node(int v): data(v), next(NULL) {}
+};
+
+class AdjList{
+  public:
+  Node* head;
+  AdjList(): head(NULL) {}
+
+  void insertNode(int v){
+    Node* n = new Node(v);
+    n->next = head;
+    head = n;
+  }
+  void print(int u){
+    cout<<"Adjacent nodes of "<<u<<" : ";
+    Node* t = head;
+    while(t != NULL){
+      cout<<t->data<<" ";
+      t = t->next;
+    }
+  }
+  ~AdjList(){
+    Node* t = head;
+    while(head != NULL){
+      t = head;
+      head = head->next;
+      delete t;
+    }
+  }
+};
+
+class Graph{
+  private:
+  int v_count;
+  AdjList* arr;
+
+  public:
+  Graph(int v){
+    v_count = v;
+    arr = NULL;
+  }
+  void createGraph(){
+    arr = new AdjList[v_count];
+  }
+  void addEdge(int u, int v){
+    arr[u].insertNode(v);
+    arr[v].insertNode(u); // for undirected graph
+  }
+  void printGraph(){
+    for(int i = 0; i<v_count; i++){
+      arr[i].print(i);
+      cout<<endl;
+    }
+  }
+  void printAllAdj(int v){
+    arr[v].print(v);
+    cout<<endl;
+  }
+  ~Graph(){
+    delete[] arr;
+  }
+};
+int main(){
+  Graph g(5);
+  g.createGraph();
+  g.addEdge(0, 1);
+  g.addEdge(0, 4);
+  g.addEdge(1, 2);
+  g.addEdge(1, 3);
+  g.addEdge(3, 4);
+  g.printGraph();
+
+  cout<<endl<<endl;
+  g.printAllAdj(2);
+  return 0;
+}
+// */
 
 
-//*******Assignment- 19 (Sorting) */
+//*******Assignment- 19 (Sorting-1) */
 // day - 90 4th Q
-// Question 430:- ASAP
+// Question 430:- Define a function to implement bubble sort.
+/*  
+#include<iostream>
+using namespace std;
+void bubbleSort(int arr[], int n){
+  for(int i = 0; i<n-1; i++){
+    for(int j = 0; j<n-i-1; j++){
+      if(arr[j] > arr[j+1]){
+        swap(arr[j], arr[j+1]);
+      }
+    }
+  }
+}
+int main(){
+ int n = 5;
+ int arr[] = {5, 4, 3, 2, 1};
+ for(int i = 0; i<n; i++){
+    cout<<arr[i]<<" ";
+  }
+  cout<<endl;
+
+ bubbleSort(arr, n);
+  cout<<"Sorted array: ";
+  for(int i = 0; i<n; i++){
+    cout<<arr[i]<<" ";
+  }
+}
+// */
 
 
-// Question 431:-
-// Question 432:-
-// Question 433:-
-// Question 434:-
-// Question 435:-
-// Question 436:-
-// Question 437:-
-// Question 438:-
-// Question 439:-
+// day - 91 1st Q
+// Question 431:- Define a function to implement modified bubble sort to achieve O(n) time complexity in best case.
+/* 
+#include<iostream>
+using namespace std;
+void modifiedBubbleSort(int arr[], int n){
+  bool swapped;
+  for(int i = 0; i<n-1; i++){
+    swapped = false;
+    for(int j = 0; j<n-i-1; j++){
+      if(arr[j] > arr[j+1]){
+        swap(arr[j], arr[j+1]);
+        swapped = true;
+      }
+    }
+    if(!swapped){
+      break;
+    }
+  }
+}
+int main(){
+  int n = 5;
+  int arr[] = {5, 4, 3, 2, 1};
+  for(int i = 0; i<n; i++){
+      cout<<arr[i]<<" ";
+    }
+    cout<<endl;
+  
+  modifiedBubbleSort(arr, n);
+    cout<<"Sorted array: ";
+    for(int i = 0; i<n; i++){
+      cout<<arr[i]<<" ";
+    }
+}
+// */
 
+
+// day - 91 2nd Q
+// Question 432:- Define a function to implement Insertion sort.
+/*
+#include<iostream>
+using namespace std;
+void insertionSort(int arr[], int n){
+  for(int i = 1; i<n; i++){
+    int v = arr[i];
+    int j = i-1;
+    while(j >= 0 && arr[j] > v){
+      arr[j+1] = arr[j];
+      j--;
+    }
+    arr[j+1] = v;
+  }
+}
+
+int main(){
+  int n = 5;
+  int arr[] = {5, 4, 3, 2, 1};
+  for(int i = 0; i<n; i++){
+      cout<<arr[i]<<" ";
+  }
+  cout<<endl;
+  insertionSort(arr, n);
+  
+  for(int i = 0; i<n; i++){
+      cout<<arr[i]<<" ";
+  }
+}
+// */
+
+
+// day - 91 3rd Q
+// Question 433:- Define a function to implement Selection sort.
+/*
+#include<iostream>
+using namespace std;
+void selectionSort(int arr[], int n){
+  for(int i = 0; i<n-1; i++){
+    int min = i;
+    for(int j = i+1; j<n; j++){
+      if(arr[j] < arr[min]){
+        min = j;
+      }
+    }
+    swap(arr[i], arr[min]);
+  }
+}
+
+int main(){
+  int n = 5;
+  int arr[] = {5, 4, 3, 2, 1};
+  for(int i = 0; i<n; i++){
+      cout<<arr[i]<<" ";
+  }
+  selectionSort(arr, n);
+  cout<<endl;
+  for(int i = 0; i<n; i++){
+      cout<<arr[i]<<" ";
+  }
+}
+// */
+
+
+// day - 91 4th Q
+// Question 434:- Define a function to implement quick sort using recursion.
+/*
+#include<iostream>
+using namespace std;
+int partition(int arr[], int start, int end){
+  int posi = start, pivot = arr[end];
+  for(int i = start; i <= end; i++){
+     if(arr[i] <= pivot){
+       swap(arr[i], arr[posi]);
+       posi++;
+     }
+  }
+  return posi-1;
+}
+
+void quickSort(int arr[], int start, int end){
+  if(start >= end) return;
+  int pivot = partition(arr, start, end);
+  quickSort(arr, start, pivot-1);
+  quickSort(arr, pivot+1, end);
+}
+int main(){
+  int n = 5;
+  int arr[] = {5, 4, 3, 2, 1};
+  for(int i = 0; i<n; i++){
+      cout<<arr[i]<<" ";
+  }
+  cout<<endl;
+  quickSort(arr, 0, n-1);
+  for(int i = 0; i<n; i++){
+      cout<<arr[i]<<" ";
+  }
+}
+// */
+
+// day - 92 1st Q
+// Question 435:- Define a function to implement quick sort using iteration.
+/*
+#include<iostream>
+#include<stack>
+using namespace std;
+int partition(int arr[], int s, int e){
+  int pi = arr[e], posi = s;
+  for(int i = s; i <= e; i++){
+    if(arr[i] <= pi){
+      swap(arr[i], arr[posi++]);
+    }
+  }
+  return posi-1;
+}
+void quickSort(int arr[], int s, int e){
+  stack<pair<int, int>>st;
+  st.push({s, e});
+
+  while(!st.empty()){
+    int l = st.top().first;
+    int h = st.top().second;
+    st.pop();
+    if(l < h){
+      int pi = partition(arr, l, h);
+      if(l < pi-1)        st.push({l, pi-1});
+      if(pi+1 < h)        st.push({pi+1, h});
+    }
+  }
+}
+
+int main(){
+ int n = 5;
+ int arr[] = {5, 4, 3, 2, 1};
+ for(int i = 0; i < n; i++){
+  cout<<arr[i]<<" ";
+ }
+
+ cout<<"\nAfter sorting \n";
+ quickSort(arr, 0, n-1);
+
+ for(int i = 0; i < n; i++){
+  cout<<arr[i]<<" ";
+ }
+}
+// */
+
+
+// day - 92 2nd Question
+// Question 436:- Define a function to implement merge sort using recursion.
+/*
+#include<iostream>
+using namespace std;
+void merge(int arr[], int s, int mid, int e){
+  int temp[e-s+1];
+  int l = s, r = mid+1, i = 0;
+  while(l <= mid && r <= e){
+    if(arr[l] >= arr[r]){
+      temp[i++] = arr[r++];
+    }else{
+      temp[i++] = arr[l++];
+    }
+  }
+  while(l <= mid){
+    temp[i++] = arr[l++];
+  }
+  while(r <= e){
+    temp[i++] = arr[r++];
+  }
+   i = 0;
+  while(s <= e){
+    arr[s++] = temp[i++];
+  }
+}
+void mergeSort(int arr[], int s, int e){
+   if(s >= e) return;
+   int mid = s + (e-s)/2;
+   mergeSort(arr, s, mid);
+   mergeSort(arr, mid+1, e);
+   merge(arr, s, mid, e);
+}
+int main(){
+ int n = 5;
+ int arr[] = {5, 4, 3, 2, 1};
+ for(int i = 0; i < n; i++){
+  cout<<arr[i]<<" ";
+ }
+
+ cout<<"\n After sorting \n";
+ mergeSort(arr, 0, n-1);
+
+ for(int i = 0; i < n; i++){
+  cout<<arr[i]<<" ";
+ }
+}
+// */
+
+
+// day - 92 3rd Question
+// Question 437:- Define a function to implement merge sort using iteration.
+/*
+#include<iostream>
+using namespace std;
+void merge(int arr[], int s, int mid, int e){
+  int temp[e-s+1];
+  int l = s, r = mid+1, i = 0;
+  while(l <= mid && r <= e){
+    if(arr[l] >= arr[r]){
+      temp[i++] = arr[r++];
+    }else{
+      temp[i++] = arr[l++];
+    }
+  }
+  while(l <= mid){
+    temp[i++] = arr[l++];
+  }
+  while(r <= e){
+    temp[i++] = arr[r++];
+  }
+   i = 0;
+  while(s <= e){
+    arr[s++] = temp[i++];
+  }
+}
+void mergeSort(int arr[], int s, int e){
+  int n = e - s + 1;
+  for(int size = 1; size < n; size *= 2){
+    int left = s;
+    while(left <= e){
+      int mid = left + size;
+      int right = left + 2*size;
+      if(mid > e) break;
+      if(right > e + 1) right = e + 1;
+      merge(arr, left, mid-1, right-1);
+      left = right;
+    }
+  } 
+}
+
+int main(){
+ int n = 5;
+ int arr[] = {5, 4, 3, 2, 1};
+ for(int i = 0; i < n; i++){
+  cout<<arr[i]<<" ";
+ }
+
+ cout<<"\n After sorting \n";
+ mergeSort(arr, 0, n-1);
+
+ for(int i = 0; i < n; i++){
+  cout<<arr[i]<<" ";
+ }
+}
+// */
+
+
+// day - 92 4rth Question
+// Question 438:- Define a class Employee with emp_id, name, salary as instance variables. provide setters and getters in the class to access instance variables. also define a function to sort Employee array data by salary. Use Merge Sort.
+/*
+#include<iostream>
+using namespace std;
+class Employee{
+  private:
+  int emp_id;
+  string name;
+  int salary;
+
+  public:
+  void setEmp_id(int i){
+    emp_id = i;
+  }
+  void setName(string n){
+    name = n;
+  }
+  void setSalary(int s){
+    salary = s;
+  }
+  int getEmp_id(){
+    return emp_id;
+  }
+  string getName(){
+    return name;
+  }
+  int getSalary(){
+    return salary;
+  }
+
+};
+void merge(Employee arr[], int s, int mid, int e){
+  Employee temp[e-s+1];
+  int l = s, r = mid+1, i = 0;
+  while(l <= mid && r <= e){
+     if(arr[l].getSalary() >= arr[r].getSalary()){
+       temp[i++] = arr[r++];
+     }else{
+       temp[i++] = arr[l++];
+     }
+  }
+  while(l <= mid){
+    temp[i++] = arr[l++];
+  }
+  while(r <= e){
+    temp[i++] = arr[r++];
+  }
+   i = 0;
+  while(s <= e){
+    arr[s++] = temp[i++];
+  }
+}
+void mergeItSort(Employee arr[], int s, int e){
+  int n = e - s + 1;
+  for(int size = 1; size < n; size *= 2){
+    int left = s;
+    while(left <= e){
+      int mid = left + size;
+      int right = left + 2*size;
+      if(mid > e) break;
+      if(right > e + 1) right = e + 1;
+      merge(arr, left, mid-1, right-1);
+      left = right;
+    }
+  } 
+}
+
+// Recursive Merge Sort
+void mergeReSort(Employee arr[], int s, int e){
+  if(s >= e) return;
+  int mid = s + (e-s)/2;
+  mergeReSort(arr, s, mid);
+  mergeReSort(arr, mid+1, e);
+  merge(arr, s, mid, e);
+}
+
+int main(){
+  cout<<"Enter count of employee :";
+  int n; cin>>n;
+  Employee e1[n];
+
+  for(int i = 0; i < n; i++){
+    cout<<"Enter id :";
+    int id; cin>>id;
+    e1[i].setEmp_id(id);
+
+    cout<<"Enter name :";
+    string name; cin>>name;
+    e1[i].setName(name);
+
+    cout<<"Enter salary :";
+    int salary; cin>>salary;
+    e1[i].setSalary(salary);
+    cout<<endl;
+  }
+
+  // mergeItSort(e1, 0, n-1);
+  mergeReSort(e1, 0, n-1);
+  
+  cout<<"\nAfter sorting \n";
+  for(int i = 0; i < n; i++){
+    cout<<e1[i].getEmp_id()<<" "<<e1[i].getName()<<" "<<e1[i].getSalary()<<endl;
+  }
+}
+// */
+
+// day - 93 1st Question
+// Question 439:- in previous question, define a function to sort Employee array data by name. use quick sort.
+/*
+#include<iostream>
+using namespace std;
+class Employee{
+  private:
+  int emp_id;
+  string name;
+  int salary;
+  public:
+  void setData(int e, string n, int s){
+    emp_id = e;
+    name = n;
+    salary = s;
+  }
+  int getId()  {return emp_id;}
+  string getName()    {return name;}
+  int getSalary() {return salary;}
+};
+int partition(Employee arr[], int start, int end){
+   string pivot = arr[end].getName(); //
+   int pos = start;
+   for(int i = start; i <= end; i++){
+     if(arr[i].getName() <= pivot){
+       swap(arr[pos], arr[i]);
+       pos++;
+     }
+   }
+   return pos-1;
+}
+void quickSort(Employee arr[], int start, int end){
+    if(start >= end) return;
+    int pos = partition(arr, start, end);
+    quickSort(arr, start, pos-1);
+    quickSort(arr, pos+1, end);
+}
+
+
+int main(){
+  int n; cin>>n;
+  Employee e1[n];
+  for(int i = 0; i<n; i++){
+    cout<<i+1<<" Enter the Id, name & salary :";
+    int id; cin>>id;
+    string name; cin>>name;
+    int salary; cin>>salary; 
+    e1[i].setData(id, name, salary);
+  }
+
+  quickSort(e1, 0, n-1);
+  cout<<"\nafter quick Sort :\n";
+
+  for(int i = 0; i<n; i++){
+    cout<<e1[i].getId()<<endl;
+    cout<<e1[i].getName()<<endl;
+    cout<<e1[i].getSalary()<<endl<<endl;
+
+  }
+}
+*/
 
 //*********Assignment- 20 (Heap)**************/
+// day - 93 2nd Question
 // Question 440:-
+
+
+
+
+// day - 93 3rd Question
 // Question 441:-
-// Question 442:-
+
+
+
 
 
 //**********Assignment-21 (Searching)*************/
+// day - 93 4rth Question
+// Question 442:-
+
+
+// day - 94 1st Question
 // Question 443:-
-// Question 444:-
 
 
 
 // ****************Completed_DSA******************
 // g++ -std=c++20 linearDS.cpp -o linearDS && linearDS
+// g++ -std=c++20 linearDS.cpp -o linearDS
+// .\linearDS
+// GoCodeo/ github copilot / intelliCode / windsurf / 
