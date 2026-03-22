@@ -3096,7 +3096,7 @@ int main(){
 using namespace std;
 void merge(int arr[], int s, int mid, int e){
   int temp[e-s+1];
-  int l = s, r = mid+1, i = 0;
+  int l = s, r = mid+1, i = 0; 
   while(l <= mid && r <= e){
     if(arr[l] >= arr[r]){
       temp[i++] = arr[r++];
@@ -3143,7 +3143,7 @@ int main(){
 // Question 437:- Define a function to implement merge sort using iteration.
 /*
 #include<iostream>
-using namespace std;
+using namespace std;   
 void merge(int arr[], int s, int mid, int e){
   int temp[e-s+1];
   int l = s, r = mid+1, i = 0;
@@ -3169,13 +3169,13 @@ void mergeSort(int arr[], int s, int e){
   int n = e - s + 1;
   for(int size = 1; size < n; size *= 2){
     int left = s;
-    while(left <= e){
+    while(left < e){
       int mid = left + size;
-      int right = left + 2*size;
+      int right = left + 2*size-1;
       if(mid > e) break;
-      if(right > e + 1) right = e + 1;
-      merge(arr, left, mid-1, right-1);
-      left = right;
+      if(right > e) right = e;
+      merge(arr, left, mid-1, right);
+      left = right + 1;
     }
   } 
 }
@@ -3227,7 +3227,6 @@ class Employee{
   int getSalary(){
     return salary;
   }
-
 };
 void merge(Employee arr[], int s, int mid, int e){
   Employee temp[e-s+1];
@@ -3266,13 +3265,14 @@ void mergeItSort(Employee arr[], int s, int e){
 }
 
 // Recursive Merge Sort
-void mergeReSort(Employee arr[], int s, int e){
-  if(s >= e) return;
-  int mid = s + (e-s)/2;
-  mergeReSort(arr, s, mid);
-  mergeReSort(arr, mid+1, e);
-  merge(arr, s, mid, e);
-}
+
+// void mergeReSort(Employee arr[], int s, int e){
+//   if(s >= e) return;
+//   int mid = s + (e-s)/2;
+//   mergeReSort(arr, s, mid);
+//   mergeReSort(arr, mid+1, e);
+//   merge(arr, s, mid, e);
+// }
 
 int main(){
   cout<<"Enter count of employee :";
@@ -3303,6 +3303,7 @@ int main(){
   }
 }
 // */
+
 
 // day - 93 1st Question
 // Question 439:- in previous question, define a function to sort Employee array data by name. use quick sort.
@@ -3364,30 +3365,230 @@ int main(){
 
   }
 }
-*/
+// */
 
 //*********Assignment- 20 (Heap)**************/
 // day - 93 2nd Question
-// Question 440:-
+// Question 440:- 1. Define a class Heap (implement same as dynamic array).
+// 2. define a constructor to initialise member variables.
+// 3. define a method insert() to insert a new element in the heap.
+// 4. define a method isEmpty() to check if the heap is empty.
+// 5. define a method max() to return greatest value in the heap.
+// 6. define a method del() to remove the top element of the heap.
+// 7. define a destructor to safely release the memory.
+// 8. define a copy constructor to perform deep copy.
+// 9. define operator = to perform deep copy.
+// 10. define a method to sort elements of an array using heap sort.
+/*
+#include<iostream>
+using namespace std;
+class Heap{
+  private:
+     int *arr;
+     int size;
+     int totalsize;
+  public:
+  Heap(int n){
+    size = 0;
+    arr = new int[n];
+    totalsize = n;
+  }
+  void insert(int e){
+    if(size == totalsize){
+      cout<<"Heap overflow\n";
+      return;
+    }
+    arr[size] = e;
+    int index = size;
+    size++;
+    while(index > 0 && arr[(index-1)/2] < arr[index]){
+      swap(arr[(index-1)/2], arr[index]);
+      index = (index-1)/2;
+    }
+  }
+  bool isEmpty(){
+    return size == 0;
+  }
+  int max(){
+    if(size > 0){
+      return arr[0];
+    }else{
+      cout<<"heap is empty\n";
+      return -1;
+    }
+  }
+  void Heapify(int index){
+    int largest = index;
+    int l = 2*index+1, r = 2*index+2;
+    if(l < size && arr[l] > arr[largest]) largest = l;
+    if(r < size && arr[r] > arr[largest]) largest = r;
+    if(largest != index){
+      swap(arr[largest], arr[index]);
+      Heapify(largest);
+    }
+  }
+  void HeapifySort(int index, int n){
+    int largest = index;
+    int l = 2*index+1, r = 2*index+2;
+    if(l < n && arr[l] > arr[largest]) largest = l;
+    if(r < n && arr[r] > arr[largest]) largest = r;
+    if(largest != index){
+      swap(arr[largest], arr[index]);
+      HeapifySort(largest, n);
+    }
+  }
+  void del(int e){
+    if(size == 0){
+      cout<<"Heap is underflow\n";
+      return;
+    }
+    arr[0] = arr[size-1];
+    size--;
+    Heapify(0);
+  }
+  ~Heap(){
+    delete [] arr;
+  }
+  Heap(const Heap &h){
+    size = h.size;
+    totalsize = h.totalsize;
+    arr = new int[totalsize];
+    for(int i = 0; i<totalsize; i++){
+      arr[i] = h.arr[i];
+    }
+  }
+  Heap & operator =(const Heap &h){
+    if(this == &h) return *this;
+    delete [] arr;
+    size = h.size;
+    totalsize = h.totalsize;
+    arr = new int[totalsize];
+    for(int i = 0; i<totalsize; i++){
+      arr[i] = h.arr[i];
+    }
+    return *this;
+  }
+  void print(){
+    for(int i =0; i< size; i++){
+      cout<<arr[i]<<" ";
+    }
+    cout<<endl;
+  }
+  void sortHeap(){
+    for(int i = size-1; i>0; i--){
+      swap(arr[0], arr[i]);
+      HeapifySort(0, i);
+    }
+  }
+};
 
-
-
-
-// day - 93 3rd Question
-// Question 441:-
-
-
-
+int main(){
+  Heap h(10);
+  h.insert(1);
+  h.insert(2);
+  h.insert(3);
+  h.insert(4);
+  h.insert(5);
+  h.insert(6);
+  h.insert(7);
+  h.insert(8);
+  h.insert(9);
+  h.insert(10);
+  h.print();
+  h.isEmpty();
+  // cout<<h.max()<<endl;
+  // h.del(10);
+  // h.print();
+  // cout<<h.max()<<endl;
+  cout<<"\n After sorting \n";
+  h.sortHeap();
+  h.print();
+  return 0;
+}
+// */
 
 
 //**********Assignment-21 (Searching)*************/
-// day - 93 4rth Question
-// Question 442:-
+// day - 93 3rd Question
+// Question 441:- Define a method implementing linear search.
+/*
+#include<iostream>
+using namespace std;
+int linearSearch(int arr[], int v, int n){
+  for(int i = 0; i< n; i++){
+    if(arr[i] ==  v){
+      return i;
+    }
+  }
+  return -1;
+}
+int main(){
+  int n; cin>>n;
+  int arr[n];
+  cout<<"Enter the values :\n";
+  for(int i=0; i<n; i++){
+    cin>>arr[i];
+  }
+  cout<<"value to find :\n";
+  int v; cin>>v;
+  int i = linearSearch(arr, v, n);
+  if(i == -1){
+    cout<<"Element didn't find.\n";
+  }else{
+    cout<<"Element is in the index :- "<<i;
+  }
+}
+  // */
+  
+  
+  // day - 93 4th Question
+  // Question 442:- Define a method implementing binary search.
+  /*
+  #include<iostream>
+  using namespace std;
+  // int BinarySearch(int arr[], int s, int n, int v){
+  //   if(s > n) return -1;
+  //   int mid = s + (n-s)/2;
+  //   if(arr[mid] == v){
+  //     return mid;
+  //   }else if(arr[mid] < v){
+  //     return BinarySearch(arr, mid+1, n, v);
+  //   }else{
+  //     return BinarySearch(arr, s, mid-1, v);
+  //   } 
+  // }   
 
 
-// day - 94 1st Question
-// Question 443:-
-
+  int BinarySearch(int arr[], int s, int e, int v){
+    int mid = s + (e-s)/2;
+    while(s <= e){
+      if(arr[mid] == v){
+        return mid;
+      }else if(arr[mid] < v){
+        s = mid+1;
+      }else{
+        e = mid-1;
+      }
+      mid = s + (e-s)/2;
+    }
+  }
+  int main(){
+    int n; cin>>n;
+    int arr[n];
+    cout<<"Enter the values :\n";
+    for(int i=0; i<n; i++){
+      cin>>arr[i];
+    }
+    cout<<"value to find :\n";
+    int v; cin>>v;
+    int i = BinarySearch(arr, 0, n-1, v);
+    if(i == -1){
+      cout<<"Element didn't find.\n";
+    }else{
+      cout<<"Element is in the index :- "<<i;
+    }
+}
+// */
 
 
 // ****************Completed_DSA******************
