@@ -23,7 +23,7 @@
 // 11. In question 1, define a destructor to deallocate the memory of array.
 
 // 12. In question 1, define a method to find an element in the array. Return index if the element found, otherwise return -1.
-/*
+// /*                   
 #include<iostream>
 using namespace std;
 class Array{
@@ -3571,6 +3571,7 @@ int main(){
       }
       mid = s + (e-s)/2;
     }
+    return -1;
   }
   int main(){
     int n; cin>>n;
