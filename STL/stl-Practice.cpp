@@ -2592,8 +2592,8 @@ int main(){
 
 
 /*
-// Day - 113 1st Question *****Project: Student Report System**********************
-// Question 519:----------------Project Overview:-
+// *****Project: Student Report System**********************
+//---------------Project Overview:-----------
 Build a complete Student Report Management System that stores student records, calculates grades and supports data storage using files.
 
 ---------------Technologies Required:-
@@ -2602,30 +2602,30 @@ DSA
 STL 
 
 ---------------Key Features:-
-Add Student Record:-
+Day - 113 1st Question - Question 519:- Add Student Record:-
 • Name, Roll No, Subject marks
 • Auto calculation of total, percentage, and grade
 
-Display All Records:-
+Day - 113 2nd Question - Question 520:- Display All Records:-
 • List all students in tabular form
 
-Search Student:-
+Day - 114 1st Question - Question 521:- Search Student:-
 • By name or roll number using binary search
 
-Delete/Update Record (Optional):-
+Day - 114 2nd Question - Question 522:- Delete/Update Record (Optional):-
 • Use Linked List to manage dynamic record updates
 
-Find Toppers (Optional):-
+Day - 115 1st Question - Question 523:- Find Toppers (Optional):-
 • Use Priority Queue or custom sorting logic
 
-Save & Load using File Handling:-
+Day - 115 2nd Question - Question 524:- Save & Load using File Handling:-
 • Save data in .txt or .dat using fstream 
 
 Menu-Driven CLI:-
 • Easy navigation via console
 */
 
-// /*
+/*
 #include <iostream>
 #include <fstream>
 #include <vector>
