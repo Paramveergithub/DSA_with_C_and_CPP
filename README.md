@@ -2,7 +2,6 @@
 
 71 to 112 days     => 42 * 4 = 168 Questions   -> 4 Questions / day.
 
-113 to 730 days    => 618 * 2 = 1236 Questions   -> 2 Question / day.
+113 to 278 days    => 166 * 2 = 332 Questions   -> 2 Question / day.
 
-Total Questions => 730 days = 1236 Questions 🎯.
- It is a 2-Year Journey. 🔥 🥇 :)
+278 days = 580 Questions included important blind-75 and neetcode-250 with 50+ Patterns :)
