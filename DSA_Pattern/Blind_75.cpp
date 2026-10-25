@@ -219,14 +219,14 @@ int main(){
 // Input: nums = [2,1,5,1,3,2], k = 3 
 // Output: 9
 // Explanation: The subarray [5,1,3] has the maximum sum of 9.
-// */
+/*
 #include<iostream>
 #include<climits>
 #include<vector>
 using namespace std;
 int maxSum(vector<int>&nums, int k){
    if(nums.size() < k || k <= 0)
-       return 0;
+   return 0;
    int s = 0, ws = 0, ms = INT_MIN;
    for(int e = 0; e < nums.size(); e++){
        ws += nums[e];
@@ -240,11 +240,232 @@ int maxSum(vector<int>&nums, int k){
 }
 int main(){
   vector<int>nums = {2,1,5,1,3,2};
-  cout<<maxSum(nums, 3);
+  cout<<maxSum(nums, 3)<<endl;
   return 0;
+}
+*/
+
+
+// Day - 119 1st Question**************Sliding Window-2*************
+// Question 531:- Given a string s, find the length of longest substring without repeating characters.
+// A substring is a contiguous sequence of characters within a string.
+//Exa- input: s = "abcabcbb" , output = 3
+//Exa- input: s = "bbbbb" , output = 1
+//Exa- input: s = "pwwkew" , output = 3
+// /*
+#include<iostream>
+#include<map>
+#include<string>
+#include<algorithm>
+using namespace std;
+
+int longestSubstring(string s){
+    int left = 0, right = 0, maxLength = 0;
+    map<char, int> charIndexMap;
+    while(right < s.length()){
+        char currentChar = s[right];
+        if(charIndexMap.find(currentChar) != charIndexMap.end() && charIndexMap[currentChar] >= left){
+            left = charIndexMap[currentChar] + 1;
+        }
+        charIndexMap[currentChar] = right;
+        maxLength = max(maxLength, right - left + 1);
+        right++;
+    }    
+    return maxLength;
+}
+int main(){
+    string s = "abcabcbdsb";
+    cout<<longestSubstring(s)<<endl;
+    return 0;
 }
 // */
 
 
 
-// g++ -std=c++20 Blind_75.cpp -o Blind_75 && Blind_75
+
+
+
+// Day - 119 2nd Question**************Sliding Window-3*************
+// Question 532:- 
+
+// Day - 120 1st Question**************Sliding Window-4*************
+// Question 533:- 
+// Day - 120 2nd Question**************Sliding Window-5*************
+// Question 534:- 
+
+
+// Day - 121 1st Question**************Fast and Slow Pointers-1 *************
+// Question 535:- 
+// Day - 121 2nd Question**************Fast and Slow Pointers-2 *************
+// Question 536:-
+
+
+// Day - 122 1st Question**************Fast and Slow Pointers-3 *************
+// Question 537:-
+// Day - 122 2nd Question**************Fast and Slow Pointers-4 *************
+// Question 538:-
+
+// Day - 123 1st Question**************Fast and Slow Pointers-5 *************
+// Question 539:-
+// Day - 123 2nd Question**************Binary Search-1*************
+// Question 540:-
+
+// Day - 124 1st Question**************Binary Search-2*************
+// Question 541:-
+// Day - 124 2nd Question**************Binary Search-3*************
+// Question 542:-
+
+// Day - 125 1st Question**************Binary Search-4*************
+// Question 543:-
+// Day - 125 2nd Question**************Binary Search-5*************
+// Question 544:-
+
+
+// Day - 126 1st Question**************Stack and Monotonic Stack-1*************
+// Question 545:-
+// Day - 126 2nd Question**************Stack and Monotonic Stack-2*************
+// Question 546:-
+
+// Day - 127 1st Question**************Stack and Monotonic Stack-3*************
+// Question 547:-
+// Day - 127 2nd Question**************Stack and Monotonic Stack-4*************
+// Question 548:-
+
+// Day - 128 1st Question**************Stack and Monotonic Stack-5*************
+// Question 549:-
+// Day - 128 2nd Question**************Priority Queue/Heap-1*************
+// Question 550:-
+
+
+// Day - 129 1st Question**************Priority Queue/Heap-2*************
+// Question 551:-
+// Day - 129 2nd Question**************Priority Queue/Heap-3*************
+// Question 552:-
+
+// Day - 130 1st Question**************Priority Queue/Heap-4*************
+// Question 553:-
+// Day - 130 2nd Question**************Priority Queue/Heap-5*************
+// Question 554:-
+
+// Day - 131 1st Question**************Hashing-1*************
+// Question 555:-
+// Day - 131 2nd Question**************Hashing-2*************
+// Question 556:-
+
+// Day - 132 1st Question**************Hashing-3*************
+// Question 557:-
+// Day - 132 2nd Question**************Hashing-4*************
+// Question 558:-
+
+// Day - 133 1st Question**************Hashing-5*************
+// Question 559:-
+// Day - 133 2nd Question**************Graph (DFS and BFS)-1*************
+// Question 560:-
+
+// Day - 134 1st Question**************Graph (DFS and BFS)-2*************
+// Question 561:-
+// Day - 134 2nd Question**************Graph (DFS and BFS)-3*************
+// Question 562:-
+
+// Day - 135 1st Question**************Graph (DFS and BFS)-4*************
+// Question 563:-
+// Day - 135 2nd Question**************Graph (DFS and BFS)-5*************
+// Question 564:-
+
+
+// Day - 136 1st Question**************Tree-1*************
+// Question 565:-
+// Day - 136 2nd Question**************Tree-2*************
+// Question 566:-
+
+// Day - 137 1st Question**************Tree-3*************
+// Question 567:-
+// Day - 137 2nd Question**************Tree-4*************
+// Question 568:-
+
+// Day - 138 1st Question**************Tree-5*************
+// Question 569:-
+// Day - 138 2nd Question**************Dynamic Programming-1*************
+// Question 570:-
+
+// Day - 139 1st Question**************Dynamic Programming-2*************
+// Question 571:-
+// Day - 139 2nd Question**************Dynamic Programming-3*************
+// Question 572:-
+
+// Day - 140 1st Question**************Dynamic Programming-4*************
+// Question 573:-
+// Day - 140 2nd Question**************Dynamic Programming-5*************
+// Question 574:-
+
+// Day - 141 1st Question**************Backtracking-1*************
+// Question 575:-
+// Day - 141 2nd Question**************Backtracking-2*************
+// Question 576:-
+
+// Day - 142 1st Question**************Backtracking-3*************
+// Question 577:-
+// Day - 142 2nd Question**************Backtracking-4*************
+// Question 578:-
+
+// Day - 143 1st Question**************Backtracking-5*************
+// Question 579:-
+// Day - 143 2nd Question**************Bit Manipulation-1*************
+// Question 580:-
+
+// Day - 144 1st Question**************Bit Manipulation-2*************
+// Question 581:-
+// Day - 144 2nd Question**************Bit Manipulation-3*************
+// Question 582:-
+
+// Day - 145 1st Question**************Bit Manipulation-4*************
+// Question 583:-
+// Day - 145 2nd Question**************Bit Manipulation-5*************
+// Question 584:-
+
+// Day - 146 1st Question**************Greedy-1*************
+// Question 585:-
+// Day - 146 2nd Question**************Greedy-2*************
+// Question 586:-
+
+
+// Day - 147 1st Question**************Greedy-3*************
+// Question 587:-
+// Day - 147 2nd Question**************Greedy-4*************
+// Question 588:-
+
+// Day - 148 1st Question**************Greedy-5*************
+// Question 589:-
+// Day - 148 2nd Question**************Matrix / Grid Problem-1*************
+// Question 590:-
+
+// Day - 149 1st Question**************Matrix / Grid Problem-2*************
+// Question 591:-
+// Day - 149 2nd Question**************Matrix / Grid Problem-3*************
+// Question 592:-
+
+// Day - 150 1st Question**************Matrix / Grid Problem-4*************
+// Question 593:-
+// Day - 150 2nd Question**************Matrix / Grid Problem-5*************
+// Question 594:-
+
+
+// Day - 151 1st Question**************Linked List Mastery-1*************
+// Question 595:-
+// Day - 151 2nd Question**************Linked List Mastery-2*************
+// Question 596:-
+
+
+// Day - 152 1st Question**************Linked List Mastery-3*************
+// Question 597:-
+// Day - 152 2nd Question**************Linked List Mastery-4*************
+// Question 598:-
+
+// Day - 153 1st Question**************Linked List Mastery-5*************
+// Question 599:-
+
+
+
+
+// g++ DSA_Pattern/Blind_75.cpp -o main && ./main -- for github codespaces (bash terminal)
+// g++ -std=c++20 Blind_75.cpp -o Blind_75 && Blind_75 -- for local machine (cmd prompt)
