@@ -252,7 +252,7 @@ int main(){
 //Exa- input: s = "abcabcbb" , output = 3
 //Exa- input: s = "bbbbb" , output = 1
 //Exa- input: s = "pwwkew" , output = 3
-// /*
+/*
 #include<iostream>
 #include<map>
 #include<string>
@@ -281,12 +281,12 @@ int main(){
 // */
 
 
-
-
-
-
 // Day - 119 2nd Question**************Sliding Window-3*************
 // Question 532:- 
+git add .
+git commit -m "some fixes"
+
+
 
 // Day - 120 1st Question**************Sliding Window-4*************
 // Question 533:- 
@@ -467,5 +467,5 @@ int main(){
 
 
 
-// g++ DSA_Pattern/Blind_75.cpp -o main && ./main -- for github codespaces (bash terminal)
+// g++ DSA_15_Patterns/Blind_75.cpp -o main && ./main -- for github codespaces (bash terminal)
 // g++ -std=c++20 Blind_75.cpp -o Blind_75 && Blind_75 -- for local machine (cmd prompt)
