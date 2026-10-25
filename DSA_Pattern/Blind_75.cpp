@@ -213,5 +213,38 @@ int main(){
 // */
 
 
+// Day - 118 2nd Question**************Sliding Window-1*************
+// Question 530:- Given an array of integers nums and a positive integer k, find the maximum sum of any contiguous subarray of size k. A subarray is a contiguous non-empty sequence of elements within an array.
+// Example 1:
+// Input: nums = [2,1,5,1,3,2], k = 3 
+// Output: 9
+// Explanation: The subarray [5,1,3] has the maximum sum of 9.
+// */
+#include<iostream>
+#include<climits>
+#include<vector>
+using namespace std;
+int maxSum(vector<int>&nums, int k){
+   if(nums.size() < k || k <= 0)
+       return 0;
+   int s = 0, ws = 0, ms = INT_MIN;
+   for(int e = 0; e < nums.size(); e++){
+       ws += nums[e];
+       if(e >= k-1){
+           ms = max(ms, ws);
+           ws -= nums[s];
+           s++;
+       }
+   }
+   return ms;
+}
+int main(){
+  vector<int>nums = {2,1,5,1,3,2};
+  cout<<maxSum(nums, 3);
+  return 0;
+}
+// */
+
+
 
 // g++ -std=c++20 Blind_75.cpp -o Blind_75 && Blind_75
