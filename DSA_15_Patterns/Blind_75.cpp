@@ -283,8 +283,6 @@ int main(){
 
 // Day - 119 2nd Question**************Sliding Window-3*************
 // Question 532:- 
-git add .
-git commit -m "some fixes"
 
 
 
