@@ -282,36 +282,341 @@ int main(){
 
 
 // Day - 119 2nd Question**************Sliding Window-3*************
-// Question 532:- 
+// Question 532:- Given two strings s and t of lengths m and n respectively, return the minimum window substring of s such that every character in t (including duplicates) is included in the window. If there is no such substring, return the empty string "".
+// The testcases will be generated such that the answer is unique.
+// Example 1:
+// Input: s = "ADOBECODEBANC", t = "ABC"
+// Output: "BANC"
+// Explanation: The minimum window substring "BANC" includes 'A', 'B', and 'C' from string t.
+/*
+#include<iostream>
+#include<string>
+#include<unordered_map>
+#include<climits>
+#include<algorithm>
+using namespace std;
+
+string sol(string s, string t){
+    if(s.empty() || t.empty() || s.length() < t.length())   return "";
+    unordered_map<char, int> tMap;
+
+    for(char c : t)    tMap[c]++;
+
+    int left = 0, right = 0, start = 0, required = tMap.size(), formed = 0;
+    unordered_map<char, int> windowCount;
+    int minLength = INT_MAX;
+
+    while(right < s.length()){
+        char cc = s[right];
+        windowCount[cc]++;
+
+        if(tMap.find(cc) != tMap.end() && windowCount[cc] == tMap[cc])    formed++;
+
+        while(left <= right && formed == required){
+            char lch = s[left];
+            int windowLength = right - left + 1;
+            if(windowLength < minLength){
+                minLength = windowLength;
+                start = left;
+            }
+            windowCount[lch]--;
+            if(tMap.find(lch) != tMap.end() && windowCount[lch] < tMap[lch])    formed--;
+            left++; 
+        }
+        right++;
+    }
+    if(minLength == INT_MAX)    return "";
+    return s.substr(start, minLength);
+}
+int main(){
+    string s = "ADOBECODEBANC";
+    string t = "ABC";
+    cout<<sol(s, t)<<endl;
+    return 0;
+}
+// */
 
 
 
 // Day - 120 1st Question**************Sliding Window-4*************
-// Question 533:- 
+// Question 533:- You are visiting a farm that has a single row of fruit trees arranged from left to right. The trees are represented by an integer array fruits where fruits[i] is the type of fruit the ith tree produces.
+// You want to collect as much fruit as possible. However, the owner has some strict rules that you must follow:
+// 1. You only have two baskets, and each basket can only hold a single type of fruit. There is no limit on the amount of fruit each basket can hold.
+// 2. Starting from any tree of your choice, you must pick exactly one fruit from every tree (including the start tree) while moving to the right. The stoping point is when you reach a tree with a fruit type that cannot fit in your baskets.
+// Return the maximum number of fruits you can pick.
+// Example 1:
+// Input: fruits = [1,2,1]
+// Output: 3
+// Explanation: We can pick from all 3 trees.
+/*
+#include<iostream>
+#include<vector>
+#include<unordered_map>
+using namespace std;
+
+int maxFruits(vector<int>&fruits){
+    int left = 0, right = 0, maxFruits = 0;
+    unordered_map<int, int> fruitCount;
+
+    while(right < fruits.size()){
+        fruitCount[fruits[right]]++;
+
+        while(fruitCount.size() > 2){
+            fruitCount[fruits[left]]--;
+
+            if(fruitCount[fruits[left]] == 0){
+                fruitCount.erase(fruits[left]);
+            }
+            left++;
+        }
+        maxFruits = max(maxFruits, right - left + 1);
+        right++;
+    }
+    return maxFruits;
+}
+int main(){
+    vector<int> fruits = {1, 2, 3, 2, 2};
+    cout<<maxFruits(fruits)<<endl;
+    return 0;
+}
+// */
+
+
 // Day - 120 2nd Question**************Sliding Window-5*************
-// Question 534:- 
+// Question 534:- Given a word txt and a pattern pat, find the total count of all anagrams of the pat in txt. An anagram of a string is another string that contains the same characters, only the order of characters can be different. For example, “abcd” and “dabc” are anagrams of each other.
+// A substring of txt is a considered an anagram of pat if the characters in the substring can be rearranged to form pat.
+// Example 1:
+// Input: txt = "forxxorfxdofr", pat = "for"
+// Output: 3
+// Explanation: The three anagrams of pat in txt are "for", "orf", and "ofr".
+/*
+#include<iostream>
+#include<string>
+#include<unordered_map>
+using namespace std;
+
+int countAnagrams(string txt, string pat){
+    if(pat.length() == 0 || txt.length() < pat.length())    return 0;
+
+    int left = 0, right = 0, count = 0;
+    unordered_map<char, int>patMap, windowMap;
+    
+    for(char c : pat)    patMap[c]++;
+
+    while(right < txt.length()){
+        windowMap[txt[right]]++;
+        if(right - left + 1 == pat.length()){
+            if(windowMap == patMap)    count++;
+            windowMap[txt[left]]--;
+            if(windowMap[txt[left]] == 0)    windowMap.erase(txt[left]);
+            left++;
+        }
+        right++;
+    }
+    return count;
+}
+int main(){
+    string txt = "forxxorfxdofr";
+    string pat = "for";
+    cout<<countAnagrams(txt, pat)<<endl;
+    return 0;
+}
+// */
 
 
 // Day - 121 1st Question**************Fast and Slow Pointers-1 *************
-// Question 535:- 
+// Question 535:- Given head, the head of a linked list, determine if the linked list has a cycle in it. There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the next pointer. Internally, pos is used to denote the index of the node that tail's next pointer is connected to. Note that pos is not passed as a parameter.
+// Return true if there is a cycle in the linked list. Otherwise, return false.
+// Example 1:
+// Input : head = [3,2,0,-4], pos = 1
+// Output : true
+// Explanation : There is a cycle in the linked list, where the tail connects to the 1st node (0-indexed).
+/*
+bool hasCycle(ListNode *head){
+    if(!head || !head->next)    return false;
+    ListNode *slow = head, *fast = head;
+    while(fast && fast->next){
+        slow = slow->next;
+        fast = fast->next->next;
+        if(slow == fast)    return true;
+    }
+    return false;
+}
+// */
+
+
 // Day - 121 2nd Question**************Fast and Slow Pointers-2 *************
-// Question 536:-
+// Question 536:- Given the head of a singly linked List, return the middle node of the linked list. If there are two middle nodes, return the second middle node.
+// Example 1:
+// Input: head = [1,2,3,4,5]
+// Output: [3,4,5]
+/*
+ListNode* middleNode(ListNode* head){
+    if(!head)    return nullptr;
+    ListNode *slow = head, *fast = head;
+    while(fast && fast->next){
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    return slow;
+}
+// */
 
 
 // Day - 122 1st Question**************Fast and Slow Pointers-3 *************
-// Question 537:-
+// Question 537:- Given the head of a singly linked list, return true if it is a palindrome. or false otherwise. A palindrome is a sequence that reads the same backward as forward.
+// Example 1:
+// Input: head = [1,2,2,1]
+// Output: true
+/*
+bool isPalindrome(ListNode* head){
+    if(!head || !head->next) return true;
+    ListNode *slow = head, *fast = head;
+    while(fast && fast->next){
+        slow = slow->next;
+        fast = fast->next->next;    
+    }
+    ListNode *prev = nullptr, *curr = slow;
+    while(curr){
+        ListNode *Temp = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = Temp;
+    }
+    ListNode *firstHalf = head, *secondHalf = prev;
+    bool flag = true;
+    while(flag && secondHalf){
+        if(firstHalf->val != secondHalf->val)    flag = false;
+        firstHalf = firstHalf->next;
+        secondHalf = secondHalf->next;
+    }
+    return flag;
+}
+// */
+
+
 // Day - 122 2nd Question**************Fast and Slow Pointers-4 *************
-// Question 538:-
+// Question 538:- Given the head of a linked list, remove the nth node from the end of the list and return its head.
+// Example 1:
+// Input: head = [1,2,3,4,5], n = 2
+// Output: [1,2,3,5]
+/*
+ListNode* removeNthFromEnd(ListNode* head, int n){
+    ListNode dummy(0);
+    dummy.next = head;
+    ListNode *right = &dummy, *left = &dummy;
+    for(int i = 0; i <= n; i++)    right = right->next;
+    while(right){
+        right = right->next;
+        left = left->next;
+    }
+    left->next = left->next->next;
+    return dummy.next;
+}
+// */
+
 
 // Day - 123 1st Question**************Fast and Slow Pointers-5 *************
-// Question 539:-
+// Question 539:- write an algorithm to determine if a number n is happy. A happy number is a number defined by the following process: 
+// 1. Starting with any positive integer, replace the number by the sum of the squares of its digits.
+// 2. Repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle that does not include 1.
+// Those numbers for which this process ends in 1 are happy numbers.
+// Return true if n is a happy number, and false if not.
+// Example 1:
+// Input: n = 19
+// Output: true
+// Explanation: 1^2 + 9^2 = 82
+// 8^2 + 2^2 = 68
+// 6^2 + 8^2 = 100
+// 1^2 + 0^2 + 0^2 = 1
+// Example 2:
+// Input: n = 2
+// Output: false
+// Explanation: 2^2 = 4, 4^2 = 16, 1^2 + 6^2 = 37, 3^2 + 7^2 = 58, 5^2 + 8^2 = 89, 8^2 + 9^2 = 145, 1^2 + 4^2 + 5^2 = 42, 4^2 + 2^2 = 20, 2^2 + 0^2 = 4 (cycle detected)
+/*
+int getNext(int n){
+    int totalSum = 0;
+    while(n > 0){
+        int digit = n % 10;
+        totalSum += digit * digit;
+        n /= 10;
+    }
+    return totalSum;
+}
+bool isHappy(int n){
+    int slow = n, fast = getNext(n);
+    while(fast != 1 && slow != fast){
+        slow = getNext(slow);
+        fast = getNext(getNext(fast));
+    }
+    return fast == 1;
+}
+// */
+
+
 // Day - 123 2nd Question**************Binary Search-1*************
-// Question 540:-
+// Question 540:- Given an array of integers nums which is sorted in ascending order, and an integer target, write a function to search target in nums. If target exists, then return its index. Otherwise, return -1.
+// You must write an algorithm with O(log n) runtime complexity.
+// Example 1:
+// Input: nums = [-1,0,3,5,9,12], target = 9
+// Output: 4
+// Explanation: 9 exists in nums and its index is 4.
+/*
+int search(int *nums, int target){
+    int n = sizeof(nums)/sizeof(nums[0]);
+    int left = 0, right = n - 1;
+    if(n == 0 || target < nums[left] || target > nums[right])    return -1;
+    while(left <= right){
+        int mid = left + (right - left) / 2;
+        if(nums[mid] == target)    return mid;
+        else if(nums[mid] < target)    left = mid + 1;
+        else    right = mid - 1;
+    }
+    return -1;
+}
+// */
 
 // Day - 124 1st Question**************Binary Search-2*************
-// Question 541:-
+// Question 541:- There is an integer array nums sorted in ascending order (with distinct values). Prior to being passed to your function, nums is possibly rotated at an unknown pivot index k (0 <= k < nums.length) such that the resulting array is [nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]] (0-indexed). For example, [0,1,2,4,5,6,7] might be rotated at pivot index 3 and become [4,5,6,7,0,1,2].
+// Given the array nums after the possible rotation and an integer target, return the index of target if it is in nums, or -1 if it is not in nums.
+// You must write an algorithm with O(log n) runtime complexity.
+// Example 1:
+// Input: nums = [4,5,6,7,0,1,2], target = 0
+// Output: 4
+// Explanation: 0 exists in nums and its index is 4.
+/*
+int search(int *nums, int target){
+    int n = sizeof(nums)/sizeof(nums[0]);
+    int left = 0, right = n-1;
+    while(left <= right){
+        int mid = left + (right - left) / 2;
+        if(nums[mid] == target)    return mid;
+        if(nums[left] <= nums[mid]){
+            if(nums[left] <= target && target < nums[mid])    right = mid - 1;
+            else    left = mid + 1;
+        }else{
+            if(nums[mid] < target && target <= nums[right])    left = mid + 1;
+            else    right = mid - 1;
+        }
+    }
+    return -1;
+}
+// */
+
+
 // Day - 124 2nd Question**************Binary Search-3*************
-// Question 542:-
+// Question 542:- Given a non-negative integer x, return the square root of x rounded down to the nearest integer. The returned integer should be non-negative as well.
+// You must not use any built-in exponent function or operator, such as pow(x, 0.5) or x ** 0.5.
+// Example 1:
+// Input: x = 4
+// Output: 2
+// Explanation: The square root of 4 is 2, so we return 2.
+// /*
+
+
+// */
+
+
 
 // Day - 125 1st Question**************Binary Search-4*************
 // Question 543:-
