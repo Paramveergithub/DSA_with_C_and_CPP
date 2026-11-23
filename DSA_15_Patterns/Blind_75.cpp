@@ -612,66 +612,160 @@ int search(int *nums, int target){
 // Output: 2
 // Explanation: The square root of 4 is 2, so we return 2.
 // /*
-
-
+int mySqrt(int x){
+    if(x < 2) return x;
+    int left = 1, right = x;
+    while(left <= right){
+        int mid = left + (right - left) / 2;
+        if(mid * mid == x)    return mid;
+        else if(mid * mid < x)    left = mid + 1;
+        else    right = mid - 1;
+    }
+    return right;
+}
 // */
 
 
 
 // Day - 125 1st Question**************Binary Search-4*************
-// Question 543:-
+// Question 543:- A Peak element is an element that is strictly greater than its neighbors. Given an integer array nums, find a peak element, and return its index. If the array contains multiple peaks, return the index to any of the peaks.
+// You may imagine that nums[-1] = nums[n] = -∞. In other words, an element is always considered to be strictly greater than a neighbor that is outside the array.
+// You must write an algorithm that runs in O(log n) time.
+// Example 1:
+// Input: nums = [1,2,3,1]
+// Output: 2
+// Explanation: 3 is a peak element and your function should return the index number 2.
+/*
+int findPeakElement(int *nums){
+    int n = sizeof(nums)/sizeof(nums[0]);
+    int left= 0, right = n - 1;
+    while(left < right){
+        int mid = left + (right - left) / 2;
+        if(nums[mid] < nums[mid + 1])    left = mid + 1;
+        else    right = mid;
+    }
+    return left;
+}
+// */
+
+
 // Day - 125 2nd Question**************Binary Search-5*************
-// Question 544:-
+// Question 544:- You are given an array of integers stalls, which represents the locations of stalls on a straight line. You are also given an integer k, which represents the number of aggressive cows that you want to place in the stalls. Your task is to assign each of the k cows to a stall, such that the minimum distance between any two of them is as large as possible. Return the largest minimum distance.
+// Example 1:
+// Input: stalls = [1,2,8,4,9], k = 3
+// Output: 3
+// Explanation: The largest minimum distance can be achieved by placing the cows in stalls at positions 1, 4, and 8, which gives a minimum distance of 3.
+/*
+bool isPossible(int *stalls, int n, int k, int mid){
+    int count = 1, lastPos = stalls[0];
+    for(int i = 1; i < n; i++){
+        if(stalls[i] - lastPos >= mid){
+            count++;
+            lastPos = stalls[i];
+        }
+        if(count >= k)    return true;
+    }
+    return false;
+}
+int largestMinDist(int *stalls, int k){
+    int n = sizeof(stalls)/sizeof(stalls[0]);
+    sort(stalls, stalls + n);
+    int left = 1, right = stalls[n - 1] - stalls[0], ans = -1;
+    while(left <= right){
+        int mid = left + (right - left) / 2;
+        if(isPossible(stalls, n, k, mid)){
+            ans = mid;
+            left = mid + 1;
+        }else{
+            right = mid - 1;
+        }
+    }
+    return ans;
+}
+// */
 
 
 // Day - 126 1st Question**************Stack and Monotonic Stack-1*************
 // Question 545:-
+
+
+
 // Day - 126 2nd Question**************Stack and Monotonic Stack-2*************
 // Question 546:-
 
+
+
 // Day - 127 1st Question**************Stack and Monotonic Stack-3*************
 // Question 547:-
+
+
 // Day - 127 2nd Question**************Stack and Monotonic Stack-4*************
 // Question 548:-
 
+
+
 // Day - 128 1st Question**************Stack and Monotonic Stack-5*************
 // Question 549:-
+
+
 // Day - 128 2nd Question**************Priority Queue/Heap-1*************
 // Question 550:-
 
 
+
 // Day - 129 1st Question**************Priority Queue/Heap-2*************
 // Question 551:-
+
+
 // Day - 129 2nd Question**************Priority Queue/Heap-3*************
 // Question 552:-
 
+
 // Day - 130 1st Question**************Priority Queue/Heap-4*************
 // Question 553:-
+
+
 // Day - 130 2nd Question**************Priority Queue/Heap-5*************
 // Question 554:-
 
 // Day - 131 1st Question**************Hashing-1*************
 // Question 555:-
+
+
 // Day - 131 2nd Question**************Hashing-2*************
 // Question 556:-
 
+
+
 // Day - 132 1st Question**************Hashing-3*************
 // Question 557:-
+
+
 // Day - 132 2nd Question**************Hashing-4*************
 // Question 558:-
 
+
+
 // Day - 133 1st Question**************Hashing-5*************
 // Question 559:-
+
+
 // Day - 133 2nd Question**************Graph (DFS and BFS)-1*************
 // Question 560:-
 
 // Day - 134 1st Question**************Graph (DFS and BFS)-2*************
 // Question 561:-
+
+
 // Day - 134 2nd Question**************Graph (DFS and BFS)-3*************
 // Question 562:-
 
+
+
 // Day - 135 1st Question**************Graph (DFS and BFS)-4*************
 // Question 563:-
+
+
 // Day - 135 2nd Question**************Graph (DFS and BFS)-5*************
 // Question 564:-
 
