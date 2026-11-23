@@ -2,6 +2,6 @@
 
 71 to 112 days     => 42 * 4 = 168 Questions   -> 4 Questions / day.
 
-113 to 278 days    => 166 * 2 = 332 Questions   -> 2 Question / day.
+113 to 153 days    => (41 * 2)-1 = 81 Questions   -> 2 Question / day.
 
-278 days = 580 Questions included important blind-75 and neetcode-250 with 50+ Patterns :)
+153 days = 599 Questions included important blind-75 :)
