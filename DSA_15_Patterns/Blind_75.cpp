@@ -611,7 +611,10 @@ int search(int *nums, int target){
 // Input: x = 4
 // Output: 2
 // Explanation: The square root of 4 is 2, so we return 2.
-// /*
+/*
+#include<iostream>
+using namespace std;
+
 int mySqrt(int x){
     if(x < 2) return x;
     int left = 1, right = x;
@@ -622,6 +625,11 @@ int mySqrt(int x){
         else    right = mid - 1;
     }
     return right;
+}
+int main(){
+    int x = 8;
+    cout<<mySqrt(x)<<endl;
+    return 0;
 }
 // */
 
@@ -636,8 +644,10 @@ int mySqrt(int x){
 // Output: 2
 // Explanation: 3 is a peak element and your function should return the index number 2.
 /*
-int findPeakElement(int *nums){
-    int n = sizeof(nums)/sizeof(nums[0]);
+#include<iostream>
+using namespace std;
+
+int findPeakElement(int *nums, int n){
     int left= 0, right = n - 1;
     while(left < right){
         int mid = left + (right - left) / 2;
@@ -645,6 +655,13 @@ int findPeakElement(int *nums){
         else    right = mid;
     }
     return left;
+}
+int main(){
+    int nums[] = {1, 2, 3, 1};
+    // int nums[] = {1, 2, 1, 3, 5, 6, 4};
+    int n = sizeof(nums)/sizeof(nums[0]);
+    cout<<findPeakElement(nums, n)<<endl;
+    return 0;
 }
 // */
 
@@ -656,10 +673,13 @@ int findPeakElement(int *nums){
 // Output: 3
 // Explanation: The largest minimum distance can be achieved by placing the cows in stalls at positions 1, 4, and 8, which gives a minimum distance of 3.
 /*
+#include<iostream>
+#include<algorithm>
+using namespace std;
 bool isPossible(int *stalls, int n, int k, int mid){
     int count = 1, lastPos = stalls[0];
-    for(int i = 1; i < n; i++){
-        if(stalls[i] - lastPos >= mid){
+    for(int i = 1; i<n; i++){
+        if(stalls[i]-lastPos >= mid){
             count++;
             lastPos = stalls[i];
         }
@@ -667,12 +687,11 @@ bool isPossible(int *stalls, int n, int k, int mid){
     }
     return false;
 }
-int largestMinDist(int *stalls, int k){
-    int n = sizeof(stalls)/sizeof(stalls[0]);
-    sort(stalls, stalls + n);
-    int left = 1, right = stalls[n - 1] - stalls[0], ans = -1;
+int minMaxDistance(int *stalls, int n, int k){
+    sort(stalls, stalls+n);
+    int left = 1, right = stalls[n-1]-stalls[0], ans = -1;
     while(left <= right){
-        int mid = left + (right - left) / 2;
+        int mid = left + (right-left)/2;
         if(isPossible(stalls, n, k, mid)){
             ans = mid;
             left = mid + 1;
@@ -682,16 +701,62 @@ int largestMinDist(int *stalls, int k){
     }
     return ans;
 }
+
+int main(){
+    // int stalls[] = {1, 2, 8, 4, 9};
+    int stalls[] = {10, 1, 2, 7, 5};
+    int k = 3;
+    int n = sizeof(stalls)/sizeof(stalls[0]);
+    cout<<minMaxDistance(stalls, n, k)<<endl;
+    return 0;
+}
 // */
 
 
 // Day - 126 1st Question**************Stack and Monotonic Stack-1*************
-// Question 545:-
+// Question 545:- Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+// An input string is valid if:
+// 1. Open brackets must be closed by the same type of brackets.
+// 2. Open brackets must be closed in the correct order.
+// 3. Every close bracket has a corresponding open bracket of the same type.
+// Example 1:
+// Input: s = "()"
+// Output: true
+// Example 2:
+// Input: s = "()[]{}"
+// Output: true
+// Example 3:
+// Input: s = "(]"
+// Output: false
+/*
+#include<iostream>
+#include<stack>
+#include<string>
+using namespace std;
 
+bool isValid(string s){
+    stack<char>st;
+    for(char c : s){
+        if(c == '(' || c == '{' || c == '[')   st.push(c);
+        else{
+            if(st.empty())    return false;
+            char top = st.top();
+            if((c == ')' && top != '(') || (c == '}' && top != '{') || (c == ']' && top != '['))    return false;
+            st.pop();
+        }
+    }
+    return st.empty();
+}
+int main(){
+    string s = "{[]}";
+    if(isValid(s))    cout<<"true"<<endl;
+    else    cout<<"false"<<endl;
+}
+// */
 
 
 // Day - 126 2nd Question**************Stack and Monotonic Stack-2*************
-// Question 546:-
+// Question 546:- 
 
 
 
