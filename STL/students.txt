@@ -1,0 +1,2 @@
+Param,1,37,F,bio:30,english:44
+akash,2,82.3333,B,chemistry:99,hindi:93,physics:55
